@@ -7,7 +7,6 @@
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using Helpers;
-    using Microsoft.Ajax.Utilities;
     using ViewModels;
 
     public class PlayerController : BaseController
@@ -26,7 +25,7 @@
         /// <summary> Returns the JSON data to display a jqGrid of beers </summary>
         /// POST: /Match/GridData
         [HttpPost]
-        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters)
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, long? statusID)
         {
             // Save the last sort choices to session data.
             Session["PlayerLastSortID"] = sidx;
@@ -36,6 +35,9 @@
 
             var allRecords = from player in QuilmesModel.Players
                             select player;
+
+            if (statusID != null)
+                allRecords = allRecords.Where(x => x.StatusID == statusID);
 
             // Check for any filtering and prepare Where clauses.
             if (_search)

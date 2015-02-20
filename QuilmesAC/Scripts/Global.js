@@ -9,4 +9,8 @@
         alert(1);
         return confirm('Delete all data for this player?');
     });
+
+    $('select').change(function () {
+        $('#list').trigger("reloadGrid");
+    });
 })
