@@ -1,0 +1,40 @@
+﻿@using Quilmes.Helpers
+@model Quilmes.ViewModels.PlayerViewModel
+@{
+    ViewBag.Title = "Player";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true).Raw()
+    <ul>
+        <li class="main-left">
+            <fieldset>
+                <legend>Player</legend>
+                <ul>
+                    <li>
+                        @Html.LabelFor(model => model.FirstName)
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "required" })
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.LastName)
+                        @Html.TextBoxFor(model => model.LastName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.Number)
+                        @Html.TextBoxFor(model => model.Number)
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.StatusID)
+                        @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "-- Select --")
+                    </li>
+                    <li class="center">
+                        <input type="submit" value="Add Player" />
+                    </li>
+                </ul>
+            </fieldset>
+        </li>
+    </ul>
+}

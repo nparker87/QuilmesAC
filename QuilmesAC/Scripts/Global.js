@@ -1,0 +1,12 @@
+﻿$(function () {
+    $("#Theme").change(function () {
+        less.modifyVars({ '@mainTheme': $(this).val() });
+        localStorage.clear();
+        less.refresh(true);
+    });
+
+    $("#deletePlayer").click(function () {
+        alert(1);
+        return confirm('Delete all data for this player?');
+    });
+})

@@ -1,0 +1,57 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@using System.Web.Optimization
+@using StackExchange.Profiling
+@model Quilmes.ViewModels.BaseViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quilmes AC | @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet/less" href="~/Content/Less/Site.less" />
+    @Scripts.Render("~/Scripts")
+    @RenderSection("Head", false)
+</head>
+    <body>
+        <div id="topbar">
+            <div id="login">
+                @(String.IsNullOrEmpty(User.Identity.Name) 
+                    ? Html.ActionLink("Login", "Login", "User") 
+                    : Html.ActionLink("Logout", "Logout", "User"))
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id="menucontainer">
+                <ul id="menu">
+                    <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
+                        @Html.ActionLink("Players", "Index", "Player")
+                    </li>
+                    <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
+                        @Html.ActionLink("Matches", "Index", "Match")
+                    </li>
+                </ul>
+            </div>
+            <div id="main">
+                <a href="@Url.Action("Index", "Home")">
+                    <div id="crest" class="main-right"></div>
+                </a>
+                <div>
+                    @Html.LabelFor(model => model.Theme)
+                    @Html.DropDownListFor(model => model.Theme, Model.Themes, "-- Select --")
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+        <footer>
+            <p>
+                Quilmes AC | Richmond, VA
+            </p>
+        </footer>
+        @MiniProfiler.RenderIncludes()
+        @RenderSection("Scripts", false)
+    </body>
+</html>

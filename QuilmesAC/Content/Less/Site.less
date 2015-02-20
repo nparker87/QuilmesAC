@@ -1,0 +1,154 @@
+﻿@mainTheme: #35428A;
+
+/* Main Styles */
+html {
+    font: 14px Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: @mainTheme;
+    height: 100%;
+    margin: 0 0 8px 0;
+}
+
+#topbar #login {
+    float: right;
+    right: 5%;
+    padding: 0 45px 0 0;
+}
+
+    #topbar #login a {
+        color: #FFFFFF;
+        font-size: 20px;
+        text-decoration: none;
+        }
+
+#wrapper {
+    min-height: 100%;
+}
+
+#main {
+    background-color: #FFFFFF;
+    margin: 0 45px;
+    padding: 30px 30px 180px;
+    overflow: auto;
+}
+
+/* Menu */
+ul#menu {
+    margin: 50px 0 15px;
+    padding-left: 70px;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+    }
+
+        ul#menu li a {
+            color: #000000;
+            background-color: #E8EEF4;
+            font-weight: bold;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            background-color: #EBEBEB;
+        }
+
+        ul#menu li.selected a {
+            background-color: #FFFFFF;
+            border-bottom: #FFFFFF 5px solid;
+        }
+
+/* Form */
+#main ul {
+    list-style: none;
+}
+
+    #main ul li {
+        padding: 5px;    
+    }
+
+        #main ul li fieldset ul {
+            padding: 0;
+        }
+
+            #main ul li fieldset ul li {
+                padding: 5px;
+            }
+    
+                #main ul li fieldset ul li label {
+                    float: left;
+                    width: 115px;
+                    margin: 3px 5px 0 0;
+                    text-align: right;
+                }
+
+input[type=text] {
+    border: 1px solid #BBBBBB;
+}
+
+li.required span {
+    background: url(/Content/Images/required_star.png) no-repeat scroll right center;
+    padding: 0 16px 0 0;
+}
+
+/* Footer */
+footer {
+    clear: both;
+    height: 180px;
+    margin-top: -180px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+/* Misc Styles */
+#crest {
+    background: url(/Content/Images/crest.png) no-repeat;
+    height: 160px;
+    width: 141px;
+}
+.center {
+    text-align: center;
+}
+
+.main-left {
+    float: left;
+}
+
+.main-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Styles for validation helpers */
+.field-validation-error {
+    color: #FF0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    background-color: #FFEEEE;
+    border: 1px solid #FF0000;
+}
+
+.validation-summary-errors {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.validation-summary-valid {
+    display: none;
+}
