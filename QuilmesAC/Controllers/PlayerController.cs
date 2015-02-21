@@ -19,13 +19,13 @@
             ViewBag.Page = (Session["PlayerLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["PlayerLastSortRows"] ?? 50);
 
-            return View(new PlayerViewModel());
+            return View(new PlayerViewModel(QuilmesModel));
         }
 
         /// <summary> Returns the JSON data to display a jqGrid of beers </summary>
         /// POST: /Match/GridData
         [HttpPost]
-        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, long? statusID)
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, long? StatusID)
         {
             // Save the last sort choices to session data.
             Session["PlayerLastSortID"] = sidx;
@@ -34,10 +34,10 @@
             Session["PlayerLastSortRows"] = rows;
 
             var allRecords = from player in QuilmesModel.Players
-                            select player;
+                             select player;
 
-            if (statusID != null)
-                allRecords = allRecords.Where(x => x.StatusID == statusID);
+            if (StatusID != null)
+                allRecords = allRecords.Where(x => x.StatusID == StatusID);
 
             // Check for any filtering and prepare Where clauses.
             if (_search)

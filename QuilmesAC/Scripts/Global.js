@@ -6,7 +6,6 @@
     });
 
     $("#deletePlayer").click(function () {
-        alert(1);
         return confirm('Delete all data for this player?');
     });
 
