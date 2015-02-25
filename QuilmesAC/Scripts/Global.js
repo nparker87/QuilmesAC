@@ -8,8 +8,4 @@
     $("#deletePlayer").click(function () {
         return confirm('Delete all data for this player?');
     });
-
-    $('select').change(function () {
-        $('#list').trigger("reloadGrid");
-    });
 })

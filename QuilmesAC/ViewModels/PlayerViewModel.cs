@@ -16,6 +16,7 @@
         {
             CurrentTab = "Player";
             PopulateSelectLists(model);
+            StatusID = 1;
         }
 
         public PlayerViewModel(QuilmesDataContext model, Player player)

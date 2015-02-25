@@ -17,51 +17,54 @@
 @section Scripts
 {
     <script type="text/javascript">
-    //jqGrid for activities
-    jQuery(document).ready(function () {
-        jQuery("#list").jqGrid({
-            url: '@Url.Action("GridData")',
-            datatype: 'local',
-            gridview: true,
-            height: '100%',
-            hidegrid: false,
-            loadtext: 'Retrieving Players...',
-            mtype: 'POST',
-            forceFit: true,
-            autowidth: false,
-            sortable: true,
-            width: '250px',
-            cellLayout: 6, // gets rid of annoying horizontal scrollbar
-            colNames: ['ID', 'First Name', 'Last Name', 'Number', 'Goals', 'Assists', 'Yellow Cards', 'Red Cards', 'Status'],
-            colModel: [
-                // index must be the column name for sorting with orderby
-                { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                { name: 'FirstName', index: 'FirstName', align: 'left', width: 137, editable: true, formoptions: { elmsuffix: '(*)' } },
-                { name: 'LastName', index: 'LastName', align: 'left', width: 137, editable: true },
-                { name: 'Number', index: 'Number', align: 'left', width: 137, editable: true },
-                { name: 'Goals', index: 'Goal.Count()', align: 'left', width: 137, editable: true },
-                { name: 'Assits', index: 'Assist.Count()', align: 'left', width: 137, editable: true },
-                { name: 'YellowCard', index: 'Card.Count()', align: 'left', width: 137, editable: true },
-                { name: 'RedCard', index: 'Card.Count()', align: 'left', width: 137, editable: true },
-                { name: 'Status', index: 'Status.Name', align: 'left', width: 137, editable: true }
-            ],
-            pager: '#pager',
-            rowList: [15, 50, 100],
-            sortname: '@(ViewBag.SortBy)',
-            sortorder: '@(ViewBag.SortOrder)',
-            page: '@(ViewBag.Page)',
-            rowNum: '@(ViewBag.Rows)',
-            postData: { formID: '@Model.ID' },
-            viewrecords: true,
-            ondblClickRow: function (id) {
-                location.href = "@Url.Content("~/Player/Edit/")" + id;
-            }
-        }).navGrid('#pager', { add: false, edit: false, del: false, search: false, refresh: false })
-            .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-            .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
+        //jqGrid for activities
+        jQuery(document).ready(function () {
+            jQuery("#list").jqGrid({
+                url: '@Url.Action("GridData")',
+                datatype: 'local',
+                gridview: true,
+                height: '100%',
+                hidegrid: false,
+                loadtext: 'Retrieving Players...',
+                mtype: 'POST',
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: '250px',
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ['ID', 'First Name', 'Last Name', 'Number', 'Goals', 'Assists', 'Yellow Cards', 'Red Cards', 'Status'],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: 'FirstName', index: 'FirstName', align: 'left', width: 137, editable: true, formoptions: { elmsuffix: '(*)' } },
+                    { name: 'LastName', index: 'LastName', align: 'left', width: 137, editable: true },
+                    { name: 'Number', index: 'Number', align: 'left', width: 137, editable: true },
+                    { name: 'Goals', index: 'Goal.Count()', align: 'left', width: 137, editable: true },
+                    { name: 'Assits', index: 'Assist.Count()', align: 'left', width: 137, editable: true },
+                    { name: 'YellowCard', index: 'Card.Count()', align: 'left', width: 137, editable: true },
+                    { name: 'RedCard', index: 'Card.Count()', align: 'left', width: 137, editable: true },
+                    { name: 'Status', index: 'Status.Name', align: 'left', width: 137, editable: true }
+                ],
+                pager: '#pager',
+                rowList: [15, 50, 100],
+                sortname: '@(ViewBag.SortBy)',
+                sortorder: '@(ViewBag.SortOrder)',
+                page: '@(ViewBag.Page)',
+                rowNum: '@(ViewBag.Rows)',
+                postData: { formID: '@Model.ID', statusID: function () { return $('#StatusID').val(); }},
+                viewrecords: true,
+                ondblClickRow: function (id) {
+                    location.href = "@Url.Content("~/Player/Edit/")" + id;
+                }
+            }).navGrid('#pager', { add: false, edit: false, del: false, search: false, refresh: false })
+                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
 
-        $('#list')[0].triggerToolbar();
-    });
+            $('#list')[0].triggerToolbar();
+        });
+
+        $('#StatusID').change(function () {
+            $('#list').trigger("reloadGrid");
+        });
     </script>
 }
-
