@@ -1,9 +1,9 @@
 ﻿@model QuilmesAC.ViewModels.PlayerViewModel
 @{
-    ViewBag.Title = "Players";
+    ViewBag.Title = "Team";
 }
 
-<h2>Players</h2>
+<h2>Team</h2>
 <p>
     @Html.LabelFor(model => model.StatusID)
     @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")

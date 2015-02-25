@@ -1,4 +1,5 @@
 ﻿@mainTheme: #35428A;
+@blah: 1px;
 
 /* Main Styles */
 html {
@@ -14,17 +15,51 @@ body {
     margin: 0 0 8px 0;
 }
 
-#topbar #login {
-    float: right;
-    right: 5%;
-    padding: 0 45px 0 0;
+#topbar {
+    padding-top: @blah;
 }
 
-    #topbar #login a {
-        color: #FFFFFF;
-        font-size: 20px;
-        text-decoration: none;
+    #topbar ul {
+        float: right;
+    }
+
+        #topbar ul li {
+            display: inline;
+            list-style-type: none;
         }
+
+            #topbar ul li#login {
+                padding: 0 45px 0 0;
+            }
+
+                #topbar ul li#login a {
+                    color: #FFFFFF;
+                    font-size: 16px;
+                    text-decoration: none;
+                }
+
+            #topbar ul li.theme {
+                border: 2px solid #000000;
+                cursor: pointer;
+                margin: 1px;
+                padding: 3px 18px 3px 3px;
+            }
+
+            #topbar ul li:nth-last-child(2) {
+                margin-right: 5px;
+            }
+
+            #topbar ul li#quilmestheme {
+                background-color: #35428A;
+            }
+
+            #topbar ul li#hometheme {
+                background-color: #95031A;
+            }
+
+            #topbar ul li#awaytheme {
+                background-color: #000000;
+            }
 
 #wrapper {
     min-height: 100%;

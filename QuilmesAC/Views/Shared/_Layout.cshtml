@@ -15,12 +15,18 @@
 </head>
     <body>
         <div id="topbar">
-            <div id="login">
-                @(String.IsNullOrEmpty(User.Identity.Name) 
-                    ? Html.ActionLink("Login", "Login", "User") 
-                    : Html.ActionLink("Logout", "Logout", "User"))
-            </div>
+            <ul>
+                <li id="quilmestheme" class="theme" />
+                <li id="hometheme" class="theme" />
+                <li id="awaytheme" class="theme" />
+                <li id="login">
+                    @(String.IsNullOrEmpty(User.Identity.Name)
+                          ? Html.ActionLink("Login", "Login", "User")
+                          : Html.ActionLink("Logout", "Logout", "User"))
+                </li>
+            </ul>
         </div>
+        <div class="clear" />
         <div id="wrapper">
             <div id="menucontainer">
                 <ul id="menu">
@@ -28,7 +34,7 @@
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
                     <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
-                        @Html.ActionLink("Players", "Index", "Player")
+                        @Html.ActionLink("Team", "Index", "Player")
                     </li>
                     <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
                         @Html.ActionLink("Matches", "Index", "Match")
@@ -39,10 +45,10 @@
                 <a href="@Url.Action("Index", "Home")">
                     <div id="crest" class="main-right"></div>
                 </a>
-                <div>
+                @*<div>
                     @Html.LabelFor(model => model.Theme)
                     @Html.DropDownListFor(model => model.Theme, Model.Themes, "-- Select --")
-                </div>
+                </div>*@
                 @RenderBody()
             </div>
         </div>
