@@ -15,6 +15,10 @@ body {
     margin: 0 0 8px 0;
 }
 
+#wrapper {
+    overflow: auto;
+}
+
 #topbar {
     padding-top: @blah;
 }
@@ -61,15 +65,10 @@ body {
                 background-color: #000000;
             }
 
-#wrapper {
-    min-height: 100%;
-}
-
 #main {
     background-color: #FFFFFF;
     margin: 0 45px;
     padding: 30px 30px 180px;
-    overflow: auto;
 }
 
 /* Menu */
@@ -97,7 +96,7 @@ ul#menu {
 
         ul#menu li.selected a {
             background-color: #FFFFFF;
-            border-bottom: #FFFFFF 5px solid;
+            border-bottom: #FFFFFF 6px solid;
         }
 
 /* Form */
@@ -135,17 +134,19 @@ li.required span {
 
 /* Footer */
 footer {
-    clear: both;
-    height: 180px;
-    margin-top: -180px;
-    position: relative;
-    text-align: center;
-    width: 100%;
+    background-color: #FFFFFF;
+    margin: 0 45px;
+    padding-bottom: 10px;
 }
+
+    footer div { 
+        text-align: center;
+    }
 
 /* Misc Styles */
 #crest {
     background: url(/Content/Images/crest.png) no-repeat;
+    float: right;
     height: 160px;
     width: 141px;
 }

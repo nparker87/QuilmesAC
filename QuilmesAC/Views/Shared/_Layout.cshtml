@@ -26,36 +26,32 @@
                 </li>
             </ul>
         </div>
-        <div class="clear" />
-        <div id="wrapper">
-            <div id="menucontainer">
-                <ul id="menu">
-                    <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
-                        @Html.ActionLink("Team", "Index", "Player")
-                    </li>
-                    <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
-                        @Html.ActionLink("Matches", "Index", "Match")
-                    </li>
-                </ul>
-            </div>
-            <div id="main">
+        <div class="clear"></div>
+        <div id="menucontainer">
+            <ul id="menu">
+                <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
+                    @Html.ActionLink("Team", "Index", "Player")
+                </li>
+                <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
+                    @Html.ActionLink("Matches", "Index", "Match")
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <div id="wrapper">
                 <a href="@Url.Action("Index", "Home")">
-                    <div id="crest" class="main-right"></div>
+                    <div id="crest"></div>
                 </a>
-                @*<div>
-                    @Html.LabelFor(model => model.Theme)
-                    @Html.DropDownListFor(model => model.Theme, Model.Themes, "-- Select --")
-                </div>*@
                 @RenderBody()
             </div>
         </div>
         <footer>
-            <p>
+            <div>
                 Quilmes AC | Richmond, VA
-            </p>
+            </div>
         </footer>
         @MiniProfiler.RenderIncludes()
         @RenderSection("Scripts", false)
