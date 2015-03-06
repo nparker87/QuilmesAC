@@ -13,7 +13,10 @@
     }
 
     function modifyTheme(color) {
-        less.modifyVars({ '@mainTheme': color });
+        less.modifyVars({
+            '@mainTheme': color
+        });
+        less.refreshStyles();
     }
 
     $("#deletePlayer").click(function () {
@@ -22,8 +25,6 @@
 
     $(".theme").click(function () {
         var color = $(this).css('backgroundColor');
-        less.modifyVars({ '@blah': '100px' }, true);
-
-       // modifyTheme(rgb2Hex(color));
+        modifyTheme(rgb2Hex(color));
     });
 })

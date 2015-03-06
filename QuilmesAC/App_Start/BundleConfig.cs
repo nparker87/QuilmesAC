@@ -24,10 +24,6 @@
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/themes/custom/jquery-ui.theme.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css"));
-
-            var lessBundle = new Bundle("~/Content/less").Include("~/Content/Less/Site.less");
-            lessBundle.Transforms.Add(new LessTransform());
-            bundles.Add(lessBundle);
         }
     }
 }

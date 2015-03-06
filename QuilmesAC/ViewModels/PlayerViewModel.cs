@@ -46,9 +46,15 @@
 
         public SelectList Statuses { get; set; }
 
+        [DisplayName("Season:")]
+        public long SeasonID { get; set; }
+
+        public SelectList Seasons { get; set; }
+
         private void PopulateSelectLists(QuilmesDataContext model)
         {
             Statuses = new SelectList(model.GetStatuses(), "ID", "Name");
+            Seasons = new SelectList(model.GetSeasons(), "ID", "DisplayName");
         }
 
         private void Add(Player player)

@@ -27,13 +27,13 @@
                         @Html.LabelFor(model => model.StatusID)
                         @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "-- Select --")
                     </li>
-                    <li>
+                    <li class="form-submit">
                         <input type="submit" value="Update" />
                     </li>
                 }
                 @using (Html.BeginForm("Delete", "Player", new { id = Model.ID }))
                 {
-                    <li>
+                    <li class="form-submit">
                         <input id="deletePlayer" type="submit" value="Delete" />
                     </li>
                 }
@@ -55,6 +55,7 @@
         <table id="cardList"></table>
         <div id="cardPager"></div>
     </li>
+    <li class="clear"></li>
 </ul>
 
 

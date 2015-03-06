@@ -15,10 +15,6 @@ body {
     margin: 0 0 8px 0;
 }
 
-#wrapper {
-    overflow: auto;
-}
-
 #topbar {
     padding-top: @blah;
 }
@@ -64,13 +60,6 @@ body {
             #topbar ul li#awaytheme {
                 background-color: #000000;
             }
-
-#main {
-    background-color: #FFFFFF;
-    margin: 0 45px;
-    padding: 30px 30px 180px;
-}
-
 /* Menu */
 ul#menu {
     margin: 50px 0 15px;
@@ -99,29 +88,55 @@ ul#menu {
             border-bottom: #FFFFFF 6px solid;
         }
 
-/* Form */
-#main ul {
-    list-style: none;
+/* Header */
+#header {
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
 }
 
-    #main ul li {
-        padding: 5px;    
+/* Form */
+#main {
+    background-color: #FFFFFF;
+    margin: 0 45px;
+    padding: 30px 30px 180px;
+}
+
+    #main ul {
+        list-style: none;
+        padding: 0;
     }
 
-        #main ul li fieldset ul {
-            padding: 0;
+        #main ul li {
+            padding: 5px;    
         }
 
-            #main ul li fieldset ul li {
-                padding: 5px;
+            #main ul li label {
+                float: left;
+                text-align: right;
+                width: 55px;
             }
-    
-                #main ul li fieldset ul li label {
-                    float: left;
-                    width: 115px;
-                    margin: 3px 5px 0 0;
-                    text-align: right;
+
+            #main ul li select {
+                margin-left: 7px;
+                width: 100px;
+            }
+
+            #main ul li fieldset ul {
+                padding: 0;
+            }
+
+                #main ul li fieldset ul li {
+                    padding: 5px;
                 }
+    
+                    #main ul li fieldset ul li label {
+                        float: left;
+                        width: 115px;
+                        margin: 3px 5px 0 0;
+                        text-align: right;
+                    }
 
 input[type=text] {
     border: 1px solid #BBBBBB;
@@ -130,6 +145,14 @@ input[type=text] {
 li.required span {
     background: url(/Content/Images/required_star.png) no-repeat scroll right center;
     padding: 0 16px 0 0;
+}
+
+form { 
+    display:inline
+}
+
+.form-submit {
+    display: inline;
 }
 
 /* Footer */
@@ -144,7 +167,7 @@ footer {
     }
 
 /* Misc Styles */
-#crest {
+#crest span {
     background: url(/Content/Images/crest.png) no-repeat;
     float: right;
     height: 160px;

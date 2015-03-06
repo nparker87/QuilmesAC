@@ -4,10 +4,16 @@
 }
 
 <h2>Team</h2>
-<p>
-    @Html.LabelFor(model => model.StatusID)
-    @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
-</p>
+<ul>
+    <li>
+        @Html.LabelFor(model => model.StatusID)
+        @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
+    </li>
+    <li>
+        @Html.LabelFor(model => model.SeasonID)
+        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All")
+    </li>
+</ul>
 @using (Html.BeginForm())
 {
     <table id="list"></table>
@@ -51,7 +57,11 @@
                 sortorder: '@(ViewBag.SortOrder)',
                 page: '@(ViewBag.Page)',
                 rowNum: '@(ViewBag.Rows)',
-                postData: { formID: '@Model.ID', statusID: function () { return $('#StatusID').val(); }},
+                postData: {
+                    formID: '@Model.ID', 
+                    statusID: function () { return $('#StatusID').val(); },
+                    seasonID: function () { return $('#SeasonID').val(); }
+                },
                 viewrecords: true,
                 ondblClickRow: function (id) {
                     location.href = "@Url.Content("~/Player/Edit/")" + id;
@@ -63,7 +73,7 @@
             $('#list')[0].triggerToolbar();
         });
 
-        $('#StatusID').change(function () {
+        $('#StatusID, #SeasonID').change(function () {
             $('#list').trigger("reloadGrid");
         });
     </script>

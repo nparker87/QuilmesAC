@@ -1,5 +1,4 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@using System.Web.Optimization
+﻿@using System.Web.Optimization
 @using StackExchange.Profiling
 @model QuilmesAC.ViewModels.BaseViewModel
 
@@ -9,7 +8,12 @@
     <title>Quilmes AC | @ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
-    <link rel="stylesheet/less" href="~/Content/Less/Site.less" />
+    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
+    <script>
+        less = {
+            
+        }
+    </script>
     @Scripts.Render("~/Scripts")
     @RenderSection("Head", false)
 </head>
@@ -41,10 +45,13 @@
             </ul>
         </div>
         <div id="main">
+            <div id="header">
+                <em>&#161;El Cervecero!</em>
+            </div>
+            <a id="crest" href="@Url.Action("Index", "Home")">
+                <span></span>
+            </a>
             <div id="wrapper">
-                <a href="@Url.Action("Index", "Home")">
-                    <div id="crest"></div>
-                </a>
                 @RenderBody()
             </div>
         </div>

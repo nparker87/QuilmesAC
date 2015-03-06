@@ -25,7 +25,7 @@
         /// <summary> Returns the JSON data to display a jqGrid of beers </summary>
         /// POST: /Match/GridData
         [HttpPost]
-        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string statusID)
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string statusID, string seasonID)
         {
             // Save the last sort choices to session data.
             Session["PlayerLastSortID"] = sidx;
@@ -33,11 +33,11 @@
             Session["PlayerLastSortPage"] = page;
             Session["PlayerLastSortRows"] = rows;
 
-            var allRecords = from player in QuilmesModel.Players
-                             select player;
+            var players = from player in QuilmesModel.Players
+                          select player;
 
             if (!String.IsNullOrWhiteSpace(statusID))
-                allRecords = allRecords.Where(x => x.StatusID == Int32.Parse(statusID));
+                players = players.Where(x => x.StatusID == Int32.Parse(statusID));
 
             // Check for any filtering and prepare Where clauses.
             if (_search)
@@ -54,18 +54,18 @@
                     try
                     {
                         // for strings and other non-nullables
-                        allRecords = allRecords.Where(r.Field + ".ToString().Contains(@0)", r.Data);
+                        players = players.Where(r.Field + ".ToString().Contains(@0)", r.Data);
                     }
                     catch (Exception)
                     {
                         // null types
-                        allRecords = allRecords.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
+                        players = players.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
                     }
                 }
             }
 
-            int totalRecords = allRecords.Count();
-            var currentPage = allRecords
+            int totalRecords = players.Count();
+            var currentPage = players
                 .OrderBy(sidx + " " + sord + ", CreatedDate, ID asc")
                 .Skip((Convert.ToInt32(page) - 1)*rows)
                 .Take(rows)
@@ -88,10 +88,18 @@
                             t.FirstName,
                             t.LastName,
                             t.Number.ToString(),
-                            t.Goals.Count.ToString(),
-                            t.Assists.Count.ToString(),
-                            t.Cards.Count(x => x.CardType.Name == "Yellow").ToString(),
-                            t.Cards.Count(x => x.CardType.Name == "Red").ToString(),
+                            (String.IsNullOrEmpty(seasonID) 
+                                ? t.Goals.Count.ToString()
+                                : t.Goals.Count(x => x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
+                            (String.IsNullOrEmpty(seasonID) 
+                                ? t.Assists.Count.ToString()
+                                : t.Assists.Count(x => x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
+                            (String.IsNullOrEmpty(seasonID) 
+                                ? t.Cards.Count(x => x.CardType.Name == "Yellow").ToString() 
+                                : t.Cards.Count(x => x.CardType.Name == "Yellow" &&  x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
+                            (String.IsNullOrEmpty(seasonID) 
+                                ? t.Cards.Count(x => x.CardType.Name == "Red").ToString() 
+                                : t.Cards.Count(x => x.CardType.Name == "Red" &&  x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
                             t.Status.Name
                         }
                     }).ToArray()
