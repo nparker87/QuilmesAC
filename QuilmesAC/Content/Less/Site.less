@@ -3,7 +3,7 @@
 
 /* Main Styles */
 html {
-    font: 14px Arial, Helvetica, sans-serif;
+    font: 14px Trebuchet MS,Arial,Helvetica,sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -12,169 +12,65 @@ html {
 body {
     background-color: @mainTheme;
     height: 100%;
-    margin: 0 0 8px 0;
 }
 
-#topbar {
-    padding-top: @blah;
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
 }
 
-    #topbar ul {
-        float: right;
+/* Header */
+ul#social {
+    float: right;
+    margin: 0;
+}
+    ul#social li {   
+        display: inline;
+        list-style: none;    
     }
 
-        #topbar ul li {
-            display: inline;
-            list-style-type: none;
+        ul#social li a.fb span {
+            background: url(/Content/Images/facebook.png) no-repeat;
+            height: 20px;
+            width: 20px;
         }
 
-            #topbar ul li#login {
-                padding: 0 45px 0 0;
-            }
-
-                #topbar ul li#login a {
-                    color: #FFFFFF;
-                    font-size: 16px;
-                    text-decoration: none;
-                }
-
-            #topbar ul li.theme {
-                border: 2px solid #000000;
-                cursor: pointer;
-                margin: 1px;
-                padding: 3px 18px 3px 3px;
-            }
-
-            #topbar ul li:nth-last-child(2) {
-                margin-right: 5px;
-            }
-
-            #topbar ul li#quilmestheme {
-                background-color: #35428A;
-            }
-
-            #topbar ul li#hometheme {
-                background-color: #95031A;
-            }
-
-            #topbar ul li#awaytheme {
-                background-color: #000000;
-            }
-/* Menu */
-ul#menu {
-    margin: 50px 0 15px;
-    padding-left: 70px;
-}
-
-    ul#menu li {
-        display: inline;
-        list-style: none;
-    }
-
-        ul#menu li a {
-            color: #000000;
-            background-color: #E8EEF4;
-            font-weight: bold;
-            padding: 10px 20px;
+        ul#social li#login a {
+            color: #FFFFFF;
             text-decoration: none;
         }
 
-        ul#menu li a:hover {
-            background-color: #EBEBEB;
-        }
-
-        ul#menu li.selected a {
-            background-color: #FFFFFF;
-            border-bottom: #FFFFFF 6px solid;
-        }
-
-/* Header */
-#header {
-    margin: 0 auto;
-    font-size: 24px;
-    font-weight: bold;
+ul#banner {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.65);
+    clear: both;
+    margin: 0;
+    padding: 45px 0;
     text-align: center;
 }
 
-/* Form */
-#main {
-    background-color: #FFFFFF;
-    margin: 0 45px;
-    padding: 30px 30px 180px;
+ul#banner  {
+    list-style-type: none;
 }
 
-    #main ul {
-        list-style: none;
-        padding: 0;
+    ul#banner li {
+        color: @mainTheme;
+        font-size: 22px;
     }
 
-        #main ul li {
-            padding: 5px;    
-        }
+nav {
 
-            #main ul li label {
-                float: left;
-                text-align: right;
-                width: 55px;
-            }
+}
 
-            #main ul li select {
-                margin-left: 7px;
-                width: 100px;
-            }
-
-            #main ul li fieldset ul {
-                padding: 0;
-            }
-
-                #main ul li fieldset ul li {
-                    padding: 5px;
-                }
-    
-                    #main ul li fieldset ul li label {
-                        float: left;
-                        width: 115px;
-                        margin: 3px 5px 0 0;
-                        text-align: right;
-                    }
-
-input[type=text] {
-    border: 1px solid #BBBBBB;
+/* Main Content */
+.main-content {
+    background-color: #FFFFFF;
 }
 
 li.required span {
     background: url(/Content/Images/required_star.png) no-repeat scroll right center;
     padding: 0 16px 0 0;
-}
-
-form { 
-    display:inline
-}
-
-.form-submit {
-    display: inline;
-}
-
-/* Footer */
-footer {
-    background-color: #FFFFFF;
-    margin: 0 45px;
-    padding-bottom: 10px;
-}
-
-    footer div { 
-        text-align: center;
-    }
-
-/* Misc Styles */
-#crest span {
-    background: url(/Content/Images/crest.png) no-repeat;
-    float: right;
-    height: 160px;
-    width: 141px;
-}
-.center {
-    text-align: center;
 }
 
 .main-left {

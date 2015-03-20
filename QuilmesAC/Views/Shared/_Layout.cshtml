@@ -6,34 +6,39 @@
 <html>
 <head>
     <title>Quilmes AC | @ViewBag.Title</title>
-
     @Styles.Render("~/Content/css")
     <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
-    <script>
-        less = {
-            
-        }
-    </script>
     @Scripts.Render("~/Scripts")
     @RenderSection("Head", false)
 </head>
     <body>
-        <div id="topbar">
-            <ul>
-                <li id="quilmestheme" class="theme" />
-                <li id="hometheme" class="theme" />
-                <li id="awaytheme" class="theme" />
-                <li id="login">
-                    @(String.IsNullOrEmpty(User.Identity.Name)
-                          ? Html.ActionLink("Login", "Login", "User")
-                          : Html.ActionLink("Logout", "Logout", "User"))
-                </li>
-            </ul>
+        <div class="wrapper">
+            <div class="main">
+                <header>
+                    <ul id="social">
+                        <li>
+                            <a class="fb" target="_blank" href="https://www.facebook.com/groups/222071347985558/"><span></span></a>
+                        </li>
+                        <li id="login">
+                            @(String.IsNullOrEmpty(User.Identity.Name)
+                                  ? Html.ActionLink("Login", "Login", "User")
+                                  : Html.ActionLink("Logout", "Logout", "User"))
+                        </li>
+                    </ul>
+                    <ul id="banner">
+                        <li>Quilmes Atlético Club</li>
+                    </ul>
+                </header>
+                <nav></nav>
+                <div class="main-content">
+                    @RenderBody()
+                </div>
+                <footer>Quilmes AC | Richmond, VA</footer>
+            </div>
         </div>
-        <div class="clear"></div>
-        <div id="menucontainer">
-            <ul id="menu">
-                <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
+        
+
+        @*<li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
@@ -41,25 +46,20 @@
                 </li>
                 <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
                     @Html.ActionLink("Matches", "Index", "Match")
-                </li>
-            </ul>
-        </div>
-        <div id="main">
-            <div id="header">
-                <em>&#161;El Cervecero!</em>
-            </div>
-            <a id="crest" href="@Url.Action("Index", "Home")">
+                </li>*@
+        
+        
+        
+
+        @*<em>&#161;El Cervecero!</em>*@
+
+        @*<a id="crest" href="@Url.Action("Index", "Home")">
                 <span></span>
-            </a>
-            <div id="wrapper">
-                @RenderBody()
-            </div>
-        </div>
-        <footer>
-            <div>
-                Quilmes AC | Richmond, VA
-            </div>
-        </footer>
+            </a>*@
+        
+        
+        
+
         @MiniProfiler.RenderIncludes()
         @RenderSection("Scripts", false)
     </body>
