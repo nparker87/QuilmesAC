@@ -1,6 +1,7 @@
 ﻿namespace QuilmesAC
 {
     using System;
+    using System.Security.Cryptography;
     using System.Security.Principal;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -29,6 +30,10 @@
             var roles = authTicket.UserData.Split(',');
             var userPrincipal = new GenericPrincipal(new GenericIdentity(authTicket.Name), roles);
             Context.User = userPrincipal;
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
         }
     }
 }

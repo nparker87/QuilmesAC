@@ -16,8 +16,8 @@
             <div class="main">
                 <header>
                     <ul id="social">
-                        <li>
-                            <a class="fb" target="_blank" href="https://www.facebook.com/groups/222071347985558/"><span></span></a>
+                        <li id="fb">
+                            <a target="_blank" href="https://www.facebook.com/groups/222071347985558/"></a>
                         </li>
                         <li id="login">
                             @(String.IsNullOrEmpty(User.Identity.Name)
@@ -26,40 +26,30 @@
                         </li>
                     </ul>
                     <ul id="banner">
+                        <li class="crest"><a href="@Url.Action("Index", "Home")"></a></li>
                         <li>Quilmes Atlético Club</li>
                     </ul>
                 </header>
-                <nav></nav>
+                <nav>
+                    <ul>
+                        <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
+                            @Html.ActionLink("Team", "Index", "Player")
+                        </li>
+                        <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
+                            @Html.ActionLink("Matches", "Index", "Match")
+                        </li>
+                    </ul>
+                </nav>
                 <div class="main-content">
                     @RenderBody()
+                    <br class="clear"/>
                 </div>
                 <footer>Quilmes AC | Richmond, VA</footer>
             </div>
         </div>
-        
-
-        @*<li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
-                    @Html.ActionLink("Home", "Index", "Home")
-                </li>
-                <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
-                    @Html.ActionLink("Team", "Index", "Player")
-                </li>
-                <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
-                    @Html.ActionLink("Matches", "Index", "Match")
-                </li>*@
-        
-        
-        
-
-        @*<em>&#161;El Cervecero!</em>*@
-
-        @*<a id="crest" href="@Url.Action("Index", "Home")">
-                <span></span>
-            </a>*@
-        
-        
-        
-
         @MiniProfiler.RenderIncludes()
         @RenderSection("Scripts", false)
     </body>

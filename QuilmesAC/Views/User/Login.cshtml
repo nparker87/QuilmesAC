@@ -33,10 +33,8 @@
                         @Html.ValidationMessageFor(model => model.Password)
                     </li>
                     <li class="center">
-                        <input type="submit" value="Login" />
-                    </li>
-                    <li>
-                        @Html.ActionLink("Register", "User", "Register")
+                        <input type="submit" value="Login" />                       
+                         @Html.ActionLink("Register", "Register", "User")
                     </li>
                 </ul>
             </fieldset>
