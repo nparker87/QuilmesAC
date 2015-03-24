@@ -1,7 +1,6 @@
 ﻿namespace QuilmesAC
 {
     using System;
-    using System.Security.Cryptography;
     using System.Security.Principal;
     using System.Web.Mvc;
     using System.Web.Optimization;

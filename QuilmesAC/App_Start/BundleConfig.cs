@@ -11,6 +11,10 @@
             BundleTable.EnableOptimizations = true;
 #endif
 
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/themes/custom/jquery-ui.theme.css",
+                "~/Content/jquery.jqGrid/ui.jqgrid.css"));
+
             bundles.Add(new ScriptBundle("~/Scripts").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery-ui-{version}.js",
@@ -20,10 +24,6 @@
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/less-{version}.js",
                 "~/Scripts/Global.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/themes/custom/jquery-ui.theme.css",
-                "~/Content/jquery.jqGrid/ui.jqgrid.css"));
         }
     }
 }

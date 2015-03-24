@@ -7,9 +7,9 @@
 <head>
     <title>Quilmes AC | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
-    @Scripts.Render("~/Scripts")
+    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" /> 
     @RenderSection("Head", false)
+    @Scripts.Render("~/Scripts")
 </head>
     <body>
         <div class="wrapper">
@@ -49,8 +49,8 @@
                 </div>
                 <footer>Quilmes AC | Richmond, VA</footer>
             </div>
-        </div>
-        @MiniProfiler.RenderIncludes()
+        </div>                
         @RenderSection("Scripts", false)
+        @MiniProfiler.RenderIncludes()
     </body>
 </html>
