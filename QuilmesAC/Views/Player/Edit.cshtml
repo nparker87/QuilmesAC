@@ -27,13 +27,13 @@
                         @Html.LabelFor(model => model.StatusID)
                         @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "-- Select --")
                     </li>
-                    <li class="form-submit">
+                    <li>
                         <input type="submit" value="Update" />
                     </li>
                 }
                 @using (Html.BeginForm("Delete", "Player", new { id = Model.ID }))
                 {
-                    <li class="form-submit">
+                    <li>
                         <input id="deletePlayer" type="submit" value="Delete" />
                     </li>
                 }
@@ -82,7 +82,7 @@
             loadtext: 'Retrieving Goals...',
             mtype: 'POST',
             forceFit: true,
-            autowidth: true,
+            autowidth: false,
             sortable: true,
             width: '250px',
             caption: 'Goals',
@@ -123,7 +123,7 @@
             loadtext: 'Retrieving Assits...',
             mtype: 'POST',
             forceFit: true,
-            autowidth: true,
+            autowidth: false,
             sortable: true,
             width: '250px',
             caption: 'Assits',
@@ -164,7 +164,7 @@
             loadtext: 'Retrieving Cards...',
             mtype: 'POST',
             forceFit: true,
-            autowidth: true,
+            autowidth: false,
             sortable: true,
             width: '250px',
             caption: 'Cards',
