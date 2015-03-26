@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Models\QuilmesACDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\AssistViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
@@ -156,9 +157,20 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\crest.png" />
-    <Content Include="Content\Images\facebook.png" />
     <Content Include="Content\Images\QuilmesGirls.jpg" />
     <Content Include="Content\Images\required_star.png" />
+    <Content Include="Content\Images\SocialMedia\digg.png" />
+    <Content Include="Content\Images\SocialMedia\dribbble.png" />
+    <Content Include="Content\Images\SocialMedia\facebook.png" />
+    <Content Include="Content\Images\SocialMedia\flickr.png" />
+    <Content Include="Content\Images\SocialMedia\forrst.png" />
+    <Content Include="Content\Images\SocialMedia\google+.png" />
+    <Content Include="Content\Images\SocialMedia\rss.png" />
+    <Content Include="Content\Images\SocialMedia\share.png" />
+    <Content Include="Content\Images\SocialMedia\skype.png" />
+    <Content Include="Content\Images\SocialMedia\twitter.png" />
+    <Content Include="Content\Images\SocialMedia\vimeo.png" />
+    <Content Include="Content\Images\SocialMedia\youtube.png" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -263,6 +275,7 @@
     <Content Include="Views\Player\Edit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Index.less" />
+    <Content Include="Views\Player\Edit.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

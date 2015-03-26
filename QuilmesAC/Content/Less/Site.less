@@ -34,17 +34,45 @@ ul#social {
         padding: 0 5px 0 0;
     }
 
-        ul#social li#fb a {
-            background: url(/Content/Images/facebook.png) no-repeat;
+        ul#social li a {
             display: block;
-            height: 20px;
-            width: 20px;
+        }
+
+        ul#social li#fb a {
+            background-image: url(/Content/Images/SocialMedia/facebook.png);
+            height: 30px;
+            width: 30px;
+        }
+
+        ul#social li#twt a {
+            background-image: url(/Content/Images/SocialMedia/twitter.png);
+            height: 30px;
+            width: 30px;
+        }
+
+        ul#social li#yt a {
+            background-image: url(/Content/Images/SocialMedia/youtube.png);
+            height: 30px;
+            width: 30px;
+        }
+
+        ul#social li#rss a {
+            background-image: url(/Content/Images/SocialMedia/rss.png);
+            height: 30px;
+            width: 30px;
+        }
+
+        ul#social li#shr a {
+            background: url(/Content/Images/SocialMedia/share.png);
+            height: 30px;
+            width: 30px;
         }
 
         ul#social li#login a {
             color: #FFFFFF;
+            display: initial;
             text-decoration: none;
-            vertical-align: 30%;
+            vertical-align: 55%;
         }
 
 ul#banner {
@@ -152,6 +180,10 @@ li.required span {
 footer {
     color: #FFFFFF;
     text-align: center;
+}
+
+input[type="submit"] {
+    border: 1px solid #CCC;
 }
 
 /* Styles for validation helpers */

@@ -7,11 +7,7 @@
     {
         public ActionResult Index()
         {
-            var viewModel = new BaseViewModel
-            {
-                CurrentTab = "Admin"
-            };
-            return View(viewModel);
+            return View(new AdminViewModel());
         }
     }
 }
