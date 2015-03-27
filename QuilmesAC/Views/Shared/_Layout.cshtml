@@ -1,5 +1,6 @@
-﻿@using System.Web.Optimization
-@using StackExchange.Profiling
+﻿@using StackExchange.Profiling
+@using System.Web.Optimization
+@using System.Data.Linq
 @model QuilmesAC.ViewModels.BaseViewModel
 
 <!DOCTYPE html>
@@ -53,9 +54,14 @@
                         <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
                             @Html.ActionLink("Matches", "Index", "Match")
                         </li>
-                        <li class="@(Model.CurrentTab == "Admin" ? "selected" : "")">
-                            @Html.ActionLink("Admin", "Index", "Admin")
-                        </li>
+                        @{
+                            if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
+                            {
+                                <li class="@(Model.CurrentTab == "Admin" ? "selected" : "")">
+                                    @Html.ActionLink("Admin", "Index", "Admin")
+                                </li>
+                            }
+                        }
                     </ul>
                 </nav>
                 <div class="main-content">

@@ -13,5 +13,6 @@
             // need to build the db before this can work
             get { return _quilmes ?? (_quilmes = MiniProfilerHelper.Create<QuilmesDataContext>()); }
         }
+
     }
 }

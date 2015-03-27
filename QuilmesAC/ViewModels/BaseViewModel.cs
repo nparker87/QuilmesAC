@@ -1,19 +1,18 @@
 ﻿namespace QuilmesAC.ViewModels
 {
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Mvc;
+    using Models;
 
     public class BaseViewModel
     {
+        readonly QuilmesDataContext _model = new QuilmesDataContext();
+
         public BaseViewModel()
         {
             CurrentTab = "Home";
-            PopulateSelectLists();
-        }
-
-        public BaseViewModel(string currentTab)
-        {
-            CurrentTab = currentTab;
+            User = _model.GetUserByUsername(HttpContext.Current.User.Identity.Name);
             PopulateSelectLists();
         }
 
@@ -33,14 +32,6 @@
 
         public List<SelectListItem> Themes { get; set; }
 
-        /// <summary>Returns a CSS class for whether the given tab name equals the current tab.</summary>
-        /// <param name="tabName">Name of the tab to check</param>
-        /// <returns>Active if the tab is the current tab, empty string if not.</returns>
-        public string TabClass(string tabName)
-        {
-            return (CurrentTab == tabName
-                ? "active"
-                : "");
-        }
+        public User User { get; set; }
     }
 }

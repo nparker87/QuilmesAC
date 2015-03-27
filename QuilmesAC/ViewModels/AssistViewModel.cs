@@ -1,5 +1,6 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+
     public class AssistViewModel : BaseViewModel
     {
         public AssistViewModel()
