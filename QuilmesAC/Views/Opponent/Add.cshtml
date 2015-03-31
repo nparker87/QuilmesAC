@@ -1,0 +1,30 @@
+﻿@using QuilmesAC.Helpers
+@model QuilmesAC.ViewModels.OpponentViewModel
+@{
+    ViewBag.Title = "Opponent";
+}
+@section Head
+{
+    <link href="@Url.Content("/Views/Opponent/Add.less")" rel="stylesheet/less" type="text/css" />
+}
+<h2>Add Opponent</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true).Raw()
+    {
+        <ul>
+            <li class="main-left">
+                <fieldset>
+                    <legend>Opponent</legend>
+                    <ul>
+                        <li>
+                            @Html.LabelFor(model => model.Name)
+                            @Html.TextBoxFor(model => model.Name)
+                        </li>
+                    </ul>
+                </fieldset>
+            </li>
+        </ul>
+    }
+}

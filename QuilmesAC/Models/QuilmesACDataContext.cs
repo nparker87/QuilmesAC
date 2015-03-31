@@ -104,6 +104,15 @@
 
         /* Opponent Methods */
 
+        public void AddOpponent(OpponentViewModel submission)
+        {
+            var opponent = new Opponent
+            {
+                Name = submission.Name
+            };
+            Opponents.InsertOnSubmit(opponent);
+        }
+
         public List<Opponent> GetOpponents()
         {
             return Opponents.OrderBy(x => x.Name).ToList();

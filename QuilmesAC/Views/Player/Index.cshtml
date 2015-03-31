@@ -2,9 +2,21 @@
 @{
     ViewBag.Title = "Team";
 }
+@section Head
+{
+    <link href="@Url.Content("/Views/Player/Index.less")" rel="stylesheet/less" type="text/css" />
+}
 
 <h2>Team</h2>
 <ul>
+    @{
+        if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
+        {
+            <li>
+                Double click a player to edit stats.
+            </li>
+        }
+    }
     <li>
         @Html.LabelFor(model => model.StatusID)
         @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
@@ -14,7 +26,7 @@
         @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All")
     </li>
 </ul>
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "team" }))
 {
         <table id="list"></table>
         <div id="pager"></div>
