@@ -3,16 +3,13 @@
 @{
     ViewBag.Title = "Team";
 }
-
-<h2>Add</h2>
-
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true).Raw()
     <ul>
         <li class="main-left">
             <fieldset>
-                <legend>Player</legend>
+                <legend>Add Player</legend>
                 <ul>
                     <li>
                         @Html.LabelFor(model => model.FirstName)
