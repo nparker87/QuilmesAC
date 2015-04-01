@@ -104,13 +104,28 @@
 
         /* Opponent Methods */
 
-        public void AddOpponent(OpponentViewModel submission)
+        public void Add(OpponentViewModel submission)
         {
             var opponent = new Opponent
             {
                 Name = submission.Name
             };
             Opponents.InsertOnSubmit(opponent);
+        }
+
+        public Opponent GetOpponentByID(long id)
+        {
+            return Opponents.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Update(Opponent opponent, OpponentViewModel submission)
+        {
+            opponent.Name = submission.Name;
+        }
+
+        public void Delete(Opponent opponent)
+        {
+            Opponents.DeleteOnSubmit(opponent);
         }
 
         public List<Opponent> GetOpponents()

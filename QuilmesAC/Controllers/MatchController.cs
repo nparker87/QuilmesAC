@@ -17,14 +17,14 @@
             ViewBag.SortOrder = (Session["MatchLastSortOrder"] ?? "desc");
             ViewBag.Page = (Session["MatchLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["MatchLastSortRows"] ?? 50);
-            
-            return View(new MatchViewModel());
+
+            return View(new MatchViewModel(QuilmesModel));
         }
 
         /// <summary> Returns the JSON data to display a jqGrid of beers </summary>
         /// POST: /Match/GridData
         [HttpPost]
-        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters)
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string seasonID)
         {
             // Save the last sort choices to session data.
             Session["MatchLastSortID"] = sidx;
@@ -32,8 +32,12 @@
             Session["MatchLastSortPage"] = page;
             Session["MatchLastSortRows"] = rows;
 
-            var allRecords = from match in QuilmesModel.Matches 
+            var matches = from match in QuilmesModel.Matches 
                              select match;
+
+            if (!String.IsNullOrWhiteSpace(seasonID))
+                matches = matches.Where(x => x.SeasonID == Int32.Parse(seasonID));
+
             
             // Check for any filtering and prepare Where clauses.
             if (_search)
@@ -50,18 +54,18 @@
                     try
                     {
                         // for strings and other non-nullables
-                        allRecords = allRecords.Where(r.Field + ".ToString().Contains(@0)", r.Data);
+                        matches = matches.Where(r.Field + ".ToString().Contains(@0)", r.Data);
                     }
                     catch (Exception)
                     {
                         // null types
-                        allRecords = allRecords.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
+                        matches = matches.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
                     }
                 }
             }
 
-            int totalRecords = allRecords.Count();
-            var currentPage = allRecords
+            int totalRecords = matches.Count();
+            var currentPage = matches
                 .OrderBy(sidx + " " + sord + ", MatchDate, ID asc")
                 .Skip((Convert.ToInt32(page) - 1) * rows)
                 .Take(rows)

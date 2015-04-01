@@ -53,15 +53,6 @@
       <Association Name="CardType_Card" Member="Cards" ThisKey="ID" OtherKey="TypeID" Type="Card" />
     </Type>
   </Table>
-  <Table Name="dbo.Division" Member="Divisions">
-    <Type Name="Division">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Ranking" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Division_Opponent" Member="Opponents" ThisKey="ID" OtherKey="DivisionID" Type="Opponent" />
-      <Association Name="Division_Season" Member="Seasons" ThisKey="ID" OtherKey="DivisionID" Type="Season" />
-    </Type>
-  </Table>
   <Table Name="dbo.Goal" Member="Goals">
     <Type Name="Goal">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -84,17 +75,8 @@
       <Association Name="Match_Assist" Member="Assists" ThisKey="ID" OtherKey="MatchID" Type="Assist" />
       <Association Name="Match_Card" Member="Cards" ThisKey="ID" OtherKey="MatchID" Type="Card" />
       <Association Name="Match_Goal" Member="Goals" ThisKey="ID" OtherKey="MatchID" Type="Goal" />
-      <Association Name="Opponent_Match" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
       <Association Name="Season_Match" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Opponent" Member="Opponents">
-    <Type Name="Opponent">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="DivisionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Association Name="Opponent_Match" Member="Matches" ThisKey="ID" OtherKey="OpponentID" Type="Match" />
-      <Association Name="Division_Opponent" Member="Division" ThisKey="DivisionID" OtherKey="ID" Type="Division" IsForeignKey="true" />
+      <Association Name="Opponent_Match" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Player" Member="Players">
@@ -145,6 +127,21 @@
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Status_Player" Member="Players" ThisKey="ID" OtherKey="StatusID" Type="Player" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Opponent" Member="Opponents">
+    <Type Name="Opponent">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Opponent_Match" Member="Matches" ThisKey="ID" OtherKey="OpponentID" Type="Match" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Division" Member="Divisions">
+    <Type Name="Division">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Ranking" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Division_Season" Member="Seasons" ThisKey="ID" OtherKey="DivisionID" Type="Season" />
     </Type>
   </Table>
 </Database>

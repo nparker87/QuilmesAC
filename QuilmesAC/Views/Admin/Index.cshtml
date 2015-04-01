@@ -6,8 +6,6 @@
     <link href="@Url.Content("/Views/Admin/Index.less")" rel="stylesheet/less" type="text/css" />
 }
 
-
-
 <h2>Index</h2>
 <fieldset class="main-left">
     <legend>Admin Panel</legend>
@@ -19,7 +17,7 @@
             @Html.ActionLink("Add a Player", "Add", "Player")
         </li>
         <li>
-            @Html.ActionLink("Add a Team", "Add", "Opponent")
+            @Html.ActionLink("Manage Opponents", "Index", "Opponent")
         </li>
     </ul>
 </fieldset>

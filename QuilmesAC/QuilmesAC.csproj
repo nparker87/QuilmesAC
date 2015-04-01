@@ -283,6 +283,7 @@
     <Content Include="Views\Opponent\Add.less" />
     <Content Include="Views\Admin\Index.less" />
     <Content Include="Views\Player\Index.less" />
+    <Content Include="Views\Match\Index.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

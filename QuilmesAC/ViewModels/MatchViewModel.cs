@@ -56,7 +56,8 @@
             {
                 new SelectListItem() {Text = "", Value = ""},
                 new SelectListItem() {Text = "W", Value = "W"},
-                new SelectListItem() {Text = "L", Value = "L"}
+                new SelectListItem() {Text = "L", Value = "L"},
+                new SelectListItem() {Text = "D", Value = "D"},
             };
             Seasons = new SelectList(model.GetSeasons(), "ID", "DisplayName");
         }

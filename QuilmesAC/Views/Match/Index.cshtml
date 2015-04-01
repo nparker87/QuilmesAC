@@ -1,17 +1,20 @@
-﻿@{
+﻿@model QuilmesAC.ViewModels.MatchViewModel
+@{
     ViewBag.Title = "Matches";
 }
-
-<h2>Matches</h2>
 @section Head
 {
-    <style type="text/css">
-        .ui-search-toolbar {
-            display: none;
-        }
-    </style>
+    <link href="@Url.Content("/Views/Match/Index.less")" rel="stylesheet/less" type="text/css" />
 }
-@using (Html.BeginForm())
+<h2>Matches</h2>
+<ul>
+    <li>
+        @Html.LabelFor(model => model.SeasonID)
+        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All Time")
+    </li>
+</ul>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
     <table id="list"></table>
     <div id="pager"></div>
@@ -54,14 +57,19 @@
                     sortorder: '@(ViewBag.SortOrder)',
                     page: '@(ViewBag.Page)',
                     rowNum: '@(ViewBag.Rows)',
-                    postData: { formID: '@Model.ID' },
+                    postData: {
+                        seasonID: function () { return $('#SeasonID').val(); }
+                    },
                     viewrecords: true
                 }).navGrid('#pager', { add: false, edit: false, del: false, search: false, refresh: false })
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
                 .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
 
             $('#list')[0].triggerToolbar();
+
+            $('#SeasonID').change(function () {
+                $('#list').trigger("reloadGrid");
+            });
         });
     </script>
 }
-
