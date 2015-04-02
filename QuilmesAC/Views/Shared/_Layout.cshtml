@@ -66,10 +66,21 @@
                 </nav>
                 <div class="main-content">
                     @RenderBody()
+                    @for (var i = 1; i <= 9; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            <img src="~/Content/Images/quilmes_beer_logo.png" class="beer-logo" alt="Quilmes"/>
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/adidas-logo.jpg" class="adidas" alt="adidas"/>
+                        }
+                    }
                 </div>
                 <footer>
                     Quilmes AC | <a href="mailto:parkerjn2@vcu.edu">Contact</a> | Richmond, VA<br/>
-                    <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a>
+                    <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a><br/>
                 </footer>
             </div>
         </div>                
