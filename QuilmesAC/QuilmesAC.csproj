@@ -119,6 +119,7 @@
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,6 +149,7 @@
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\OpponentViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\SeasonViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,8 +160,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\adidas-logo.jpg" />
     <Content Include="Content\Images\crest.png" />
+    <Content Include="Content\Images\fall 2014 team.jpg" />
+    <Content Include="Content\Images\Koya.jpg" />
     <Content Include="Content\Images\QuilmesGirls.jpg" />
+    <Content Include="Content\Images\quilmes_beer_logo.png" />
     <Content Include="Content\Images\required_star.png" />
     <Content Include="Content\Images\SocialMedia\digg.png" />
     <Content Include="Content\Images\SocialMedia\dribbble.png" />
@@ -173,6 +179,7 @@
     <Content Include="Content\Images\SocialMedia\twitter.png" />
     <Content Include="Content\Images\SocialMedia\vimeo.png" />
     <Content Include="Content\Images\SocialMedia\youtube.png" />
+    <Content Include="Content\Images\world cup.jpg" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -249,10 +256,13 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.1.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.jqGrid.src.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
@@ -284,6 +294,7 @@
     <Content Include="Views\Admin\Index.less" />
     <Content Include="Views\Player\Index.less" />
     <Content Include="Views\Match\Index.less" />
+    <Content Include="Views\Season\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

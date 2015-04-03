@@ -3,38 +3,41 @@
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
+    using System.Runtime.InteropServices;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using Helpers;
     using ViewModels;
 
-    public class OpponentController : BaseController
+    public class SeasonController : BaseController
     {
         [AuthorizeHelper(Roles = "Admin")]
         public ActionResult Index()
         {
             // Use last sorting choices if saved - otherwise use defaults.
-            ViewBag.SortBy = (Session["OpponentLastSortID"] ?? "Name");
-            ViewBag.SortOrder = (Session["OpponentLastSortOrder"] ?? "asc");
-            ViewBag.Page = (Session["OpponentLastSortPage"] ?? 1);
-            ViewBag.Rows = (Session["OpponentLastSortRows"] ?? 50);
+            ViewBag.SortBy = (Session["SeasonLastSortID"] ?? "ID");
+            ViewBag.SortOrder = (Session["SeasonLastSortOrder"] ?? "asc");
+            ViewBag.Page = (Session["SeasonLastSortPage"] ?? 1);
+            ViewBag.Rows = (Session["SeasonLastSortRows"] ?? 50);
 
-            return View(new OpponentViewModel());
+            return View(new SeasonViewModel());
         }
 
-        /// <summary> Returns the JSON data to display a jqGrid of opponents </summary>
-        /// POST: /Opponent/GridData
+
+
+        /// <summary> Returns the JSON data to display a jqGrid of seasons </summary>
+        /// POST: /Season/GridData
         [HttpPost]
         public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters)
         {
             // Save the last sort choices to session data.
-            Session["OpponentLastSortID"] = sidx;
-            Session["OpponentLastSortOrder"] = sord;
-            Session["OpponentLastSortPage"] = page;
-            Session["OpponentLastSortRows"] = rows;
+            Session["SeasonLastSortID"] = sidx;
+            Session["SeasonLastSortOrder"] = sord;
+            Session["SeasonLastSortPage"] = page;
+            Session["SeasonLastSortRows"] = rows;
 
-            var allRecords = from opponent in QuilmesModel.Opponents
-                             select opponent;
+            var allRecords = from season in QuilmesModel.Seasons
+                select season;
 
             // Check for any filtering and prepare Where clauses.
             if (_search)
@@ -63,15 +66,15 @@
 
             int totalRecords = allRecords.Count();
             var currentPage = allRecords
-                .OrderBy(sidx + " " + sord + ", Name, ID asc")
-                .Skip((Convert.ToInt32(page) - 1) * rows)
+                .OrderBy(sidx + " " + sord + ", ID asc")
+                .Skip((Convert.ToInt32(page) - 1)*rows)
                 .Take(rows)
                 .ToList();
 
             // This JSON Documentation is here: http://www.secondpersonplural.ca/jqgriddocs/_2eb0f6jhe.htm
             var jsonData = new
             {
-                total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
+                total = (int) Math.Ceiling(totalRecords/(float) rows), // total number of pages
                 page = page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
@@ -81,56 +84,54 @@
                         id = t.ID,
                         cell = new string[]
                         {
-                           t.ID.ToString(),
-                           t.Name
+                            t.ID.ToString(),
+                            t.DisplayName,
+                            String.Format("{0:M/d/yyyy}", t.StartDate),
+                            t.Division.Name
                         }
                     }).ToArray()
             };
             return Json(jsonData);
         }
 
-        [AuthorizeHelper(Roles = "Admin")]
-        public ActionResult Add()
-        {
-            return View(new OpponentViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult Add(OpponentViewModel submission)
-        {
-            if (!ModelState.IsValid) return View(submission);
-            QuilmesModel.Add(submission);
-            QuilmesModel.Save();
-            return RedirectToAction("Index");
-        }
-
         /// <summary> Modal add </summary>
-        public ContentResult AddOpponent(OpponentViewModel opponentViewModel)
+        public ContentResult AddSeason(SeasonViewModel seasonViewModel)
         {
-            QuilmesModel.Add(opponentViewModel);
+            QuilmesModel.Add(seasonViewModel);
             QuilmesModel.Save();
 
             return Content("Success");
         }
 
         /// <summary> Modal edit </summary>
-        public ContentResult EditOpponent(OpponentViewModel opponentViewModel)
+        public ContentResult EditSeason(SeasonViewModel seasonViewModel)
         {
-            var opponent = QuilmesModel.GetOpponentByID(opponentViewModel.ID);
-            QuilmesModel.Update(opponent, opponentViewModel);
+            var season = QuilmesModel.GetSeasonByID(seasonViewModel.ID);
+            QuilmesModel.Update(season, seasonViewModel);
             QuilmesModel.Save();
 
             return Content("Success");
         }
 
         /// <summary> Modal delete </summary>
-        public ContentResult DeleteOpponent(long id)
+        public ContentResult DeleteSeason(long id)
         {
-            var opponent = QuilmesModel.GetOpponentByID(id);
-            QuilmesModel.Delete(opponent);
+            var season = QuilmesModel.GetSeasonByID(id);
+            QuilmesModel.Delete(season);
             QuilmesModel.Save();
 
             return Content("Success");
         }
-	}
+
+        public string GetDivisions()
+        {
+            var result = "<select>";
+            foreach (var division in QuilmesModel.Divisions.OrderBy(x => x.Ranking))
+            {
+                result += "<\toption value='" + division.ID + "'>" + division.Name + "</option>";
+            }
+            result += "</select>";
+            return result;
+        }
+    }
 }

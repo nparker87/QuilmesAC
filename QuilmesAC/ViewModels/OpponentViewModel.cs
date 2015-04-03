@@ -7,12 +7,12 @@
     {
         public OpponentViewModel()
         {
-            CurrentTab = "Opponent";
+            CurrentTab = "Admin";
         }
 
         public OpponentViewModel(Opponent opponent)
         {
-            CurrentTab = "Oponent";
+            CurrentTab = "Admin";
             Add(opponent);
         }
 

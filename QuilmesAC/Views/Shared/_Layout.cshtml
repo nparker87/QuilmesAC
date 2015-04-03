@@ -14,35 +14,35 @@
 </head>
     <body>
         <div class="wrapper">
-            <div class="main">
-                <header>
-                    <ul id="social">
-                        <li id="fb">
-                            <a target="_blank" href="https://www.facebook.com/groups/222071347985558/" title="facebook"></a>
-                        </li>
-                        <li id="twt">
-                            <a target="_blank" href="http://www.twitter.com" title="twitter"></a>
-                        </li>
-                        <li id="yt">
-                            <a target="_blank" href="http://www.youtube.com" title="youtube"></a>
-                        </li>
-                        <li id="rss">
-                            <a target="_blank" href="http://en.wikipedia.org/wiki/RSS" title="rss"></a>
-                        </li>
-                        <li id="shr">
-                            <a target="_blank" href="" title="share"></a>
-                        </li>
-                        <li id="login">
-                            @(String.IsNullOrEmpty(User.Identity.Name)
-                                  ? Html.ActionLink("Login", "Login", "User")
-                                  : Html.ActionLink("Logout", "Logout", "User"))
-                        </li>
-                    </ul>
-                    <ul id="banner">
-                        <li class="crest"><a href="@Url.Action("Index", "Home")" title="Quilmes AC"></a></li>
-                        <li>Quilmes Atlético Club</li>
-                    </ul>
-                </header>
+            <header>
+                <ul id="social">
+                    <li id="fb">
+                        <a target="_blank" href="https://www.facebook.com/groups/222071347985558/" title="facebook"></a>
+                    </li>
+                    <li id="twt">
+                        <a target="_blank" href="http://www.twitter.com" title="twitter"></a>
+                    </li>
+                    <li id="yt">
+                        <a target="_blank" href="http://www.youtube.com" title="youtube"></a>
+                    </li>
+                    <li id="rss">
+                        <a target="_blank" href="http://en.wikipedia.org/wiki/RSS" title="rss"></a>
+                    </li>
+                    <li id="shr">
+                        <a target="_blank" href="" title="share"></a>
+                    </li>
+                    <li id="login">
+                        @(String.IsNullOrEmpty(User.Identity.Name)
+                                ? Html.ActionLink("Login", "Login", "User")
+                                : Html.ActionLink("Logout", "Logout", "User"))
+                    </li>
+                </ul>
+            </header>
+            <ul id="banner">
+                <li class="crest"><a href="@Url.Action("Index", "Home")" title="Quilmes AC"></a></li>
+                <li>Quilmes Atlético Club</li>
+            </ul>
+            <div class="inner-wrapper">
                 <nav>
                     <ul>
                         <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
@@ -66,23 +66,25 @@
                 </nav>
                 <div class="main-content">
                     @RenderBody()
-                    @for (var i = 1; i <= 9; i++)
+                </div>
+                <div class="bottom-logos">
+                    @for (var i = 1; i <= 2; i++)
                     {
                         if (i % 2 == 0)
                         {
-                            <img src="~/Content/Images/quilmes_beer_logo.png" class="beer-logo" alt="Quilmes"/>
+                            <img src="~/Content/Images/adidas-logo.jpg" class="beer-logo" alt="Quilmes" />
                         }
                         else
                         {
-                            <img src="~/Content/Images/adidas-logo.jpg" class="adidas" alt="adidas"/>
+                            <img src="~/Content/Images/quilmes_beer_logo.png" class="adidas" alt="adidas" />
                         }
                     }
                 </div>
-                <footer>
-                    Quilmes AC | <a href="mailto:parkerjn2@vcu.edu">Contact</a> | Richmond, VA<br/>
-                    <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a><br/>
-                </footer>
             </div>
+            <footer>
+                Quilmes AC | <a href="mailto:parkerjn2@vcu.edu">Contact</a> | Richmond, VA<br/>
+                <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a><br/>
+            </footer>
         </div>                
         @RenderSection("Scripts", false)
         @MiniProfiler.RenderIncludes()

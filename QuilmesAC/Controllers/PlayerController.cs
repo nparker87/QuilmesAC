@@ -22,7 +22,7 @@
             return View(new PlayerViewModel(QuilmesModel));
         }
 
-        /// <summary> Returns the JSON data to display a jqGrid of beers </summary>
+        /// <summary> Returns the JSON data to display a jqGrid of players </summary>
         /// POST: /Match/GridData
         [HttpPost]
         public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string statusID, string seasonID)

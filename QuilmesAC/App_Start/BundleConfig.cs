@@ -1,6 +1,5 @@
 ﻿namespace QuilmesAC.App_Start
 {
-    using Helpers;
     using System.Web.Optimization;
 
     public class BundleConfig
@@ -21,7 +20,6 @@
                 "~/Scripts/jquery.jqGrid.src.js",
                 "~/Scripts/i18n/grid.locale-en.js",
                 "~/Scripts/jquery.validate.js",
-                "~/Scripts/bootstrap.js",
                 "~/Scripts/less-{version}.js",
                 "~/Scripts/Global.js"));
         }

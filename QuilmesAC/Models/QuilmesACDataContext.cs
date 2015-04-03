@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using Helpers;
     using ViewModels;
 
@@ -140,6 +139,34 @@
             return Seasons.OrderBy(x => x.StartDate).ToList();
         }
 
+        public Season GetSeasonByID(long id)
+        {
+            return Seasons.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(SeasonViewModel submission)
+        {
+            var season = new Season
+            {
+                StartDate = submission.StartDate,
+                DisplayName = submission.DisplayName,
+                DivisionID = submission.DivisionID
+            };
+            Seasons.InsertOnSubmit(season);
+        }
+
+        public void Update(Season season, SeasonViewModel submission)
+        {
+            season.StartDate = submission.StartDate;
+            season.DisplayName = submission.DisplayName;
+            season.DivisionID = submission.DivisionID;
+        }
+
+        public void Delete(Season season)
+        {
+            Seasons.DeleteOnSubmit(season);
+        }
+
         /* Goal Methods */
 
         public Goal GetGoalByID(long id)
@@ -234,6 +261,13 @@
         public void Delete(Card card)
         {
             Cards.DeleteOnSubmit(card);
+        }
+
+        /* Division Methods */
+
+        public List<Division> GetDivisions()
+        {
+            return Divisions.OrderBy(x => x.ID).ToList();
         }
     }
 }
