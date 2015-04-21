@@ -18,6 +18,34 @@
 {
     <table id="list"></table>
     <div id="pager"></div>
+    <div class="allTimeRecord">
+        All Time Record
+        <table>
+            <tr>
+                <td>GP</td>
+                <td>W</td>
+                <td>D</td>
+                <td>L</td>
+                <td>GF</td>
+                <td>GA</td>
+                <td>GD</td>
+                <td>PTS</td>
+            </tr>
+            <tr class="line">
+                <td colspan="8" />
+            </tr>
+            <tr>
+                <td>@Model.AllTimeRecord.GamesPlayed</td>
+                <td>@Model.AllTimeRecord.Wins</td>
+                <td>@Model.AllTimeRecord.Draws</td>
+                <td>@Model.AllTimeRecord.Losses</td>
+                <td>@Model.AllTimeRecord.GoalsFor</td>
+                <td>@Model.AllTimeRecord.GoalsAgainst</td>
+                <td>@(@Model.AllTimeRecord.GoalsFor - @Model.AllTimeRecord.GoalsAgainst)</td>
+                <td>@Model.AllTimeRecord.Points</td>
+            </tr>
+        </table>
+    </div>
 }
 
 @section Scripts
@@ -26,42 +54,42 @@
         //jqGrid for matches
         jQuery(document).ready(function () {
             jQuery("#list").jqGrid({
-                    url: '@Url.Action("GridData")',
-                    datatype: 'local',
-                    gridview: true,
-                    height: '100%',
-                    hidegrid: false,
-                    loadtext: 'Retrieving Matches...',
-                    mtype: 'POST',
-                    forceFit: true,
-                    autowidth: false,
-                    sortable: true,
-                    width: '250px',
-                    cellLayout: 6, // gets rid of annoying horizontal scrollbar
-                    colNames: ['ID', 'Season', 'Match Day', 'Match Date', 'Opponent', 'GF', 'GA', 'Result'],
-                    colModel: [
-                        // index must be the column name for sorting with orderby
-                        { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                        { name: 'Season', index: 'Season.DisplayName', align: 'left', width: 137, editable: true, formoptions: { elmsuffix: '(*)' } },
-                        { name: 'MatchDay', index: 'MatchDay', align: 'center', width: 95, editable: true },
-                        { name: 'MatchDate', index: 'MatchDate', align: 'left', width: 90, editable: true },
-                        { name: 'Opponent', index: 'Opponent.Name', align: 'left', width: 150, editable: true, formoptions: { elmsuffix: '(*)' } },
-                        { name: 'GoalsFor', index: 'GoalsFor', align: 'center', width: 25, editable: true },
-                        { name: 'GoalsAgainst', index: 'GoalsAgainst', align: 'center', width: 25, editable: true },
-                        { name: 'Result', index: 'Result', align: 'center', width: 44, editable: true }
-                    ],
-                    cellEdit: false,
-                    pager: '#pager',
-                    rowList: [15, 50, 100],
-                    sortname: '@(ViewBag.SortBy)',
-                    sortorder: '@(ViewBag.SortOrder)',
-                    page: '@(ViewBag.Page)',
-                    rowNum: '@(ViewBag.Rows)',
-                    postData: {
-                        seasonID: function () { return $('#SeasonID').val(); }
-                    },
-                    viewrecords: true
-                }).navGrid('#pager', { add: false, edit: false, del: false, search: false, refresh: false })
+                url: '@Url.Action("GridData")',
+                datatype: 'local',
+                gridview: true,
+                height: '100%',
+                hidegrid: false,
+                loadtext: 'Retrieving Matches...',
+                mtype: 'POST',
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: '250px',
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ['ID', 'Season', 'Match Day', 'Match Date', 'Opponent', 'GF', 'GA', 'Result'],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: 'Season', index: 'Season.DisplayName', align: 'left', width: 137, editable: true, formoptions: { elmsuffix: '(*)' } },
+                    { name: 'MatchDay', index: 'MatchDay', align: 'center', width: 95, editable: true },
+                    { name: 'MatchDate', index: 'MatchDate', align: 'left', width: 90, editable: true },
+                    { name: 'Opponent', index: 'Opponent.Name', align: 'left', width: 150, editable: true, formoptions: { elmsuffix: '(*)' } },
+                    { name: 'GoalsFor', index: 'GoalsFor', align: 'center', width: 25, editable: true },
+                    { name: 'GoalsAgainst', index: 'GoalsAgainst', align: 'center', width: 25, editable: true },
+                    { name: 'Result', index: 'Result', align: 'center', width: 44, editable: true }
+                ],
+                cellEdit: false,
+                pager: '#pager',
+                rowList: [15, 50, 100],
+                sortname: '@(ViewBag.SortBy)',
+                sortorder: '@(ViewBag.SortOrder)',
+                page: '@(ViewBag.Page)',
+                rowNum: '@(ViewBag.Rows)',
+                postData: {
+                    seasonID: function () { return $('#SeasonID').val(); }
+                },
+                viewrecords: true
+            }).navGrid('#pager', { add: false, edit: false, del: false, search: false, refresh: false })
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
                 .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
 

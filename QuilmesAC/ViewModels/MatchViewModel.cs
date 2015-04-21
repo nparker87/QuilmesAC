@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.ViewModels
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Models;
 
     public class MatchViewModel : BaseViewModel
     {
@@ -18,6 +18,7 @@
         {
             CurrentTab = "Match";
             PopulateSelectLists(model);
+            AllTimeRecord = model.GetAllTimeRecord();
         }
 
         public MatchViewModel(MatchViewModel match)
@@ -64,6 +65,8 @@
         public long SeasonID { get; set; }
 
         public SelectList Seasons { get; set; }
+
+        public AllTimeRecord AllTimeRecord { get; set; }
 
         private void PopulateSelectLists(QuilmesDataContext model)
         {

@@ -12,6 +12,24 @@
             SubmitChanges();
         }
 
+        public AllTimeRecord GetAllTimeRecord()
+        {
+            // Do not include bye "wins"
+            var matches = Matches.Where(x => x.Opponent.Name != "Bye");
+
+            var allTimeRecord = new AllTimeRecord
+            {
+                GamesPlayed = matches.Count(),
+                Wins = matches.Count(x => x.Result == 'W'),
+                Draws = matches.Count(x => x.Result == 'D'),
+                Losses = matches.Count(x => x.Result == 'L'),
+                GoalsFor = matches.Select(x => x.GoalsFor ?? 0).Sum(),
+                GoalsAgainst = matches.Select(x => x.GoalsAgainst ?? 0).Sum(),
+                Points = (matches.Count(x => x.Result == 'W') * 3) + (matches.Count(x => x.Result == 'L'))
+            };
+            return allTimeRecord;
+        }
+
         /* User Methods */
 
         public void AddUser(UserViewModel submission)
