@@ -19,7 +19,7 @@
                         @Html.LabelFor(model => model.MatchDate)
                         @(new HtmlString(Html.DatePickerFor(model => model.MatchDate)))
                     </li>
-                    <li class="required">
+                    <li>
                         @Html.RequriedLabelFor(model => model.OpponentID)
                         @Html.DropDownListFor(model => model.OpponentID, Model.Opponents, "-- Select --", new { @class = "required" })
                     </li>
@@ -32,21 +32,18 @@
                         @Html.TextBoxFor(model => model.GoalsAgainst, new { Value = "" })
                     </li>
                     <li>
-                        @Html.LabelFor(model => model.Result)
+                        @Html.RequriedLabelFor(model => model.Result)
                         @Html.DropDownListFor(model => model.Result, Model.Results, "-- Select --")
                     </li>
-                    <li class="required">
+                    <li>
                         @Html.RequriedLabelFor(model => model.SeasonID)
                         @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "-- Select --", new { @class = "required" })
                     </li>
                     <li class="center">
-                        <input type="submit" value="Add Match"/>
+                        <input type="submit" value="Add Match" />
                     </li>
                 </ul>
             </fieldset>
         </li>
     </ul>
 }
-
-
-

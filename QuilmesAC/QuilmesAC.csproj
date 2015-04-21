@@ -119,6 +119,7 @@
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -295,6 +296,7 @@
     <Content Include="Views\Player\Index.less" />
     <Content Include="Views\Match\Index.less" />
     <Content Include="Views\Season\Index.cshtml" />
+    <Content Include="Views\PrivacyPolicy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

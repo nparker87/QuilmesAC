@@ -16,12 +16,12 @@
                 <legend>Register for access</legend>
                 <ul>
                     <li>
-                        @Html.LabelFor(model => model.Username)
-                        @Html.TextBoxFor(model => model.Username)
+                        @Html.RequriedLabelFor(model => model.Username)
+                        @Html.TextBoxFor(model => model.Username, new { @class = "required" })
                     </li>
                     <li>
-                        @Html.LabelFor(model => model.Password)
-                        @Html.EditorFor(model => model.Password)
+                        @Html.RequriedLabelFor(model => model.Password)
+                        @Html.EditorFor(model => model.Password, new { @class = "required" })
                     </li>
                     <li>
                         @Html.LabelFor(model => model.Email)
@@ -36,4 +36,3 @@
         <li class="clear" />
     </ul>
 }
-

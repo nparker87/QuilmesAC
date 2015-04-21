@@ -78,6 +78,7 @@
 
             var tag = new TagBuilder("label");
             tag.Attributes.Add("for", html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(htmlFieldName));
+            tag.Attributes.Add("class", "required");
             if (htmlAttributes != null)
                 tag.MergeAttributes(new RouteValueDictionary(htmlAttributes));
 

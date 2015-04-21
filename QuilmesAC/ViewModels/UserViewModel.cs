@@ -10,10 +10,12 @@
         }
 
         [DisplayName("Username:")]
+        [Required(ErrorMessage = "Username Required")]
         public string Username { get; set; }
 
         [DisplayName("Password:")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Password Required")]
         public string Password { get; set; }
 
         [DisplayName("Email:")]

@@ -1,13 +1,13 @@
 ﻿namespace QuilmesAC.Controllers
 {
+    using Helpers;
+    using Models;
     using System;
     using System.Linq;
     using System.Web;
     using System.Web.Configuration;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Helpers;
-    using Models;
     using ViewModels;
 
     public class UserController : BaseController
@@ -30,7 +30,7 @@
                 return View(redirectToLogin);
             }
 
-            returnUrl = (string) TempData["returnUrl"];
+            returnUrl = (string)TempData["returnUrl"];
 
             // show login view with returnurl
             var viewModel = new Login
@@ -55,7 +55,7 @@
                 roles = user.UserRoles.Aggregate(roles, (current, role) => current + (role.Role.Name + ","));
             roles = roles.TrimEnd(',');
 
-            // create autentication cookie with roles
+            // create authentication cookie with roles
             var ticket = new FormsAuthenticationTicket(
                 1,                          // version
                 user.Username,              // username
@@ -87,8 +87,14 @@
         [HttpPost]
         public ActionResult Register(UserViewModel submission)
         {
-            QuilmesModel.AddUser(submission);
-            QuilmesModel.Save();
+            if (ModelState.IsValid)
+            {
+                QuilmesModel.AddUser(submission);
+                QuilmesModel.Save();
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Return Error
             return RedirectToAction("Index", "Home");
         }
 
