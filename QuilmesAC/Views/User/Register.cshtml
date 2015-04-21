@@ -7,9 +7,9 @@
 
 <h2>Register</h2>
 
+@Html.ValidationSummary(true, "Please correct the errors and try again.")
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true).Raw()
     <ul>
         <li class="main-left">
             <fieldset>
@@ -17,11 +17,13 @@
                 <ul>
                     <li>
                         @Html.RequriedLabelFor(model => model.Username)
-                        @Html.TextBoxFor(model => model.Username, new { @class = "required" })
+                        @Html.TextBoxFor(model => model.Username)
+                        @Html.ValidationMessageFor(model => model.Username)
                     </li>
                     <li>
                         @Html.RequriedLabelFor(model => model.Password)
-                        @Html.EditorFor(model => model.Password, new { @class = "required" })
+                        @Html.EditorFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password)
                     </li>
                     <li>
                         @Html.LabelFor(model => model.Email)

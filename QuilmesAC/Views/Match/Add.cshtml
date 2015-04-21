@@ -21,7 +21,8 @@
                     </li>
                     <li>
                         @Html.RequriedLabelFor(model => model.OpponentID)
-                        @Html.DropDownListFor(model => model.OpponentID, Model.Opponents, "-- Select --", new { @class = "required" })
+                        @Html.DropDownListFor(model => model.OpponentID, Model.Opponents, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.OpponentID)
                     </li>
                     <li>
                         @Html.LabelFor(model => model.GoalsFor)
@@ -34,10 +35,12 @@
                     <li>
                         @Html.RequriedLabelFor(model => model.Result)
                         @Html.DropDownListFor(model => model.Result, Model.Results, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.Result)
                     </li>
                     <li>
                         @Html.RequriedLabelFor(model => model.SeasonID)
-                        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "-- Select --", new { @class = "required" })
+                        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.SeasonID)
                     </li>
                     <li class="center">
                         <input type="submit" value="Add Match" />

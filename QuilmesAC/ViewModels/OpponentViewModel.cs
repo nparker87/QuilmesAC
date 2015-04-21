@@ -1,6 +1,7 @@
 ﻿namespace QuilmesAC.ViewModels
 {
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using Models;
 
     public class OpponentViewModel : BaseViewModel
@@ -20,6 +21,7 @@
         public long ID { get; set; }
 
         [DisplayName("Name:")]
+        [Required(ErrorMessage = "Required")]
         public string Name { get; set; }
 
         private void Add(Opponent opponent)

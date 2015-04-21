@@ -35,7 +35,7 @@
             if (String.IsNullOrEmpty(password))
                 modelState.AddModelError("password", "You must specify a password.");
             else if (!Provider.ValidateUser(username, password))
-                modelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+                modelState.AddModelError("", "The username or password provided is incorrect.");
 
             return modelState.IsValid;
         }

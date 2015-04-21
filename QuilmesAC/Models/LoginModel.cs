@@ -11,13 +11,13 @@
 
     public class Login : BaseViewModel
     {
-        [Required]
         [Display(Name = "Username:")]
+        [Required(ErrorMessage = "Required")]
         public string Username { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Password:")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Required")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -172,7 +172,7 @@
 
         #endregion Unimplemented MembershipProvider Methods
 
-        readonly QuilmesDataContext _model;
+        private readonly QuilmesDataContext _model;
 
         public MembershipProvider()
             : this(null)
@@ -275,7 +275,7 @@
 
         #endregion Unimplemented RoleProvider Methods
 
-        readonly QuilmesDataContext _model = new QuilmesDataContext();
+        private readonly QuilmesDataContext _model = new QuilmesDataContext();
 
         public RoleProvider()
             : this(new QuilmesDataContext())

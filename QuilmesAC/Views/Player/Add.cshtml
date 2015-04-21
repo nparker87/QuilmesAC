@@ -12,12 +12,14 @@
                 <legend>Add Player</legend>
                 <ul>
                     <li>
-                        @Html.LabelFor(model => model.FirstName)
-                        @Html.TextBoxFor(model => model.FirstName, new { @class = "required" })
+                        @Html.RequriedLabelFor(model => model.FirstName)
+                        @Html.TextBoxFor(model => model.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName)
                     </li>
                     <li>
-                        @Html.LabelFor(model => model.LastName)
+                        @Html.RequriedLabelFor(model => model.LastName)
                         @Html.TextBoxFor(model => model.LastName)
+                        @Html.ValidationMessageFor(model => model.LastName)
                     </li>
                     <li>
                         @Html.LabelFor(model => model.Number)

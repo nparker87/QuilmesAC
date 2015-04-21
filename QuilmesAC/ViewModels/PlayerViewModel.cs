@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using Models;
 
@@ -30,9 +31,11 @@
         public long ID { get; set; }
 
         [DisplayName("First Name:")]
+        [Required(ErrorMessage = "Required")]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name:")]
+        [Required(ErrorMessage = "Required")]
         public string LastName { get; set; }
 
         [DisplayName("Number:")]

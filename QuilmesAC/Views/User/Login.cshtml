@@ -1,4 +1,5 @@
-﻿@model QuilmesAC.Models.Login
+﻿@using QuilmesAC.Helpers
+@model QuilmesAC.Models.Login
 
 @{
     ViewBag.Title = "Log In";
@@ -23,12 +24,12 @@
                         }
                     </li>
                     <li>
-                        @Html.LabelFor(model => model.Username)
+                        @Html.RequriedLabelFor(model => model.Username)
                         @Html.TextBoxFor(model => model.Username)
                         @Html.ValidationMessageFor(model => model.Username)
                     </li>
                     <li>
-                        @Html.LabelFor(model => model.Password)
+                        @Html.RequriedLabelFor(model => model.Password)
                         @Html.EditorFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password)
                     </li>

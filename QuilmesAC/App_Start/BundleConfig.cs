@@ -20,6 +20,7 @@
                 "~/Scripts/jquery.jqGrid.src.js",
                 "~/Scripts/i18n/grid.locale-en.js",
                 "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/less-{version}.js",
                 "~/Scripts/Global.js"));
         }
