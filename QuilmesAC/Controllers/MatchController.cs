@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
+    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -32,13 +32,12 @@
             Session["MatchLastSortPage"] = page;
             Session["MatchLastSortRows"] = rows;
 
-            var matches = from match in QuilmesModel.Matches 
-                             select match;
+            var matches = from match in QuilmesModel.Matches
+                          select match;
 
             if (!String.IsNullOrWhiteSpace(seasonID))
                 matches = matches.Where(x => x.SeasonID == Int32.Parse(seasonID));
 
-            
             // Check for any filtering and prepare Where clauses.
             if (_search)
             {
@@ -107,11 +106,18 @@
         [HttpPost]
         public ActionResult Add(MatchViewModel submission)
         {
-            if (!ModelState.IsValid) return View(submission);
-            QuilmesModel.AddMatch(submission);
-            QuilmesModel.Save();
+            if (ModelState.IsValid)
+            {
+                QuilmesModel.AddMatch(submission);
+                QuilmesModel.Save();
 
-            return View(new MatchViewModel(QuilmesModel));
+                return View(new MatchViewModel(QuilmesModel));
+            }
+            else
+            {
+                var invalid = new MatchViewModel(submission);
+                return View(invalid);
+            }
         }
     }
 }
