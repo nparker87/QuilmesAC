@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
-    using System.Runtime.InteropServices;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using Helpers;
@@ -23,8 +22,6 @@
             return View(new SeasonViewModel());
         }
 
-
-
         /// <summary> Returns the JSON data to display a jqGrid of seasons </summary>
         /// POST: /Season/GridData
         [HttpPost]
@@ -37,7 +34,7 @@
             Session["SeasonLastSortRows"] = rows;
 
             var allRecords = from season in QuilmesModel.Seasons
-                select season;
+                             select season;
 
             // Check for any filtering and prepare Where clauses.
             if (_search)
@@ -64,25 +61,25 @@
                 }
             }
 
-            int totalRecords = allRecords.Count();
+            var totalRecords = allRecords.Count();
             var currentPage = allRecords
                 .OrderBy(sidx + " " + sord + ", ID asc")
-                .Skip((Convert.ToInt32(page) - 1)*rows)
+                .Skip((Convert.ToInt32(page) - 1) * rows)
                 .Take(rows)
                 .ToList();
 
             // This JSON Documentation is here: http://www.secondpersonplural.ca/jqgriddocs/_2eb0f6jhe.htm
             var jsonData = new
             {
-                total = (int) Math.Ceiling(totalRecords/(float) rows), // total number of pages
-                page = page, // current page
+                total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                             t.ID.ToString(),
                             t.DisplayName,

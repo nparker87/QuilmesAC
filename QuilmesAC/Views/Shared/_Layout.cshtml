@@ -1,5 +1,4 @@
 ﻿@using StackExchange.Profiling
-@using System.Data.Linq
 @using System.Web.Optimization
 @model QuilmesAC.ViewModels.BaseViewModel
 
@@ -8,85 +7,85 @@
 <head>
     <title>Quilmes AC | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" /> 
+    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
     @RenderSection("Head", false)
     @Scripts.Render("~/Scripts")
 </head>
-    <body>
-        <div class="wrapper">
-            <header>
-                <ul id="social">
-                    <li id="fb">
-                        <a target="_blank" href="https://www.facebook.com/groups/222071347985558/" title="facebook"></a>
-                    </li>
-                    <li id="twt">
-                        <a target="_blank" href="http://www.twitter.com" title="twitter"></a>
-                    </li>
-                    <li id="yt">
-                        <a target="_blank" href="http://www.youtube.com" title="youtube"></a>
-                    </li>
-                    <li id="rss">
-                        <a target="_blank" href="http://en.wikipedia.org/wiki/RSS" title="rss"></a>
-                    </li>
-                    <li id="shr">
-                        <a target="_blank" href="" title="share"></a>
-                    </li>
-                    <li id="login">
-                        @(String.IsNullOrEmpty(User.Identity.Name)
+<body>
+    <div class="wrapper">
+        <header>
+            <ul id="social">
+                <li id="fb">
+                    <a target="_blank" href="https://www.facebook.com/groups/222071347985558/" title="facebook"></a>
+                </li>
+                <li id="twt">
+                    <a target="_blank" href="http://www.twitter.com" title="twitter"></a>
+                </li>
+                <li id="yt">
+                    <a target="_blank" href="http://www.youtube.com" title="youtube"></a>
+                </li>
+                <li id="rss">
+                    <a target="_blank" href="http://en.wikipedia.org/wiki/RSS" title="rss"></a>
+                </li>
+                <li id="shr">
+                    <a target="_blank" href="" title="share"></a>
+                </li>
+                <li id="login">
+                    @(String.IsNullOrEmpty(User.Identity.Name)
                                 ? Html.ActionLink("Login", "Login", "User")
                                 : Html.ActionLink("Logout", "Logout", "User"))
-                    </li>
-                </ul>
-            </header>
-            <ul id="banner">
-                <li class="crest"><a href="@Url.Action("Index", "Home")" title="Quilmes AC"></a></li>
-                <li>Quilmes Atlético Club</li>
+                </li>
             </ul>
-            <div class="inner-wrapper">
-                <nav>
-                    <ul>
-                        <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
-                            @Html.ActionLink("Home", "Index", "Home")
-                        </li>
-                        <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
-                            @Html.ActionLink("Team", "Index", "Player")
-                        </li>
-                        <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
-                            @Html.ActionLink("Matches", "Index", "Match")
-                        </li>
-                        @{
-                            if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
-                            {
-                                <li class="@(Model.CurrentTab == "Admin" ? "selected" : "")">
-                                    @Html.ActionLink("Admin", "Index", "Admin")
-                                </li>
-                            }
-                        }
-                    </ul>
-                </nav>
-                <div class="main-content">
-                    @RenderBody()
-                </div>
-                <div class="bottom-logos">
-                    @for (var i = 1; i <= 2; i++)
-                    {
-                        if (i % 2 == 0)
+        </header>
+        <ul id="banner">
+            <li class="crest"><a href="@Url.Action("Index", "Home")" title="Quilmes AC"></a></li>
+            <li>Quilmes Atlético Club</li>
+        </ul>
+        <div class="inner-wrapper">
+            <nav>
+                <ul>
+                    <li class="@(Model.CurrentTab == "Home" ? "selected" : "")">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li class="@(Model.CurrentTab == "Player" ? "selected" : "")">
+                        @Html.ActionLink("Team", "Index", "Player")
+                    </li>
+                    <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
+                        @Html.ActionLink("Matches", "Index", "Match")
+                    </li>
+                    @{
+                        if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
                         {
-                            <img src="~/Content/Images/adidas-logo.jpg" class="beer-logo" alt="Quilmes" />
-                        }
-                        else
-                        {
-                            <img src="~/Content/Images/quilmes_beer_logo.png" class="adidas" alt="adidas" />
+                            <li class="@(Model.CurrentTab == "Admin" ? "selected" : "")">
+                                @Html.ActionLink("Admin", "Index", "Admin")
+                            </li>
                         }
                     }
-                </div>
+                </ul>
+            </nav>
+            <div class="main-content">
+                @RenderBody()
             </div>
-            <footer>
-                Quilmes AC | <a href="mailto:parkerjn2@vcu.edu">Contact</a> | Richmond, VA<br/>
-                <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a> | @Html.ActionLink("Privacy Policy", "Index", "PrivacyPolicy")
-            </footer>
-        </div>                
-        @RenderSection("Scripts", false)
-        @MiniProfiler.RenderIncludes()
-    </body>
+            <div class="bottom-logos">
+                @for (var i = 1; i <= 2; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        <img src="~/Content/Images/adidas-logo.jpg" class="beer-logo" alt="Quilmes" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/quilmes_beer_logo.png" class="adidas" alt="adidas" />
+                    }
+                }
+            </div>
+        </div>
+        <footer>
+            Quilmes AC | <a href="mailto:parkerjn2@vcu.edu">Contact</a> | Richmond, VA<br />
+            <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a> | @Html.ActionLink("Privacy Policy", "Index", "PrivacyPolicy")
+        </footer>
+    </div>
+    @RenderSection("Scripts", false)
+    @MiniProfiler.RenderIncludes()
+</body>
 </html>

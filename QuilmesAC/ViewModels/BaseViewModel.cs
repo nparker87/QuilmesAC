@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.ViewModels
 {
-    using Models;
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
+    using Models;
 
     public class BaseViewModel
     {
@@ -18,7 +18,7 @@
 
         public void PopulateSelectLists()
         {
-            Themes = new List<SelectListItem>()
+            Themes = new List<SelectListItem>
             {
                 new SelectListItem() {Text = "Quilmes Blue", Value = "#35428A"},
                 new SelectListItem() {Text = "Home", Value = "#95031A"},

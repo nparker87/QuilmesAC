@@ -5,10 +5,6 @@
 
     public class UserViewModel : BaseViewModel
     {
-        public UserViewModel()
-        {
-        }
-
         [DisplayName("Username:")]
         [Required(ErrorMessage = "Username Required")]
         public string Username { get; set; }

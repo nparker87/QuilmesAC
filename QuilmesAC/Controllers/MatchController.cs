@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
-    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
+    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -74,14 +74,14 @@
             var jsonData = new
             {
                 total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
-                page = page, // current page
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                            t.ID.ToString(),
                            t.Season.DisplayName,

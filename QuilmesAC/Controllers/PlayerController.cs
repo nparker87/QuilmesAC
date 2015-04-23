@@ -67,7 +67,7 @@
             int totalRecords = players.Count();
             var currentPage = players
                 .OrderBy(sidx + " " + sord + ", CreatedDate, ID asc")
-                .Skip((Convert.ToInt32(page) - 1)*rows)
+                .Skip((Convert.ToInt32(page) - 1) * rows)
                 .Take(rows)
                 .ToList();
 
@@ -75,30 +75,30 @@
             var jsonData = new
             {
                 total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
-                page = page, // current page
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                             t.ID.ToString(),
                             t.FirstName,
                             t.LastName,
                             t.Number.ToString(),
-                            (String.IsNullOrEmpty(seasonID) 
+                            (String.IsNullOrEmpty(seasonID)
                                 ? t.Goals.Count.ToString()
                                 : t.Goals.Count(x => x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
-                            (String.IsNullOrEmpty(seasonID) 
+                            (String.IsNullOrEmpty(seasonID)
                                 ? t.Assists.Count.ToString()
                                 : t.Assists.Count(x => x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
-                            (String.IsNullOrEmpty(seasonID) 
-                                ? t.Cards.Count(x => x.CardType.Name == "Yellow").ToString() 
+                            (String.IsNullOrEmpty(seasonID)
+                                ? t.Cards.Count(x => x.CardType.Name == "Yellow").ToString()
                                 : t.Cards.Count(x => x.CardType.Name == "Yellow" &&  x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
-                            (String.IsNullOrEmpty(seasonID) 
-                                ? t.Cards.Count(x => x.CardType.Name == "Red").ToString() 
+                            (String.IsNullOrEmpty(seasonID)
+                                ? t.Cards.Count(x => x.CardType.Name == "Red").ToString()
                                 : t.Cards.Count(x => x.CardType.Name == "Red" &&  x.Match.SeasonID == Int32.Parse(seasonID)).ToString()),
                             t.Status.Name
                         }
@@ -106,7 +106,7 @@
             };
             return Json(jsonData);
         }
-        
+
         [AuthorizeHelper(Roles = "Admin")]
         public ActionResult Add()
         {
@@ -161,7 +161,6 @@
 
             var viewModel = new PlayerViewModel(QuilmesModel, player);
             return View(viewModel);
-
         }
 
         [HttpPost]
@@ -222,14 +221,14 @@
             var jsonData = new
             {
                 total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
-                page = page, // current page
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                             t.ID.ToString(),
                             t.PlayerID.ToString(),
@@ -291,14 +290,14 @@
             var jsonData = new
             {
                 total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
-                page = page, // current page
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                             t.ID.ToString(),
                             t.PlayerID.ToString(),
@@ -360,14 +359,14 @@
             var jsonData = new
             {
                 total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
-                page = page, // current page
+                page, // current page
                 records = totalRecords, // total number of records of all pages
                 rows = ( //actual data records for current page
                     from t in currentPage
                     select new
                     {
                         id = t.ID,
-                        cell = new string[]
+                        cell = new[]
                         {
                             t.ID.ToString(),
                             t.PlayerID.ToString(),

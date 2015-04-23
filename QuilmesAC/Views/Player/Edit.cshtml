@@ -62,150 +62,148 @@
     <li class="clear"></li>
 </ul>
 
-
 @section Scripts
 {
     <script type="text/javascript">
-    jQuery(document).ready(function () {
-        function updateDialog(url) {
-            return {
-                url: url,
-                closeAfterAdd: true,
-                closeAfterEdit: true,
-                modal: true
-            };
-        }
+        jQuery(document).ready(function () {
+            function updateDialog(url) {
+                return {
+                    url: url,
+                    closeAfterAdd: true,
+                    closeAfterEdit: true,
+                    modal: true
+                };
+            }
 
-        //jqGrid for goals
-        jQuery("#goalList").jqGrid({
-            url: '@Url.Action("GoalGridData")',
-            datatype: 'local',
-            gridview: true,
-            height: '100%',
-            hidegrid: false,
-            loadtext: 'Retrieving Goals...',
-            mtype: 'POST',
-            forceFit: true,
-            autowidth: false,
-            sortable: true,
-            width: '250',
-            caption: 'Goals',
-            cellLayout: 6, // gets rid of annoying horizontal scrollbar
-            colNames: ['ID', 'PlayerID', 'Match:', 'Opponent', 'Match Date'],
-            colModel: [
-                // index must be the column name for sorting with orderby
-                { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                { name: 'PlayerID', index: 'PlayerID', editable: true, hidden: true, editoptions: { readonly: true, defaultValue: '@Model.ID' } },
-                { name: 'MatchID', index: 'MatchID', editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: 'select', editoptions: { dataUrl: '@Url.Action("GetMatches")' }, formoptions: { elmsuffix: '(*)' } },
-                { name: 'Opponent', index: 'Match.Opponent.Name', width: 100, align: 'left', editable: false },
-                { name: 'MatchDate', index: 'Match.MatchDate', width: 100, align: 'left', editable: false }
-            ],
-            pager: '#goalPager',
-            rowList: [],
-            pgbuttons: false,
-            pgtext: null,
-            sortname: '@(ViewBag.GoalSortBy)',
-            sortorder: '@(ViewBag.GoalSortOrder)',
-            page: '@(ViewBag.GoalPage)',
-            rowNum: '@(ViewBag.GoalRows)',
-            postData: { playerID: '@Model.ID' },
-            viewrecords: false
-        }).navGrid('#goalPager', { add: true, edit: true, del: true, search: false, refresh: false },
-                updateDialog('@Url.Action("EditGoal")'),
-                updateDialog('@Url.Action("AddGoal")'),
-                updateDialog('@Url.Action("DeleteGoal")'))
-            .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-            .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
+            //jqGrid for goals
+            jQuery("#goalList").jqGrid({
+                url: "@Url.Action("GoalGridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Goals...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "250",
+                caption: "Goals",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "PlayerID", "Match:", "Opponent", "Match Date"],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "PlayerID", index: "PlayerID", editable: true, hidden: true, editoptions: { readonly: true, defaultValue: "@Model.ID" } },
+                    { name: "MatchID", index: "MatchID", editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: "select", editoptions: { dataUrl: "@Url.Action("GetMatches")" }, formoptions: { elmsuffix: "(*)" } },
+                        { name: "Opponent", index: "Match.Opponent.Name", width: 100, align: "left", editable: false },
+                        { name: "MatchDate", index: "Match.MatchDate", width: 100, align: "left", editable: false }
+                ],
+                pager: "#goalPager",
+                rowList: [],
+                pgbuttons: false,
+                pgtext: null,
+                sortname: "@(ViewBag.GoalSortBy)",
+                sortorder: "@(ViewBag.GoalSortOrder)",
+                page: "@(ViewBag.GoalPage)",
+                rowNum: "@(ViewBag.GoalRows)",
+                postData: { playerID: "@Model.ID" },
+                viewrecords: false
+            }).navGrid("#goalPager", { add: true, edit: true, del: true, search: false, refresh: false },
+                            updateDialog("@Url.Action("EditGoal")"),
+                            updateDialog("@Url.Action("AddGoal")"),
+                            updateDialog("@Url.Action("DeleteGoal")"))
+                        .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                        .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-        $('#goalList')[0].triggerToolbar();
+            $("#goalList")[0].triggerToolbar();
 
-        //jqGrid for assits
-        jQuery("#assistList").jqGrid({
-            url: '@Url.Action("AssistGridData")',
-            datatype: 'local',
-            gridview: true,
-            height: '100%',
-            hidegrid: false,
-            loadtext: 'Retrieving Assits...',
-            mtype: 'POST',
-            forceFit: true,
-            autowidth: false,
-            sortable: true,
-            width: '250',
-            caption: 'Assits',
-            cellLayout: 6, // gets rid of annoying horizontal scrollbar
-            colNames: ['ID', 'PlayerID', 'Match:', 'Opponent', 'Match Date'],
-            colModel: [
-                // index must be the column name for sorting with orderby
-                { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                { name: 'PlayerID', index: 'PlayerID', editable: true, hidden: true, editoptions: { readonly: true, defaultValue: '@Model.ID' } },
-                { name: 'MatchID', index: 'MatchID', editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: 'select', editoptions: { dataUrl: '@Url.Action("GetMatches")' }, formoptions: { elmsuffix: '(*)' } },
-                { name: 'Opponent', index: 'Match.Opponent.Name', width: 100, align: 'left', editable: false },
-                { name: 'MatchDate', index: 'Match.MatchDate', width: 100, align: 'left', editable: false }
-            ],
-            pager: '#assistPager',
-            rowList: [],
-            pgbuttons: false,
-            pgtext: null,
-            sortname: '@(ViewBag.AssistSortBy)',
-            sortorder: '@(ViewBag.AssistSortOrder)',
-            page: '@(ViewBag.AssistPage)',
-            rowNum: '@(ViewBag.AssistRows)',
-            postData: { playerID: '@Model.ID' },
-            viewrecords: false
-        }).navGrid('#assistPager', { add: true, edit: true, del: true, search: false, refresh: false },
-                updateDialog('@Url.Action("EditAssist")'),
-                updateDialog('@Url.Action("AddAssist")'),
-                updateDialog('@Url.Action("DeleteAssist")'))
-            .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-            .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
+            //jqGrid for assits
+            jQuery("#assistList").jqGrid({
+                url: "@Url.Action("AssistGridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Assits...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "250",
+                caption: "Assits",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "PlayerID", "Match:", "Opponent", "Match Date"],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "PlayerID", index: "PlayerID", editable: true, hidden: true, editoptions: { readonly: true, defaultValue: "@Model.ID" } },
+                    { name: "MatchID", index: "MatchID", editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: "select", editoptions: { dataUrl: "@Url.Action("GetMatches")" }, formoptions: { elmsuffix: "(*)" } },
+                    { name: "Opponent", index: "Match.Opponent.Name", width: 100, align: "left", editable: false },
+                    { name: "MatchDate", index: "Match.MatchDate", width: 100, align: "left", editable: false }
+                ],
+                pager: "#assistPager",
+                rowList: [],
+                pgbuttons: false,
+                pgtext: null,
+                sortname: "@(ViewBag.AssistSortBy)",
+                sortorder: "@(ViewBag.AssistSortOrder)",
+                page: "@(ViewBag.AssistPage)",
+                rowNum: "@(ViewBag.AssistRows)",
+                postData: { playerID: "@Model.ID" },
+                viewrecords: false
+            }).navGrid("#assistPager", { add: true, edit: true, del: true, search: false, refresh: false },
+                    updateDialog("@Url.Action("EditAssist")"),
+                    updateDialog("@Url.Action("AddAssist")"),
+                    updateDialog("@Url.Action("DeleteAssist")"))
+                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-        $('#assistList')[0].triggerToolbar();
+            $("#assistList")[0].triggerToolbar();
 
-        //jqGrid for cards
-        jQuery("#cardList").jqGrid({
-            url: '@Url.Action("CardGridData")',
-            datatype: 'local',
-            gridview: true,
-            height: '100%',
-            hidegrid: false,
-            loadtext: 'Retrieving Cards...',
-            mtype: 'POST',
-            forceFit: true,
-            autowidth: false,
-            sortable: true,
-            width: '250',
-            caption: 'Cards',
-            cellLayout: 6, // gets rid of annoying horizontal scrollbar
-            colNames: ['ID', 'PlayerID', 'Match:', 'Opponent', 'Match Date', 'Type'],
-            colModel: [
-                // index must be the column name for sorting with orderby
-                { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                { name: 'PlayerID', index: 'PlayerID', editable: true, hidden: true, editoptions: { readonly: true, defaultValue: '@Model.ID' } },
-                { name: 'MatchID', index: 'MatchID', editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: 'select', editoptions: { dataUrl: '@Url.Action("GetMatches")' }, formoptions: { elmsuffix: '(*)' } },
-                { name: 'Opponent', index: 'Match.Opponent.Name', width: 100, align: 'left', editable: false },
-                { name: 'MatchDate', index: 'Match.MatchDate', width: 100, align: 'left', editable: false },
-                { name: 'TypeID', index: 'CardType.Name', width: 50, align: 'left', editable: true, editrules: { required: true }, edittype: 'select', editoptions: { dataUrl: '@Url.Action("GetCards")' }, formoptions: { elmsuffix: '(*)' } },
-            ],
-            pager: '#cardPager',
-            rowList: [],
-            pgbuttons: false,
-            pgtext: null,
-            sortname: '@(ViewBag.CardSortBy)',
-            sortorder: '@(ViewBag.CardSortOrder)',
-            page: '@(ViewBag.CardPage)',
-            rowNum: '@(ViewBag.CardRows)',
-            postData: { playerID: '@Model.ID' },
-            viewrecords: false
-        }).navGrid('#cardPager', { add: true, edit: true, del: true, search: false, refresh: false },
-                updateDialog('@Url.Action("EditCard")'),
-                updateDialog('@Url.Action("AddCard")'),
-                updateDialog('@Url.Action("DeleteCard")'))
-            .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-            .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
+            //jqGrid for cards
+            jQuery("#cardList").jqGrid({
+                url: "@Url.Action("CardGridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Cards...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "250",
+                caption: "Cards",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "PlayerID", "Match:", "Opponent", "Match Date", "Type"],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "PlayerID", index: "PlayerID", editable: true, hidden: true, editoptions: { readonly: true, defaultValue: "@Model.ID" } },
+                    { name: "MatchID", index: "MatchID", editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: "select", editoptions: { dataUrl: "@Url.Action("GetMatches")" }, formoptions: { elmsuffix: "(*)" } },
+                    { name: "Opponent", index: "Match.Opponent.Name", width: 100, align: "left", editable: false },
+                    { name: "MatchDate", index: "Match.MatchDate", width: 100, align: "left", editable: false },
+                    { name: "TypeID", index: "CardType.Name", width: 50, align: "left", editable: true, editrules: { required: true }, edittype: "select", editoptions: { dataUrl: "@Url.Action("GetCards")" }, formoptions: { elmsuffix: "(*)" } }
+                ],
+                pager: "#cardPager",
+                rowList: [],
+                pgbuttons: false,
+                pgtext: null,
+                sortname: "@(ViewBag.CardSortBy)",
+                sortorder: "@(ViewBag.CardSortOrder)",
+                page: "@(ViewBag.CardPage)",
+                rowNum: "@(ViewBag.CardRows)",
+                postData: { playerID: "@Model.ID" },
+                viewrecords: false
+            }).navGrid("#cardPager", { add: true, edit: true, del: true, search: false, refresh: false },
+                    updateDialog("@Url.Action("EditCard")"),
+                    updateDialog("@Url.Action("AddCard")"),
+                    updateDialog("@Url.Action("DeleteCard")"))
+                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-        $('#cardList')[0].triggerToolbar();
-    });
-</script>
+            $("#cardList")[0].triggerToolbar();
+        });
+    </script>
 }
-

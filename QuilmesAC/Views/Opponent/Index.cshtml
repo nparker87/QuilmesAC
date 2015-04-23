@@ -23,41 +23,41 @@
             }
 
             jQuery("#list").jqGrid({
-                url: '@Url.Action("GridData")',
-                datatype: 'local',
+                url: "@Url.Action("GridData")",
+                datatype: "local",
                 gridview: true,
-                height: '100%',
+                height: "100%",
                 hidegrid: false,
-                loadtext: 'Retrieving Opponents...',
-                mtype: 'POST',
+                loadtext: "Retrieving Opponents...",
+                mtype: "POST",
                 forceFit: true,
                 autowidth: false,
                 sortable: true,
-                width: '550',
+                width: "550",
                 cellLayout: 6, // gets rid of annoying horizontal scrollbar
-                colNames: ['ID', 'Name'],
+                colNames: ["ID", "Name"],
                 colModel: [
                     // index must be the column name for sorting with orderby
-                    { name: 'ID', index: 'ID', editable: false, hidden: true, editoptions: { readonly: true } },
-                    { name: 'Name', index: 'Name', align: 'left', editable: true, editrules: { required: true }, formoptions: { elmsuffix: '(*)' } }
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "Name", index: "Name", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } }
                 ],
                 cellEdit: false,
-                pager: '#pager',
+                pager: "#pager",
                 rowList: [15, 50, 100],
-                sortname: '@(ViewBag.SortBy)',
-                sortorder: '@(ViewBag.SortOrder)',
-                page: '@(ViewBag.Page)',
-                rowNum: '@(ViewBag.Rows)',
-                postData: { opponentID: '@Model.ID' },
+                sortname: "@(ViewBag.SortBy)",
+                sortorder: "@(ViewBag.SortOrder)",
+                page: "@(ViewBag.Page)",
+                rowNum: "@(ViewBag.Rows)",
+                postData: { opponentID: "@Model.ID" },
                 viewrecords: true
-            }).navGrid('#pager', { add: true, edit: true, del: true, search: false, refresh: false },
-                    updateDialog('@Url.Action("EditOpponent")'),
-                    updateDialog('@Url.Action("AddOpponent")'),
-                    updateDialog('@Url.Action("DeleteOpponent")'))
+            }).navGrid("#pager", { add: true, edit: true, del: true, search: false, refresh: false },
+                    updateDialog("@Url.Action("EditOpponent")"),
+                    updateDialog("@Url.Action("AddOpponent")"),
+                    updateDialog("@Url.Action("DeleteOpponent")"))
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-                .setGridParam({ datatype: 'json' }); // Done this way for default filter values.
+                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-            $('#list')[0].triggerToolbar();
+            $("#list")[0].triggerToolbar();
         });
     </script>
 }
