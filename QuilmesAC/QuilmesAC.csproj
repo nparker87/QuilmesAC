@@ -270,6 +270,7 @@
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="ToDo.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -1,0 +1,5 @@
+﻿----To Do List----
+
+1. Jqgrid styling needs adjusting
+
+2. Page layout doesn't work if when browser is resized
