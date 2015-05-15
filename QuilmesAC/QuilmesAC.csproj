@@ -300,6 +300,7 @@
     <Content Include="Views\Match\Index.less" />
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
+    <Content Include="Views\Match\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

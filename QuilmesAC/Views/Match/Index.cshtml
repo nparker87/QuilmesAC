@@ -88,10 +88,13 @@
                 postData: {
                     seasonID: function () { return $("#SeasonID").val(); }
                 },
-                viewrecords: true
+                viewrecords: true,
+                ondblClickRow: function (id) {
+                    location.href = "@Url.Content("~/Match/Edit/")" + id;
+                }
             }).navGrid("#pager", { add: false, edit: false, del: false, search: false, refresh: false })
-                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
+                    .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                    .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
             $("#list")[0].triggerToolbar();
 

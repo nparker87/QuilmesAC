@@ -1,8 +1,8 @@
 ﻿namespace QuilmesAC.Models
 {
+    using Helpers;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -104,6 +104,11 @@
 
         /* Match Methods */
 
+        public Match GetMatchByID(long id)
+        {
+            return Matches.FirstOrDefault(x => x.ID == id);
+        }
+
         public void AddMatch(MatchViewModel submission)
         {
             var match = new Match
@@ -117,6 +122,17 @@
                 SeasonID = submission.SeasonID
             };
             Matches.InsertOnSubmit(match);
+        }
+
+        public void UpdateMatch(Match match, MatchViewModel submission)
+        {
+            match.MatchDay = submission.MatchDay;
+            match.MatchDate = submission.MatchDate;
+            match.OpponentID = submission.OpponentID;
+            match.GoalsFor = submission.GoalsFor;
+            match.GoalsAgainst = submission.GoalsAgainst;
+            match.Result = submission.Result;
+            match.SeasonID = submission.SeasonID;
         }
 
         /* Opponent Methods */

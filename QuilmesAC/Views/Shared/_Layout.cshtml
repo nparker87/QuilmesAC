@@ -9,7 +9,6 @@
     @Styles.Render("~/Content/css")
     <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
     @RenderSection("Head", false)
-    @Scripts.Render("~/Scripts")
 </head>
 <body>
     <div class="wrapper">
@@ -85,6 +84,7 @@
             <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a> | @Html.ActionLink("Privacy Policy", "Index", "PrivacyPolicy")
         </footer>
     </div>
+    @Scripts.Render("~/Scripts")
     @RenderSection("Scripts", false)
     @MiniProfiler.RenderIncludes()
 </body>

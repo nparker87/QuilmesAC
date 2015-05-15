@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
+    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -118,6 +118,29 @@
                 var invalid = new MatchViewModel(submission);
                 return View(invalid);
             }
+        }
+
+        [AuthorizeHelper(Roles = "Admin")]
+        public ActionResult Edit(long id)
+        {
+            var match = QuilmesModel.GetMatchByID(id);
+            return View(new MatchViewModel(QuilmesModel, match));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(MatchViewModel submission)
+        {
+            var match = QuilmesModel.GetMatchByID(submission.ID);
+
+            if (ModelState.IsValid && match != null)
+            {
+                QuilmesModel.UpdateMatch(match, submission);
+                QuilmesModel.Save();
+                return RedirectToAction("Index");
+            }
+
+            var viewModel = new MatchViewModel(QuilmesModel, match);
+            return View(viewModel);
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    using Models;
 
     public class MatchViewModel : BaseViewModel
     {
@@ -31,6 +31,14 @@
             viewModel.GoalsAgainst = match.GoalsAgainst;
             viewModel.Result = match.Result;
             viewModel.SeasonID = match.SeasonID;
+        }
+
+        public MatchViewModel(QuilmesDataContext model, Match match)
+        {
+            CurrentTab = "Match";
+            PopulateSelectLists(model);
+            Add(match);
+            AllTimeRecord = model.GetAllTimeRecord();
         }
 
         [DisplayName("ID")]
@@ -79,6 +87,18 @@
                 new SelectListItem() {Text = "D", Value = "D"},
             };
             Seasons = new SelectList(model.GetSeasons(), "ID", "DisplayName");
+        }
+
+        private void Add(Match match)
+        {
+            ID = match.ID;
+            MatchDay = match.MatchDay;
+            MatchDate = match.MatchDate;
+            OpponentID = match.OpponentID;
+            GoalsFor = match.GoalsFor;
+            GoalsAgainst = match.GoalsAgainst;
+            Result = match.Result;
+            SeasonID = match.SeasonID;
         }
     }
 }
