@@ -5,21 +5,25 @@
 {
     <link href="@Url.Content("/Views/Admin/Index.less")" rel="stylesheet/less" type="text/css" />
 }
-
-<fieldset class="main-left">
-    <legend>Admin Panel</legend>
-    <ul>
-        <li>
-            @Html.ActionLink("Add a Match", "Add", "Match")
-        </li>
-        <li>
-            @Html.ActionLink("Add a Player", "Add", "Player")
-        </li>
-        <li>
-            @Html.ActionLink("Manage Opponents", "Index", "Opponent")
-        </li>
-        <li>
-            @Html.ActionLink("Manage Seasons", "Index", "Season")
-        </li>
-    </ul>
-</fieldset>
+<ul>
+    <li class="main-left">
+        <fieldset>
+            <legend>Admin Panel</legend>
+            <ul>
+                <li>
+                    @Html.ActionLink("Add a Match", "Add", "Match")
+                </li>
+                <li>
+                    @Html.ActionLink("Add a Player", "Add", "Player")
+                </li>
+                <li>
+                    @Html.ActionLink("Manage Opponents", "Index", "Opponent")
+                </li>
+                <li>
+                    @Html.ActionLink("Manage Seasons", "Index", "Season")
+                </li>
+            </ul>
+        </fieldset>
+    </li>
+    <li class="clear" />
+</ul>

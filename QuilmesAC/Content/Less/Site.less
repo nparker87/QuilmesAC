@@ -24,6 +24,11 @@ h2 {
     width: 75%;
 }
 
+img {
+    height: 100%;
+    width: 100%;
+}
+
 /* Header */
 ul#social {
     float: right;
@@ -40,34 +45,29 @@ ul#social li a {
     display: block;
 }
 
-ul#social li#fb a {
-    background-image: url(/Content/Images/SocialMedia/facebook.png);
+ul#social li a {
     height: 30px;
     width: 30px;
+}
+
+ul#social li#fb a {
+    background-image: url(/Content/Images/SocialMedia/facebook.png);
 }
 
 ul#social li#twt a {
     background-image: url(/Content/Images/SocialMedia/twitter.png);
-    height: 30px;
-    width: 30px;
 }
 
 ul#social li#yt a {
     background-image: url(/Content/Images/SocialMedia/youtube.png);
-    height: 30px;
-    width: 30px;
 }
 
 ul#social li#rss a {
     background-image: url(/Content/Images/SocialMedia/rss.png);
-    height: 30px;
-    width: 30px;
 }
 
 ul#social li#shr a {
     background: url(/Content/Images/SocialMedia/share.png);
-    height: 30px;
-    width: 30px;
 }
 
 ul#social li#login a {
@@ -147,7 +147,6 @@ form#mainForm {
 
 .main-content {
     background-color: #FFFFFF;
-    min-height: 500px;
     padding: 20px;
 }
 
@@ -173,16 +172,19 @@ form#mainForm {
 .bottom-logos {
     background-color: #FFFFFF;
     text-align: center;
+    width: 100%;
 }
 
 .beer-logo {
-    height: 76px;
-    width: 150px;
+    max-height: 76px;
+    max-width: 150px;
+    width: 100%;
 }
 
 .adidas {
-    height: 76px;
-    width: 146px;
+    max-height: 76px;
+    max-width: 146px;
+    width: 100%;
 }
 
 label.required span {

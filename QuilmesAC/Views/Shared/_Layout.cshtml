@@ -7,7 +7,6 @@
 <head>
     <title>Quilmes AC | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    <link rel="stylesheet/less" type="text/css" href="~/Content/Less/Site.less" />
     @RenderSection("Head", false)
 </head>
 <body>
@@ -66,17 +65,8 @@
                 @RenderBody()
             </div>
             <div class="bottom-logos">
-                @for (var i = 1; i <= 2; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        <img src="~/Content/Images/adidas-logo.jpg" class="beer-logo" alt="Quilmes" />
-                    }
-                    else
-                    {
-                        <img src="~/Content/Images/quilmes_beer_logo.png" class="adidas" alt="adidas" />
-                    }
-                }
+                <img src="~/Content/Images/adidas-logo.jpg" class="beer-logo" alt="Quilmes" />
+                <img src="~/Content/Images/quilmes_beer_logo.png" class="adidas" alt="adidas" />
             </div>
         </div>
         <footer>
