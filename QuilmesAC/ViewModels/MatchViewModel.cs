@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.ViewModels
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Models;
 
     public class MatchViewModel : BaseViewModel
     {
@@ -23,14 +23,16 @@
 
         public MatchViewModel(MatchViewModel match)
         {
-            var viewModel = new MatchViewModel();
-            viewModel.MatchDay = match.MatchDay;
-            viewModel.MatchDate = match.MatchDate;
-            viewModel.OpponentID = match.OpponentID;
-            viewModel.GoalsFor = match.GoalsFor;
-            viewModel.GoalsAgainst = match.GoalsAgainst;
-            viewModel.Result = match.Result;
-            viewModel.SeasonID = match.SeasonID;
+            var viewModel = new MatchViewModel
+            {
+                MatchDay = match.MatchDay,
+                MatchDate = match.MatchDate,
+                OpponentID = match.OpponentID,
+                GoalsFor = match.GoalsFor,
+                GoalsAgainst = match.GoalsAgainst,
+                Result = match.Result,
+                SeasonID = match.SeasonID
+            };
         }
 
         public MatchViewModel(QuilmesDataContext model, Match match)

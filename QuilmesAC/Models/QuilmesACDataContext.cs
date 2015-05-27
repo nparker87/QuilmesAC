@@ -1,8 +1,8 @@
 ﻿namespace QuilmesAC.Models
 {
-    using Helpers;
     using System.Collections.Generic;
     using System.Linq;
+    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -25,7 +25,7 @@
                 Losses = matches.Count(x => x.Result == 'L'),
                 GoalsFor = matches.Select(x => x.GoalsFor ?? 0).Sum(),
                 GoalsAgainst = matches.Select(x => x.GoalsAgainst ?? 0).Sum(),
-                Points = (matches.Count(x => x.Result == 'W') * 3) + (matches.Count(x => x.Result == 'L'))
+                Points = (matches.Count(x => x.Result == 'W') * 3) + (matches.Count(x => x.Result == 'D'))
             };
             return allTimeRecord;
         }
