@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Net.Mail;
     using System.Text.RegularExpressions;
+    using Microsoft.Ajax.Utilities;
 
     public class Emailer
     {
@@ -19,30 +20,19 @@
         /// <param name="bcc">List of type EmailList</param>
         public static void SendMsg(string toAddress, string fromAddress, string fromName, string subject, string body, EmailList cc, EmailList bcc)
         {
+            toAddress = String.IsNullOrWhiteSpace(toAddress) ? "parkerjn2@vcu.edu" : toAddress;
+
+            // Error handling for addresses
+            if (!IsValidEmail(toAddress)) return;
+
             var msg = new MailMessage
             {
+                To = { new MailAddress(toAddress) },
                 Body = body,
                 IsBodyHtml = true,
                 Priority = MailPriority.Normal,
                 Subject = subject
             };
-            toAddress = String.IsNullOrWhiteSpace(toAddress) ? "parkerjn2@vcu.edu" : toAddress;
-
-            if (IsValidEmail(toAddress))
-                msg.To.Add(new MailAddress(toAddress));
-            else
-            {
-                msg.To.Add(new MailAddress("parkerjn2@vcu.edu"));
-                msg.Subject = "ERROR: Invalid To Email Address - " + subject;
-            }
-
-            if (IsValidEmail(fromAddress))
-                msg.From = new MailAddress(fromAddress, fromName);
-            else
-            {
-                msg.To.Add(new MailAddress("parkerjn2@vcu.edu"));
-                msg.Subject = "ERROR: Invalid From Email Address - " + subject;
-            }
 
             // Add any cc'd
             if (cc != null)
