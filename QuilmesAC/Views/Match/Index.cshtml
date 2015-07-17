@@ -50,57 +50,11 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        //jqGrid for matches
-        jQuery(document).ready(function () {
-            jQuery("#list").jqGrid({
-                url: "@Url.Action("GridData")",
-                datatype: "local",
-                gridview: true,
-                height: "100%",
-                hidegrid: false,
-                loadtext: "Retrieving Matches...",
-                mtype: "POST",
-                forceFit: true,
-                autowidth: false,
-                sortable: true,
-                width: "250px",
-                cellLayout: 6, // gets rid of annoying horizontal scrollbar
-                colNames: ["ID", "Season", "Match Day", "Match Date", "Opponent", "GF", "GA", "Result"],
-                colModel: [
-                    // index must be the column name for sorting with order by
-                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
-                    { name: "Season", index: "Season.DisplayName", align: "left", width: 137, editable: true, formoptions: { elmsuffix: "(*)" } },
-                    { name: "MatchDay", index: "MatchDay", align: "center", width: 95, editable: true },
-                    { name: "MatchDate", index: "MatchDate", align: "left", width: 90, editable: true },
-                    { name: "Opponent", index: "Opponent.Name", align: "left", width: 150, editable: true, formoptions: { elmsuffix: "(*)" } },
-                    { name: "GoalsFor", index: "GoalsFor", align: "center", width: 25, editable: true },
-                    { name: "GoalsAgainst", index: "GoalsAgainst", align: "center", width: 25, editable: true },
-                    { name: "Result", index: "Result", align: "center", width: 44, editable: true }
-                ],
-                cellEdit: false,
-                pager: "#pager",
-                rowList: [15, 50, 100],
-                sortname: "@(ViewBag.SortBy)",
-                sortorder: "@(ViewBag.SortOrder)",
-                page: "@(ViewBag.Page)",
-                rowNum: "@(ViewBag.Rows)",
-                postData: {
-                    seasonID: function () { return $("#SeasonID").val(); }
-                },
-                viewrecords: true,
-                ondblClickRow: function (id) {
-                    location.href = "@Url.Content("~/Match/Edit/")" + id;
-                }
-            }).navGrid("#pager", { add: false, edit: false, del: false, search: false, refresh: false })
-                    .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
-                    .setGridParam({ datatype: "json" }); // Done this way for default filter values.
-
-            $("#list")[0].triggerToolbar();
-
-            $("#SeasonID").change(function () {
-                $("#list").trigger("reloadGrid");
-            });
-        });
-    </script>
+    <script id="Index.js" src="~/Views/Match/Index.js"
+            data-url="@Url.Action("GridData")"
+            data-sort-by="@ViewBag.SortBy"
+            data-sort-order="@ViewBag.SortOrder"
+            data-page="@ViewBag.Page"
+            data-rows="@ViewBag.Rows"
+            data-action-edit="@Url.Action("Edit", "Match", new { id = "" })"></script>
 }
