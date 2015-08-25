@@ -164,8 +164,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\306090.jpg" />
     <Content Include="Content\Images\adidas-logo.jpg" />
     <Content Include="Content\Images\crest.png" />
+    <Content Include="Content\Images\erek_crest.jpg" />
     <Content Include="Content\Images\fall 2014 team.jpg" />
     <Content Include="Content\Images\Koya.jpg" />
     <Content Include="Content\Images\QuilmesGirls.jpg" />

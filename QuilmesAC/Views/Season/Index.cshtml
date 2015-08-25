@@ -53,7 +53,7 @@
                 rowNum: "@(ViewBag.Rows)",
                 postData: { seasonID: "@Model.ID" },
                 viewrecords: true
-            }).navGrid("#pager", { add: true, edit: true, del: true, search: false, refresh: false },
+            }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
                     updateDialog("@Url.Action("EditSeason")"),
                     updateDialog("@Url.Action("AddSeason")"),
                     updateDialog("@Url.Action("DeleteSeason")"))
