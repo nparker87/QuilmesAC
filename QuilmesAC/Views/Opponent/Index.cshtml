@@ -50,7 +50,7 @@
                 rowNum: "@(ViewBag.Rows)",
                 postData: { opponentID: "@Model.ID" },
                 viewrecords: true
-            }).navGrid("#pager", { add: true, edit: true, del: true, search: false, refresh: false },
+            }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
                     updateDialog("@Url.Action("EditOpponent")"),
                     updateDialog("@Url.Action("AddOpponent")"),
                     updateDialog("@Url.Action("DeleteOpponent")"))
