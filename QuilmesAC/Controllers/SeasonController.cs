@@ -122,10 +122,10 @@
 
         public string GetDivisions()
         {
-            var result = "<select>";
+            var result = "<select><option value=''>-- Select --</option>";
             foreach (var division in QuilmesModel.Divisions.OrderBy(x => x.Ranking))
             {
-                result += "<\toption value='" + division.ID + "'>" + division.Name + "</option>";
+                result += "<option value='" + division.ID + "'>" + division.Name + "</option>";
             }
             result += "</select>";
             return result;

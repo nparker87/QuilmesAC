@@ -1,5 +1,6 @@
 ﻿namespace QuilmesAC.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Helpers;
@@ -65,6 +66,7 @@
                 FirstName = submission.FirstName,
                 LastName = submission.LastName,
                 Number = submission.Number,
+                CreatedDate = DateTime.Now,
                 StatusID = submission.StatusID
             };
             Players.InsertOnSubmit(player);

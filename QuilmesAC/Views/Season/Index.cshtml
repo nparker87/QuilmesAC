@@ -42,7 +42,7 @@
                     { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
                     { name: "DisplayName", index: "DisplayName", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
                     { name: "StartDate", index: "StartDate", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
-                    { name: "Division", index: "Division.Name", align: "left", editable: true, editrules: { required: true }, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Season/GetDivisions/")" }, formoptions: { elmsuffix: "(*)" } }
+                    { name: "DivisionID", index: "Division.Name", align: "left", editable: true, editrules: { required: true }, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Season/GetDivisions/")" }, formoptions: { elmsuffix: "(*)" } }
                 ],
                 cellEdit: false,
                 pager: "#pager",

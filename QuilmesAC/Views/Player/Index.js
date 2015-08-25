@@ -5,14 +5,13 @@
     // Default columns for jqGrid
     var columnModel = [
         { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
-        { name: "FirstName", index: "FirstName", align: "left", width: 100, editable: true, formoptions: { elmsuffix: "(*)" } },
-        { name: "LastName", index: "LastName", align: "left", width: 100, editable: true },
-        { name: "Number", index: "Number", align: "left", width: 50, editable: true },
-        { name: "Goals", index: "Goal.Count()", align: "left", width: 55, editable: true },
-        { name: "Assists", index: "Assist.Count()", align: "left", width: 55, editable: true },
-        { name: "YellowCard", index: "Card.Count()", align: "left", width: 50, editable: true },
-        { name: "RedCard", index: "Card.Count()", align: "left", width: 50, editable: true },
-        { name: "Status", index: "Status.Name", align: "left", width: 100, editable: true }
+        { displayname: "Name", name: "Name", index: "LastName", align: "left", width: 200 },
+        { displayname: "No.", name: "Number", index: "Number", align: "left", width: 50 },
+        { displayname: "Goals", name: "Goals", index: "Goal.Count()", align: "left", width: 55 },
+        { displayname: "Assists", name: "Assists", index: "Assist.Count()", align: "left", width: 55 },
+        { displayname: "YC", name: "YellowCard", index: "Card.Count()", align: "left", width: 50 },
+        { displayname: "RC", name: "RedCard", index: "Card.Count()", align: "left", width: 50 },
+        { displayname: "Status", name: "Status", index: "Status.Name", align: "left", width: 100 }
     ];
 
     var columnNames = [];

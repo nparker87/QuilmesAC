@@ -14,8 +14,8 @@
         public ActionResult Index()
         {
             // Use last sorting choices if saved - otherwise use defaults.
-            ViewBag.SortBy = (Session["PlayerLastSortID"] ?? "CreatedDate");
-            ViewBag.SortOrder = (Session["PlayerLastSortOrder"] ?? "desc");
+            ViewBag.SortBy = (Session["PlayerLastSortID"] ?? "LastName");
+            ViewBag.SortOrder = (Session["PlayerLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["PlayerLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["PlayerLastSortRows"] ?? 50);
 
@@ -85,8 +85,7 @@
                         cell = new[]
                         {
                             t.ID.ToString(),
-                            t.FirstName,
-                            t.LastName,
+                            t.FirstName + " " + t.LastName,
                             t.Number.ToString(),
                             (String.IsNullOrEmpty(seasonID)
                                 ? t.Goals.Count.ToString()
@@ -118,7 +117,16 @@
         {
             if (!ModelState.IsValid) return View(submission);
             QuilmesModel.AddPlayer(submission);
-            QuilmesModel.Save();
+            try
+            {
+                QuilmesModel.Save();
+                ViewBag.PlayerAdded = true;
+            }
+            catch (Exception)
+            {
+                ViewBag.PlayerAdded = false;
+            }
+            ModelState.Clear();
             return View(new PlayerViewModel(QuilmesModel));
         }
 
