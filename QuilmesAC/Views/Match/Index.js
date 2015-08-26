@@ -30,7 +30,6 @@
         forceFit: true,
         autowidth: false,
         sortable: true,
-        width: "250px",
         cellLayout: 6, // gets rid of annoying horizontal scrollbar
         colNames: columnNames,
         colModel: columnModel,
