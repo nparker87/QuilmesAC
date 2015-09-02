@@ -142,8 +142,8 @@ namespace System.Linq.Dynamic
 
     public class DynamicProperty
     {
-        string name;
-        Type type;
+        private string name;
+        private Type type;
 
         public DynamicProperty(string name, Type type)
         {
@@ -246,12 +246,14 @@ namespace System.Linq.Dynamic
     {
         public static readonly ClassFactory Instance = new ClassFactory();
 
-        static ClassFactory() { }  // Trigger lazy initialization of static fields
+        static ClassFactory()
+        {
+        }  // Trigger lazy initialization of static fields
 
-        ModuleBuilder module;
-        Dictionary<Signature, Type> classes;
-        int classCount;
-        ReaderWriterLock rwLock;
+        private ModuleBuilder module;
+        private Dictionary<Signature, Type> classes;
+        private int classCount;
+        private ReaderWriterLock rwLock;
 
         private ClassFactory()
         {
@@ -418,7 +420,7 @@ namespace System.Linq.Dynamic
 
     public sealed class ParseException : Exception
     {
-        int position;
+        private int position;
 
         public ParseException(string message, int position)
             : base(message)
@@ -439,7 +441,7 @@ namespace System.Linq.Dynamic
 
     internal class ExpressionParser
     {
-        struct Token
+        private struct Token
         {
             public TokenId id;
             public string text;
@@ -482,14 +484,14 @@ namespace System.Linq.Dynamic
             DoubleBar
         }
 
-        interface ILogicalSignatures
+        private interface ILogicalSignatures
         {
             void F(bool x, bool y);
 
             void F(bool? x, bool? y);
         }
 
-        interface IArithmeticSignatures
+        private interface IArithmeticSignatures
         {
             void F(int x, int y);
 
@@ -520,7 +522,7 @@ namespace System.Linq.Dynamic
             void F(decimal? x, decimal? y);
         }
 
-        interface IRelationalSignatures : IArithmeticSignatures
+        private interface IRelationalSignatures : IArithmeticSignatures
         {
             void F(string x, string y);
 
@@ -537,14 +539,14 @@ namespace System.Linq.Dynamic
             void F(TimeSpan? x, TimeSpan? y);
         }
 
-        interface IEqualitySignatures : IRelationalSignatures
+        private interface IEqualitySignatures : IRelationalSignatures
         {
             void F(bool x, bool y);
 
             void F(bool? x, bool? y);
         }
 
-        interface IAddSignatures : IArithmeticSignatures
+        private interface IAddSignatures : IArithmeticSignatures
         {
             void F(DateTime x, TimeSpan y);
 
@@ -555,14 +557,14 @@ namespace System.Linq.Dynamic
             void F(TimeSpan? x, TimeSpan? y);
         }
 
-        interface ISubtractSignatures : IAddSignatures
+        private interface ISubtractSignatures : IAddSignatures
         {
             void F(DateTime x, DateTime y);
 
             void F(DateTime? x, DateTime? y);
         }
 
-        interface INegationSignatures
+        private interface INegationSignatures
         {
             void F(int x);
 
@@ -585,16 +587,20 @@ namespace System.Linq.Dynamic
             void F(decimal? x);
         }
 
-        interface INotSignatures
+        private interface INotSignatures
         {
             void F(bool x);
 
             void F(bool? x);
         }
 
-        interface IEnumerableSignatures
+        private interface IEnumerableSignatures
         {
             void Where(bool predicate);
+
+            void First(bool predicate);
+
+            void First();
 
             void Any();
 
@@ -651,7 +657,7 @@ namespace System.Linq.Dynamic
             void Average(decimal? selector);
         }
 
-        static readonly Type[] predefinedTypes = {
+        private static readonly Type[] predefinedTypes = {
             typeof(Object),
             typeof(Boolean),
             typeof(Char),
@@ -674,25 +680,25 @@ namespace System.Linq.Dynamic
             typeof(Convert)
         };
 
-        static readonly Expression trueLiteral = Expression.Constant(true);
-        static readonly Expression falseLiteral = Expression.Constant(false);
-        static readonly Expression nullLiteral = Expression.Constant(null);
+        private static readonly Expression trueLiteral = Expression.Constant(true);
+        private static readonly Expression falseLiteral = Expression.Constant(false);
+        private static readonly Expression nullLiteral = Expression.Constant(null);
 
-        static readonly string keywordIt = "it";
-        static readonly string keywordIif = "iif";
-        static readonly string keywordNew = "new";
+        private static readonly string keywordIt = "it";
+        private static readonly string keywordIif = "iif";
+        private static readonly string keywordNew = "new";
 
-        static Dictionary<string, object> keywords;
+        private static Dictionary<string, object> keywords;
 
-        Dictionary<string, object> symbols;
-        IDictionary<string, object> externals;
-        Dictionary<Expression, string> literals;
-        ParameterExpression it;
-        string text;
-        int textPos;
-        int textLen;
-        char ch;
-        Token token;
+        private Dictionary<string, object> symbols;
+        private IDictionary<string, object> externals;
+        private Dictionary<Expression, string> literals;
+        private ParameterExpression it;
+        private string text;
+        private int textPos;
+        private int textLen;
+        private char ch;
+        private Token token;
 
         public ExpressionParser(ParameterExpression[] parameters, string expression, object[] values)
         {
@@ -888,19 +894,24 @@ namespace System.Linq.Dynamic
                     case TokenId.DoubleEqual:
                         left = GenerateEqual(left, right);
                         break;
+
                     case TokenId.ExclamationEqual:
                     case TokenId.LessGreater:
                         left = GenerateNotEqual(left, right);
                         break;
+
                     case TokenId.GreaterThan:
                         left = GenerateGreaterThan(left, right);
                         break;
+
                     case TokenId.GreaterThanEqual:
                         left = GenerateGreaterThanEqual(left, right);
                         break;
+
                     case TokenId.LessThan:
                         left = GenerateLessThan(left, right);
                         break;
+
                     case TokenId.LessThanEqual:
                         left = GenerateLessThanEqual(left, right);
                         break;
@@ -927,10 +938,12 @@ namespace System.Linq.Dynamic
                         CheckAndPromoteOperands(typeof(IAddSignatures), op.text, ref left, ref right, op.pos);
                         left = GenerateAdd(left, right);
                         break;
+
                     case TokenId.Minus:
                         CheckAndPromoteOperands(typeof(ISubtractSignatures), op.text, ref left, ref right, op.pos);
                         left = GenerateSubtract(left, right);
                         break;
+
                     case TokenId.Amphersand:
                         left = GenerateStringConcat(left, right);
                         break;
@@ -955,9 +968,11 @@ namespace System.Linq.Dynamic
                     case TokenId.Asterisk:
                         left = Expression.Multiply(left, right);
                         break;
+
                     case TokenId.Slash:
                         left = Expression.Divide(left, right);
                         break;
+
                     case TokenId.Percent:
                     case TokenId.Identifier:
                         left = Expression.Modulo(left, right);
@@ -1026,14 +1041,19 @@ namespace System.Linq.Dynamic
             {
                 case TokenId.Identifier:
                     return ParseIdentifier();
+
                 case TokenId.StringLiteral:
                     return ParseStringLiteral();
+
                 case TokenId.IntegerLiteral:
                     return ParseIntegerLiteral();
+
                 case TokenId.RealLiteral:
                     return ParseRealLiteral();
+
                 case TokenId.OpenParen:
                     return ParseParenExpression();
+
                 default:
                     throw ParseError(Res.ExpressionExpected);
             }
@@ -1279,6 +1299,7 @@ namespace System.Linq.Dynamic
                         throw ParseError(errorPos, Res.NoMatchingConstructor, GetTypeName(type));
                     case 1:
                         return Expression.New((ConstructorInfo)method, args);
+
                     default:
                         throw ParseError(errorPos, Res.AmbiguousConstructorInvocation, GetTypeName(type));
                 }
@@ -1340,6 +1361,7 @@ namespace System.Linq.Dynamic
                             throw ParseError(errorPos, Res.MethodIsVoid,
                                 id, GetTypeName(method.DeclaringType));
                         return Expression.Call(instance, (MethodInfo)method, args);
+
                     default:
                         throw ParseError(errorPos, Res.AmbiguousMethodInvocation,
                             id, GetTypeName(type));
@@ -1454,6 +1476,7 @@ namespace System.Linq.Dynamic
                             GetTypeName(expr.Type));
                     case 1:
                         return Expression.Call(expr, (MethodInfo)mb, args);
+
                     default:
                         throw ParseError(errorPos, Res.AmbiguousIndexerInvocation,
                             GetTypeName(expr.Type));
@@ -1511,16 +1534,19 @@ namespace System.Linq.Dynamic
                 case TypeCode.Double:
                 case TypeCode.Decimal:
                     return 1;
+
                 case TypeCode.SByte:
                 case TypeCode.Int16:
                 case TypeCode.Int32:
                 case TypeCode.Int64:
                     return 2;
+
                 case TypeCode.Byte:
                 case TypeCode.UInt16:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:
                     return 3;
+
                 default:
                     return 0;
             }
@@ -1707,9 +1733,11 @@ namespace System.Linq.Dynamic
                             case TypeCode.UInt64:
                                 value = ParseNumber(text, target);
                                 break;
+
                             case TypeCode.Double:
                                 if (target == typeof(decimal)) value = ParseNumber(text, target);
                                 break;
+
                             case TypeCode.String:
                                 value = ParseEnum(text, target);
                                 break;
@@ -1735,42 +1763,52 @@ namespace System.Linq.Dynamic
                     sbyte sb;
                     if (sbyte.TryParse(text, out sb)) return sb;
                     break;
+
                 case TypeCode.Byte:
                     byte b;
                     if (byte.TryParse(text, out b)) return b;
                     break;
+
                 case TypeCode.Int16:
                     short s;
                     if (short.TryParse(text, out s)) return s;
                     break;
+
                 case TypeCode.UInt16:
                     ushort us;
                     if (ushort.TryParse(text, out us)) return us;
                     break;
+
                 case TypeCode.Int32:
                     int i;
                     if (int.TryParse(text, out i)) return i;
                     break;
+
                 case TypeCode.UInt32:
                     uint ui;
                     if (uint.TryParse(text, out ui)) return ui;
                     break;
+
                 case TypeCode.Int64:
                     long l;
                     if (long.TryParse(text, out l)) return l;
                     break;
+
                 case TypeCode.UInt64:
                     ulong ul;
                     if (ulong.TryParse(text, out ul)) return ul;
                     break;
+
                 case TypeCode.Single:
                     float f;
                     if (float.TryParse(text, out f)) return f;
                     break;
+
                 case TypeCode.Double:
                     double d;
                     if (double.TryParse(text, out d)) return d;
                     break;
+
                 case TypeCode.Decimal:
                     decimal e;
                     if (decimal.TryParse(text, out e)) return e;
@@ -1815,6 +1853,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.Byte:
                     switch (tc)
                     {
@@ -1831,6 +1870,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.Int16:
                     switch (tc)
                     {
@@ -1843,6 +1883,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.UInt16:
                     switch (tc)
                     {
@@ -1857,6 +1898,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.Int32:
                     switch (tc)
                     {
@@ -1868,6 +1910,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.UInt32:
                     switch (tc)
                     {
@@ -1880,6 +1923,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.Int64:
                     switch (tc)
                     {
@@ -1890,6 +1934,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.UInt64:
                     switch (tc)
                     {
@@ -1900,6 +1945,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 case TypeCode.Single:
                     switch (tc)
                     {
@@ -1908,6 +1954,7 @@ namespace System.Linq.Dynamic
                             return true;
                     }
                     break;
+
                 default:
                     if (st == tt) return true;
                     break;
@@ -2067,10 +2114,12 @@ namespace System.Linq.Dynamic
                         t = TokenId.Exclamation;
                     }
                     break;
+
                 case '%':
                     NextChar();
                     t = TokenId.Percent;
                     break;
+
                 case '&':
                     NextChar();
                     if (ch == '&')
@@ -2083,42 +2132,52 @@ namespace System.Linq.Dynamic
                         t = TokenId.Amphersand;
                     }
                     break;
+
                 case '(':
                     NextChar();
                     t = TokenId.OpenParen;
                     break;
+
                 case ')':
                     NextChar();
                     t = TokenId.CloseParen;
                     break;
+
                 case '*':
                     NextChar();
                     t = TokenId.Asterisk;
                     break;
+
                 case '+':
                     NextChar();
                     t = TokenId.Plus;
                     break;
+
                 case ',':
                     NextChar();
                     t = TokenId.Comma;
                     break;
+
                 case '-':
                     NextChar();
                     t = TokenId.Minus;
                     break;
+
                 case '.':
                     NextChar();
                     t = TokenId.Dot;
                     break;
+
                 case '/':
                     NextChar();
                     t = TokenId.Slash;
                     break;
+
                 case ':':
                     NextChar();
                     t = TokenId.Colon;
                     break;
+
                 case '<':
                     NextChar();
                     if (ch == '=')
@@ -2136,6 +2195,7 @@ namespace System.Linq.Dynamic
                         t = TokenId.LessThan;
                     }
                     break;
+
                 case '=':
                     NextChar();
                     if (ch == '=')
@@ -2148,6 +2208,7 @@ namespace System.Linq.Dynamic
                         t = TokenId.Equal;
                     }
                     break;
+
                 case '>':
                     NextChar();
                     if (ch == '=')
@@ -2160,18 +2221,22 @@ namespace System.Linq.Dynamic
                         t = TokenId.GreaterThan;
                     }
                     break;
+
                 case '?':
                     NextChar();
                     t = TokenId.Question;
                     break;
+
                 case '[':
                     NextChar();
                     t = TokenId.OpenBracket;
                     break;
+
                 case ']':
                     NextChar();
                     t = TokenId.CloseBracket;
                     break;
+
                 case '|':
                     NextChar();
                     if (ch == '|')
@@ -2184,6 +2249,7 @@ namespace System.Linq.Dynamic
                         t = TokenId.Bar;
                     }
                     break;
+
                 case '"':
                 case '\'':
                     char quote = ch;
@@ -2197,6 +2263,7 @@ namespace System.Linq.Dynamic
                     } while (ch == quote);
                     t = TokenId.StringLiteral;
                     break;
+
                 default:
                     if (Char.IsLetter(ch) || ch == '@' || ch == '_')
                     {

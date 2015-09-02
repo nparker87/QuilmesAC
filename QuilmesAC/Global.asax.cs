@@ -21,9 +21,19 @@
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             var authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            FormsAuthenticationTicket authTicket;
 
             if (authCookie == null) return;
-            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+            try
+            {
+                authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log error
+                return;
+            }
 
             if (authTicket == null) return;
             var roles = authTicket.UserData.Split(',');
