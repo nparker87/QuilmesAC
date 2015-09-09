@@ -185,6 +185,7 @@
     <Content Include="Content\Images\SocialMedia\twitter.png" />
     <Content Include="Content\Images\SocialMedia\vimeo.png" />
     <Content Include="Content\Images\SocialMedia\youtube.png" />
+    <Content Include="Content\Images\Stachesquatch.jpg" />
     <Content Include="Content\Images\world cup.jpg" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\accordion.css" />

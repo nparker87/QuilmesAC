@@ -11,7 +11,7 @@
         { displayname: "Assists", name: "Assists", index: "Assists.Count()", align: "left", width: 55 },
         { displayname: "YC", name: "YellowCard", index: "Cards.Count(x => x.CardType.Name == \"Yellow\")", align: "left", width: 50 },
         { displayname: "RC", name: "RedCard", index: "Cards.Count(x => x.CardType.Name == \"Red\")", align: "left", width: 50 },
-        { displayname: "Status", name: "Status", index: "Status.Name", align: "left", width: 100 }
+        { displayname: "Status", name: "Status", hidden: true, index: "Status.Name", align: "left", width: 100 }
     ];
 
     var columnNames = [];

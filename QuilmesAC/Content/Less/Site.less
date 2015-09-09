@@ -1,4 +1,6 @@
-﻿@mainTheme: #35428A;
+﻿@quilmesBlue: #35428A;
+@quilmesRed: #C62A35;
+@quilmesRedMatte: #8F1528;
 
 /* Main Styles */
 html {
@@ -9,7 +11,7 @@ html {
 }
 
 body {
-    background-color: @mainTheme;
+    background-color: @quilmesRed;
     height: 100%;
 }
 
@@ -21,7 +23,7 @@ h2 {
 .wrapper {
     margin-left: auto;
     margin-right: auto;
-    width: 75%;
+    width: 85%;
 }
 
 /* Header */
@@ -88,7 +90,6 @@ ul#banner {
 }
 
     ul#banner li {
-        color: @mainTheme;
         font-size: 24px;
     }
 
@@ -123,11 +124,11 @@ nav {
             }
 
                 nav ul li a:hover {
-                    background-color: #4354AF;
+                    background-color: @quilmesRedMatte;
                 }
 
             nav ul li.selected a {
-                background-color: #4354AF;
+                background-color: @quilmesRedMatte;
             }
 
 /* Main Content */
@@ -171,15 +172,18 @@ nav {
 }
 
 .beer-logo {
-    max-height: 76px;
-    max-width: 150px;
-    width: 100%;
+    max-height: 100px;
+    max-width: 199px;
 }
 
-.adidas {
-    max-height: 76px;
-    max-width: 146px;
-    width: 100%;
+.adidas-logo {
+    max-height: 100px;
+    max-width: 192px;
+}
+
+.stache {
+    max-height: 120px;
+    padding-left: 15px;
 }
 
 .erek-studio {
