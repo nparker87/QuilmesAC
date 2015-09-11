@@ -11,6 +11,7 @@
 #endif
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/themes/custom/jquery-ui.css",
                 "~/Content/themes/custom/jquery-ui.theme.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css",
                 "~/Content/Less/Site.less"));

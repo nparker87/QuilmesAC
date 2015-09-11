@@ -28,7 +28,6 @@
         public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string statusID, string seasonID)
         {
             // Save the last sort choices to session data.
-            sidx = sidx.Replace("\"", "\\");
             Session["PlayerLastSortID"] = sidx;
             Session["PlayerLastSortOrder"] = sord;
             Session["PlayerLastSortPage"] = page;
@@ -67,7 +66,7 @@
 
             int totalRecords = players.Count();
             var currentPage = players
-                .OrderBy(sidx + " " + sord + ", CreatedDate, ID asc")
+                .OrderBy(sidx + " " + sord + ", FirstName " + sord + ", CreatedDate, ID asc")
                 .Skip((Convert.ToInt32(page) - 1) * rows)
                 .Take(rows)
                 .ToList();
