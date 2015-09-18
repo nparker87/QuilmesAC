@@ -139,27 +139,43 @@ nav {
 
 .main-content {
     background-color: #FFFFFF;
+    margin: 0 auto;
     padding: 20px;
 }
 
     .main-content ul {
-        list-style-type: none;
+        list-style: outside none none;
+        padding-bottom: 20px;
     }
 
         .main-content ul li {
-            margin: 0;
-            padding: 3px;
+            clear: left;
+            padding-right: 30px;
         }
 
             .main-content ul li label {
                 float: left;
-                padding-right: 5px;
+                padding: 2px;
                 text-align: right;
-                width: 90px;
+                width: 100px;
             }
 
-            .main-content ul li select {
+            .main-content ul li select,
+            .main-content ul li input[type="text"],
+            .main-content ul li input[type="select"] {
+                float: left;
+                margin-bottom: 5px;
+                padding: 2px;
+                width: 200px;
             }
+
+    .main-content fieldset {
+        border: 1px solid @quilmesRed;
+    }
+
+        .main-content fieldset legend {
+            font-weight: bold;
+        }
 
 .bottom-logos {
     background-color: #FFFFFF;
@@ -175,6 +191,7 @@ nav {
 .adidas-logo {
     max-height: 100px;
     max-width: 192px;
+    width: 100%;
 }
 
 .stache {

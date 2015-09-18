@@ -24,7 +24,6 @@
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/less-{version}.js",
-                "~/Scripts/bootstrap.js",
                 "~/Scripts/Global.js"));
         }
     }
