@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuilmesAC" Class="QuilmesACNewDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=athena.cspva2iea7e1.us-east-1.rds.amazonaws.com,1433;Initial Catalog=QuilmesAC;User ID=parkerjn2" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuilmesACConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Assist" Member="Assists">
+    <Type Name="Assist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MatchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Match_Assist" Member="Match" ThisKey="MatchID" OtherKey="ID" Type="Match" IsForeignKey="true" />
+      <Association Name="Player_Assist" Member="Player" ThisKey="PlayerID" OtherKey="ID" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Card" Member="Cards">
+    <Type Name="Card">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MatchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="CardType_Card" Member="CardType" ThisKey="TypeID" OtherKey="ID" Type="CardType" IsForeignKey="true" />
+      <Association Name="Match_Card" Member="Match" ThisKey="MatchID" OtherKey="ID" Type="Match" IsForeignKey="true" />
+      <Association Name="Player_Card" Member="Player" ThisKey="PlayerID" OtherKey="ID" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardType" Member="CardTypes">
+    <Type Name="CardType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="CardType_Card" Member="Cards" ThisKey="ID" OtherKey="TypeID" Type="Card" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Division" Member="Divisions">
+    <Type Name="Division">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Ranking" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Division_Season" Member="Seasons" ThisKey="ID" OtherKey="DivisionID" Type="Season" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Goal" Member="Goals">
+    <Type Name="Goal">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MatchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Match_Goal" Member="Match" ThisKey="MatchID" OtherKey="ID" Type="Match" IsForeignKey="true" />
+      <Association Name="Player_Goal" Member="Player" ThisKey="PlayerID" OtherKey="ID" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Match" Member="Matches">
+    <Type Name="Match">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MatchDay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MatchDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OpponentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoalsFor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GoalsAgainst" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Result" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Match_Assist" Member="Assists" ThisKey="ID" OtherKey="MatchID" Type="Assist" />
+      <Association Name="Match_Card" Member="Cards" ThisKey="ID" OtherKey="MatchID" Type="Card" />
+      <Association Name="Match_Goal" Member="Goals" ThisKey="ID" OtherKey="MatchID" Type="Goal" />
+      <Association Name="Opponent_Match" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
+      <Association Name="Season_Match" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Opponent" Member="Opponents">
+    <Type Name="Opponent">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Opponent_Match" Member="Matches" ThisKey="ID" OtherKey="OpponentID" Type="Match" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Player" Member="Players">
+    <Type Name="Player">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Player_Assist" Member="Assists" ThisKey="ID" OtherKey="PlayerID" Type="Assist" />
+      <Association Name="Player_Card" Member="Cards" ThisKey="ID" OtherKey="PlayerID" Type="Card" />
+      <Association Name="Player_Goal" Member="Goals" ThisKey="ID" OtherKey="PlayerID" Type="Goal" />
+      <Association Name="Player_PlayerPosition" Member="PlayerPositions" ThisKey="ID" OtherKey="PlayerID" Type="PlayerPosition" />
+      <Association Name="Status_Player" Member="Status" ThisKey="StatusID" OtherKey="ID" Type="Status" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayerPosition" Member="PlayerPositions">
+    <Type Name="PlayerPosition">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PositionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrimaryPosition" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Player_PlayerPosition" Member="Player" ThisKey="PlayerID" OtherKey="ID" Type="Player" IsForeignKey="true" />
+      <Association Name="Position_PlayerPosition" Member="Position" ThisKey="PositionID" OtherKey="ID" Type="Position" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Position" Member="Positions">
+    <Type Name="Position">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortName" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Association Name="Position_PlayerPosition" Member="PlayerPositions" ThisKey="ID" OtherKey="PositionID" Type="PlayerPosition" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Role_UserRole" Member="UserRoles" ThisKey="ID" OtherKey="RoleID" Type="UserRole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Season" Member="Seasons">
+    <Type Name="Season">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DivisionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Season_Match" Member="Matches" ThisKey="ID" OtherKey="SeasonID" Type="Match" />
+      <Association Name="Division_Season" Member="Division" ThisKey="DivisionID" OtherKey="ID" Type="Division" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Status" Member="Status">
+    <Type Name="Status">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Status_Player" Member="Players" ThisKey="ID" OtherKey="StatusID" Type="Player" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserRole" Member="UserRoles" ThisKey="ID" OtherKey="UserID" Type="UserRole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRole" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Role_UserRole" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
+      <Association Name="User_UserRole" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
