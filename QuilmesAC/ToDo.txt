@@ -2,4 +2,4 @@
 
 1. Page layout could use better styling when browser is resized
 
-2. SOrting players by yc/rc does not work properly since they are from the same table but seperated into different columns
+2. Sorting players by yc/rc does not work properly since they are from the same table but seperated into different columns
