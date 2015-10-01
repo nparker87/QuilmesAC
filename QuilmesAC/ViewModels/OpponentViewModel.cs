@@ -18,7 +18,7 @@
         }
 
         [DisplayName("ID")]
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("Name:")]
         [Required(ErrorMessage = "Required")]

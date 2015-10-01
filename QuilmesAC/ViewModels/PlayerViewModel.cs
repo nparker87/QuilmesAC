@@ -28,7 +28,7 @@
         }
 
         [DisplayName("ID")]
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("First Name:")]
         [Required(ErrorMessage = "Required")]
@@ -45,12 +45,12 @@
         public DateTime? CreatedDate { get; set; }
 
         [DisplayName("Status:")]
-        public long StatusID { get; set; }
+        public int StatusID { get; set; }
 
         public SelectList Statuses { get; set; }
 
         [DisplayName("Season:")]
-        public long SeasonID { get; set; }
+        public int SeasonID { get; set; }
 
         public SelectList Seasons { get; set; }
 

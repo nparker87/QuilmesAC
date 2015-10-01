@@ -20,7 +20,7 @@
         }
 
         [DisplayName("ID")]
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("Start date:")]
         [Required(ErrorMessage = "Required")]
@@ -32,7 +32,7 @@
 
         [DisplayName("Division:")]
         [Required(ErrorMessage = "Required")]
-        public long DivisionID { get; set; }
+        public int DivisionID { get; set; }
 
         public SelectList Divisions { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
-    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
+    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -13,8 +13,8 @@
         public ActionResult Index()
         {
             // Use last sorting choices if saved - otherwise use defaults.
-            ViewBag.SortBy = (Session["MatchLastSortID"] ?? "MatchDate");
-            ViewBag.SortOrder = (Session["MatchLastSortOrder"] ?? "desc");
+            ViewBag.SortBy = (Session["MatchLastSortID"] ?? "MatchDay");
+            ViewBag.SortOrder = (Session["MatchLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["MatchLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["MatchLastSortRows"] ?? 50);
 
@@ -121,7 +121,7 @@
         }
 
         [AuthorizeHelper(Roles = "Admin")]
-        public ActionResult Edit(long id)
+        public ActionResult Edit(int id)
         {
             var match = QuilmesModel.GetMatchByID(id);
             return View(new MatchViewModel(QuilmesModel, match));

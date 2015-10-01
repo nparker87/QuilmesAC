@@ -131,9 +131,9 @@
         }
 
         [AuthorizeHelper(Roles = "Admin")]
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(int? id)
         {
-            if (!id.HasValue)
+            if (id == null)
                 return RedirectToAction("Index");
 
             // Use last sorting choices if saved - otherwise use defaults.
@@ -172,7 +172,7 @@
         }
 
         [HttpPost]
-        public ActionResult Delete(long id)
+        public ActionResult Delete(int id)
         {
             var player = QuilmesModel.GetPlayerByID(id);
             QuilmesModel.Delete(player);
@@ -405,7 +405,7 @@
             return Content("Success");
         }
 
-        public ContentResult DeleteGoal(long id)
+        public ContentResult DeleteGoal(int id)
         {
             var goal = QuilmesModel.GetGoalByID(id);
             QuilmesModel.Delete(goal);
@@ -431,7 +431,7 @@
             return Content("Success");
         }
 
-        public ContentResult DeleteAssist(Int64 id)
+        public ContentResult DeleteAssist(int id)
         {
             var assist = QuilmesModel.GetAssitByID(id);
             QuilmesModel.Delete(assist);
@@ -457,7 +457,7 @@
             return Content("Success");
         }
 
-        public ContentResult DeleteCard(Int64 id)
+        public ContentResult DeleteCard(int id)
         {
             var card = QuilmesModel.GetCardByID(id);
             QuilmesModel.Delete(card);

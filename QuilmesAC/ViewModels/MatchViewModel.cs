@@ -19,6 +19,7 @@
             CurrentTab = "Match";
             PopulateSelectLists(model);
             AllTimeRecord = model.GetAllTimeRecord();
+            SeasonID = 4; //TODO: Make this equal to current season
         }
 
         public MatchViewModel(MatchViewModel match)
@@ -44,7 +45,7 @@
         }
 
         [DisplayName("ID")]
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("Match day:")]
         public int? MatchDay { get; set; }
@@ -54,7 +55,7 @@
 
         [DisplayName("Opponent:")]
         [Required(ErrorMessage = "Opponent Required")]
-        public long OpponentID { get; set; }
+        public int OpponentID { get; set; }
 
         public SelectList Opponents { get; set; }
 
@@ -65,14 +66,13 @@
         public int? GoalsAgainst { get; set; }
 
         [DisplayName("Result:")]
-        [Required(ErrorMessage = "Result Required")]
         public char? Result { get; set; }
 
         public List<SelectListItem> Results { get; set; }
 
         [DisplayName("Season:")]
         [Required(ErrorMessage = "Season Required")]
-        public long SeasonID { get; set; }
+        public int SeasonID { get; set; }
 
         public SelectList Seasons { get; set; }
 

@@ -4,7 +4,7 @@
     {
         internal static class ConnectionStrings
         {
-            internal const string QuilmesDataContext = "QuilmesConnectionString";
+            internal const string QuilmesDataContext = "QuilmesACConnectionString";
         }
     }
 }

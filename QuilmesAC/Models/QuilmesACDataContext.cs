@@ -16,7 +16,7 @@
         public AllTimeRecord GetAllTimeRecord()
         {
             // Do not include bye "wins"
-            var matches = Matches.Where(x => x.Opponent.Name != "Bye");
+            var matches = Matches.Where(x => x.Opponent.Name != "Bye" && x.Result != null);
 
             var allTimeRecord = new AllTimeRecord
             {
@@ -54,7 +54,7 @@
 
         /* Player Methods */
 
-        public Player GetPlayerByID(long? id)
+        public Player GetPlayerByID(int? id)
         {
             return Players.FirstOrDefault(x => x.ID == id);
         }
@@ -106,7 +106,7 @@
 
         /* Match Methods */
 
-        public Match GetMatchByID(long id)
+        public Match GetMatchByID(int id)
         {
             return Matches.FirstOrDefault(x => x.ID == id);
         }
@@ -148,7 +148,7 @@
             Opponents.InsertOnSubmit(opponent);
         }
 
-        public Opponent GetOpponentByID(long id)
+        public Opponent GetOpponentByID(int id)
         {
             return Opponents.FirstOrDefault(x => x.ID == id);
         }
@@ -175,7 +175,7 @@
             return Seasons.OrderBy(x => x.StartDate).ToList();
         }
 
-        public Season GetSeasonByID(long id)
+        public Season GetSeasonByID(int id)
         {
             return Seasons.FirstOrDefault(x => x.ID == id);
         }
@@ -205,12 +205,12 @@
 
         /* Goal Methods */
 
-        public Goal GetGoalByID(long id)
+        public Goal GetGoalByID(int id)
         {
             return Goals.FirstOrDefault(x => x.ID == id);
         }
 
-        public List<Goal> GetGoalsByPlayerID(long playerID)
+        public List<Goal> GetGoalsByPlayerID(int playerID)
         {
             return Goals.Where(x => x.PlayerID == playerID).ToList();
         }
@@ -238,7 +238,7 @@
 
         /* Assist Methods */
 
-        public Assist GetAssitByID(long id)
+        public Assist GetAssitByID(int id)
         {
             return Assists.FirstOrDefault(x => x.ID == id);
         }
@@ -266,12 +266,12 @@
 
         /* Card Methods */
 
-        public Card GetCardByID(long id)
+        public Card GetCardByID(int id)
         {
             return Cards.FirstOrDefault(x => x.ID == id);
         }
 
-        public List<Card> GetCardsByPlayerID(long playerID)
+        public List<Card> GetCardsByPlayerID(int playerID)
         {
             return Cards.Where(x => x.PlayerID == playerID).ToList();
         }

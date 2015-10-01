@@ -144,11 +144,6 @@
       <DependentUpon>QuilmesAC.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\QuilmesACDataContext.cs" />
-    <Compile Include="Models\QuilmesACNew.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuilmesACNew.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\AssistViewModel.cs" />
@@ -257,11 +252,6 @@
     </Content>
     <Content Include="Content\Less\Site.less" />
     <Content Include="git.ignore" />
-    <Content Include="Models\QuilmesACNew.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QuilmesACNew.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -329,11 +319,6 @@
   <ItemGroup>
     <None Include="Models\QuilmesAC.dbml.layout">
       <DependentUpon>QuilmesAC.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Models\QuilmesACNew.dbml.layout">
-      <DependentUpon>QuilmesACNew.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>

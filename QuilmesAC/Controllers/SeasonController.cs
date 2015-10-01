@@ -111,7 +111,7 @@
         }
 
         /// <summary> Modal delete </summary>
-        public ContentResult DeleteSeason(long id)
+        public ContentResult DeleteSeason(int id)
         {
             var season = QuilmesModel.GetSeasonByID(id);
             QuilmesModel.Delete(season);

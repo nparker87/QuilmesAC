@@ -124,7 +124,7 @@
         }
 
         /// <summary> Modal delete </summary>
-        public ContentResult DeleteOpponent(long id)
+        public ContentResult DeleteOpponent(int id)
         {
             var opponent = QuilmesModel.GetOpponentByID(id);
             QuilmesModel.Delete(opponent);

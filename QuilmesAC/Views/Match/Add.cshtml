@@ -33,9 +33,8 @@
                         @Html.TextBoxFor(model => model.GoalsAgainst, new { Value = "" })
                     </li>
                     <li>
-                        @Html.RequriedLabelFor(model => model.Result)
+                        @Html.LabelFor(model => model.Result)
                         @Html.DropDownListFor(model => model.Result, Model.Results, "-- Select --")
-                        @Html.ValidationMessageFor(model => model.Result)
                     </li>
                     <li>
                         @Html.RequriedLabelFor(model => model.SeasonID)
