@@ -5,8 +5,3 @@
 2. Sorting players by yc/rc does not work properly since they are from the same table but seperated into different columns
 
 3. Create a league table
-
-4. Default fixture to current season with a list of future games, would probably work to just create the match as empty with no gf or ga.
-Should not count towards all time record.
-
-5. Add "IsCurrentSeason" flag to season table
