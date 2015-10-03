@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.Models
 {
+    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -178,6 +178,11 @@
         public Season GetSeasonByID(int id)
         {
             return Seasons.FirstOrDefault(x => x.ID == id);
+        }
+
+        public int GetCurrentSeason()
+        {
+            return Seasons.FirstOrDefault(x => x.IsCurrent == true).ID;
         }
 
         public void Add(SeasonViewModel submission)

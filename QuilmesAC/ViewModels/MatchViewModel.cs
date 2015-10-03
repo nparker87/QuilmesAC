@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    using Models;
 
     public class MatchViewModel : BaseViewModel
     {
@@ -19,7 +19,7 @@
             CurrentTab = "Match";
             PopulateSelectLists(model);
             AllTimeRecord = model.GetAllTimeRecord();
-            SeasonID = 4; //TODO: Make this equal to current season
+            SeasonID = model.GetCurrentSeason();
         }
 
         public MatchViewModel(MatchViewModel match)

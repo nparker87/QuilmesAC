@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
+    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -35,8 +35,11 @@
             var matches = from match in QuilmesModel.Matches
                           select match;
 
+            // Get matches for a specific season else get all played matches, no future ones
             if (!String.IsNullOrWhiteSpace(seasonID))
                 matches = matches.Where(x => x.SeasonID == Int32.Parse(seasonID));
+            else
+                matches = matches.Where(x => x.Result != null);
 
             // Check for any filtering and prepare Where clauses.
             if (_search)
