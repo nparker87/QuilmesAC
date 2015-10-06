@@ -75,6 +75,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="Opponent_Match" Member="Matches" ThisKey="ID" OtherKey="OpponentID" Type="Match" />
+      <Association Name="Opponent_LeagueTable" Member="LeagueTables" ThisKey="ID" OtherKey="OpponentID" Type="LeagueTable" />
     </Type>
   </Table>
   <Table Name="dbo.Player" Member="Players">
@@ -142,7 +143,20 @@
       <Column Name="DivisionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Season_Match" Member="Matches" ThisKey="ID" OtherKey="SeasonID" Type="Match" />
+      <Association Name="Season_LeagueTable" Member="LeagueTables" ThisKey="ID" OtherKey="SeasonID" Type="LeagueTable" />
       <Association Name="Division_Season" Member="Division" ThisKey="DivisionID" OtherKey="ID" Type="Division" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LeagueTable" Member="LeagueTables">
+    <Type Name="LeagueTable">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OpponentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GamesPlayed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoalsFor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoalsAgainst" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Opponent_LeagueTable" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
+      <Association Name="Season_LeagueTable" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
