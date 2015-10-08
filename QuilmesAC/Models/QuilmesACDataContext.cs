@@ -304,6 +304,46 @@
             Cards.DeleteOnSubmit(card);
         }
 
+        /* Standings Methods */
+
+        public Standing GetStandingByID(int id)
+        {
+            return Standings.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(StandingViewModel submission)
+        {
+            var standing = new Standing
+            {
+                SeasonID = submission.SeasonID,
+                OpponentID = submission.OpponentID,
+                GamesPlayed = submission.GamesPlayed,
+                Win = submission.Win,
+                Draw = submission.Draw,
+                Loss = submission.Loss,
+                GoalsFor = submission.GoalsFor,
+                GoalsAgainst = submission.GoalsAgainst
+            };
+            Standings.InsertOnSubmit(standing);
+        }
+
+        public void Update(Standing standing, StandingViewModel submission)
+        {
+            standing.SeasonID = submission.SeasonID;
+            standing.OpponentID = submission.OpponentID;
+            standing.GamesPlayed = submission.GamesPlayed;
+            standing.Win = submission.Win;
+            standing.Draw = submission.Draw;
+            standing.Loss = submission.Loss;
+            standing.GoalsFor = submission.GoalsFor;
+            standing.GoalsAgainst = submission.GoalsAgainst;
+        }
+
+        public void Delete(Standing standing)
+        {
+            Standings.DeleteOnSubmit(standing);
+        }
+
         /* Division Methods */
 
         public List<Division> GetDivisions()

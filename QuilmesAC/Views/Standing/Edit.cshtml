@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
+{
+    <table id="list"></table>
+    <div id="pager"></div>
+}
+
+@section Scripts
+{
+    <script id="Edit.js" src="~/Views/Standing/Edit.js"
+            data-url="@Url.Action("GridData")"
+            data-sort-by="@ViewBag.SortBy"
+            data-sort-order="@ViewBag.SortOrder"
+            data-page="@ViewBag.Page"
+            data-rows="@ViewBag.Rows"></script>
+}

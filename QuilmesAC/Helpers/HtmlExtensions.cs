@@ -1,5 +1,6 @@
 ﻿namespace QuilmesAC.Helpers
 {
+    using Models;
     using System;
     using System.Linq;
     using System.Linq.Expressions;
@@ -10,6 +11,8 @@
 
     public static class HtmlExtensions
     {
+        public static readonly QuilmesDataContext QuilmesModel = new QuilmesDataContext();
+
         // Will display error messages with HTML in them properly
         public static HtmlString Raw(this MvcHtmlString htmlString)
         {
@@ -116,6 +119,35 @@
 
             var result = tag.ToString(TagRenderMode.StartTag);
             return MvcHtmlString.Create(result);
+        }
+
+        // TODO: Make this a case statement, more generic
+        public static string GetSelectList()
+        {
+            var result = new StringBuilder();
+            result.Append("<select>");
+
+            foreach (var season in QuilmesModel.Seasons)
+                result.AppendFormat("<option value=\"{0}\">{1}</option>",
+                    season.ID,
+                    season.DisplayName);
+
+            result.Append("</select>");
+            return result.ToString();
+        }
+
+        public static string GetCards()
+        {
+            var result = new StringBuilder();
+            result.Append("<select>");
+
+            foreach (var cardType in QuilmesModel.CardTypes)
+                result.AppendFormat("<option value=\"{0}\">{1}</option>",
+                    cardType.ID,
+                    cardType.Name);
+
+            result.Append("</select>");
+            return result.ToString();
         }
 
         /// <summary> Basically the equivalent of Url.Content() for use outside of the View/Controller </summary>

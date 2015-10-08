@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,7 +117,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LeagueTableController.cs" />
+    <Compile Include="Controllers\StandingController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
@@ -151,7 +152,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GoalViewModel.cs" />
-    <Compile Include="ViewModels\LeagueTableViewModel.cs" />
+    <Compile Include="ViewModels\StandingViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\OpponentViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
@@ -269,7 +270,7 @@
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
     <Content Include="ToDo.txt" />
-    <Content Include="Views\LeagueTable\Edit.js" />
+    <Content Include="Views\Standing\Edit.js" />
     <Content Include="Views\Match\Index.js" />
     <Content Include="Views\Player\Index.js" />
     <Content Include="Web.config">
@@ -302,7 +303,7 @@
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Views\Match\Edit.cshtml" />
-    <Content Include="Views\LeagueTable\Edit.cshtml" />
+    <Content Include="Views\Standing\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
