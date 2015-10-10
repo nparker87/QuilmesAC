@@ -1,6 +1,6 @@
 ﻿jQuery(document).ready(function ($) {
     // Import all the variables from the model
-    var $vars = $('#Index\\.js').data();
+    var $vars = $('#Match\\.js').data();
 
     // Default columns for jqGrid
     var columnModel = [

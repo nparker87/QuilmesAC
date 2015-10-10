@@ -52,11 +52,18 @@
 
 @section Scripts
 {
-    <script id="Index.js" src="~/Views/Match/Index.js"
+    <script id="Match.js" src="~/Views/Match/Match.js"
             data-url="@Url.Action("GridData")"
             data-sort-by="@ViewBag.SortBy"
             data-sort-order="@ViewBag.SortOrder"
             data-page="@ViewBag.Page"
             data-rows="@ViewBag.Rows"
             data-action-edit="@Url.Action("Edit", "Match", new { id = "" })"></script>
+
+    <script id="Standing.js" src="~/Views/Match/Standing.js"
+            data-url="@Url.Action("StandingGridData")"
+            data-sort-by="@ViewBag.SortBy"
+            data-sort-order="@ViewBag.SortOrder"
+            data-page="@ViewBag.Page"
+            data-rows="@ViewBag.Rows"></script>
 }
