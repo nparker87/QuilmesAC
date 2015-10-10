@@ -270,7 +270,6 @@
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
     <Content Include="ToDo.txt" />
-    <Content Include="Views\Standing\Edit.js" />
     <Content Include="Views\Match\Index.js" />
     <Content Include="Views\Player\Index.js" />
     <Content Include="Web.config">
@@ -304,6 +303,7 @@
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Views\Match\Edit.cshtml" />
     <Content Include="Views\Standing\Edit.cshtml" />
+    <Content Include="Views\Standing\Edit.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

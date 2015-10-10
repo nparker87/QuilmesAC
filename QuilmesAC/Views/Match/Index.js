@@ -5,7 +5,7 @@
     // Default columns for jqGrid
     var columnModel = [
         { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
-        { displayname: "Season", name: "Season", index: "Season.DisplayName", align: "left", width: 120, editable: true, formoptions: { elmsuffix: "(*)" } },
+        { displayname: "Season", name: "Season", index: "Season.DisplayName", hidden: true, align: "left", width: 120, editable: true, formoptions: { elmsuffix: "(*)" } },
         { displayname: "Match Day", name: "MatchDay", index: "MatchDay", align: "center", width: 60, editable: true },
         { displayname: "Match Date", name: "MatchDate", index: "MatchDate", align: "left", width: 90, editable: true },
         { displayname: "Opponent", name: "Opponent", index: "Opponent.Name", align: "left", width: 150, editable: true, formoptions: { elmsuffix: "(*)" } },

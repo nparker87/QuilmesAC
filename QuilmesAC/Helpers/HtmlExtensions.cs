@@ -121,35 +121,6 @@
             return MvcHtmlString.Create(result);
         }
 
-        // TODO: Make this a case statement, more generic
-        public static string GetSelectList()
-        {
-            var result = new StringBuilder();
-            result.Append("<select>");
-
-            foreach (var season in QuilmesModel.Seasons)
-                result.AppendFormat("<option value=\"{0}\">{1}</option>",
-                    season.ID,
-                    season.DisplayName);
-
-            result.Append("</select>");
-            return result.ToString();
-        }
-
-        public static string GetCards()
-        {
-            var result = new StringBuilder();
-            result.Append("<select>");
-
-            foreach (var cardType in QuilmesModel.CardTypes)
-                result.AppendFormat("<option value=\"{0}\">{1}</option>",
-                    cardType.ID,
-                    cardType.Name);
-
-            result.Append("</select>");
-            return result.ToString();
-        }
-
         /// <summary> Basically the equivalent of Url.Content() for use outside of the View/Controller </summary>
         public static class PathHelper
         {

@@ -1,5 +1,8 @@
 ﻿@{
     ViewBag.Title = "Admin";
+}@section Head
+{
+    <link href="@Url.Content("/Views/Standing/Edit.less")" rel="stylesheet/less" type="text/css" />
 }
 
 <h2>Edit</h2>
@@ -12,10 +15,62 @@
 
 @section Scripts
 {
-    <script id="Edit.js" src="~/Views/Standing/Edit.js"
-            data-url="@Url.Action("GridData")"
-            data-sort-by="@ViewBag.SortBy"
-            data-sort-order="@ViewBag.SortOrder"
-            data-page="@ViewBag.Page"
-            data-rows="@ViewBag.Rows"></script>
+<script type="text/javascript">
+    //jqGrid for standings
+    jQuery(document).ready(function () {
+        function updateDialog(url) {
+            return {
+                url: url,
+                closeAfterAdd: true,
+                closeAfterEdit: true,
+                modal: true
+            };
+        }
+
+        jQuery("#list").jqGrid({
+            url: "@Url.Action("GridData")",
+            datatype: "local",
+            gridview: true,
+            height: "100%",
+            hidegrid: false,
+            loadtext: "Retrieving Standings...",
+            mtype: "POST",
+            autowidth: false,
+            width: "500",
+            sortable: true,
+            cellLayout: 6, // gets rid of annoying horizontal scrollbar
+            colNames: ["ID", "Season", "Team", "GP", "W", "D", "L", "GF", "GA", "Diff", "Pts."],
+            colModel: [
+                // index must be the column name for sorting with orderby
+                { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                { name: "SeasonID", index: "Season.DisplayName", hidden: false, align: "left", width: "50px", editable: true, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Standing/GetSeasons/")" }, formoptions: { elmsuffix: "(*)" } },
+                { name: "OpponentID", index: "Opponent.Name", align: "left", width: "95px", editable: true, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Standing/GetOpponents/")" }, formoptions: { elmsuffix: "(*)" } },
+                { name: "GamesPlayed", index: "GamesPlayed", align: "center", width: "20px", editable: true, formoptions: { elmsuffix: "(*)" } },
+                { name: "Win", index: "Win", align: "center", width: "20px", editable: true },
+                { name: "Draw", index: "Draw", align: "center", width: "20px", editable: true },
+                { name: "Loss", index: "Loss", align: "center", width: "20px", editable: true },
+                { name: "GoalsFor", index: "GoalsFor", align: "center", width: "20px", editable: true, formoptions: { elmsuffix: "(*)" } },
+                { name: "GoalsAgainst", index: "GoalsAgainst", align: "center", width: "20px", editable: true, formoptions: { elmsuffix: "(*)" } },
+                { name: "Difference", index: "Difference", align: "center", width: "20px", editable: false, formoptions: { elmsuffix: "(*)" } },
+                { name: "Points", index: "Points", align: "center", width: "20px", editable: false, formoptions: { elmsuffix: "(*)" } }
+            ],
+            cellEdit: false,
+            pager: "#pager",
+            rowList: [15, 50, 100],
+            sortname: "@(ViewBag.SortBy)",
+            sortorder: "@(ViewBag.SortOrder)",
+            page: "@(ViewBag.Page)",
+            rowNum: "@(ViewBag.Rows)",
+            postData: { seasonID: "@Model.ID" },
+            viewrecords: true
+        }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
+            updateDialog("@Url.Action("EditStanding")"),
+            updateDialog("@Url.Action("AddStanding")"),
+            updateDialog("@Url.Action("DeleteStanding")"))
+        .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+        .setGridParam({ datatype: "json" }); // Done this way for default filter values.
+
+        $("#list")[0].triggerToolbar();
+    });
+</script>
 }

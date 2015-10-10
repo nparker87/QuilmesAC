@@ -4,6 +4,7 @@
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
+    using System.Text;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
     using ViewModels;
@@ -121,6 +122,34 @@
             QuilmesModel.Save();
 
             return Content("Success");
+        }
+        
+        public string GetSeasons()
+        {
+            var result = new StringBuilder();
+            result.Append("<select>");
+
+            foreach (var season in QuilmesModel.Seasons)
+                result.AppendFormat("<option value=\"{0}\">{1}</option>",
+                    season.ID,
+                    season.DisplayName);
+
+            result.Append("</select>");
+            return result.ToString();
+        }
+
+        public string GetOpponents()
+        {
+            var result = new StringBuilder();
+            result.Append("<select>");
+
+            foreach (var opponent in QuilmesModel.Opponents)
+                result.AppendFormat("<option value=\"{0}\">{1}</option>",
+                    opponent.ID,
+                    opponent.Name);
+
+            result.Append("</select>");
+            return result.ToString();
         }
     }
 }
