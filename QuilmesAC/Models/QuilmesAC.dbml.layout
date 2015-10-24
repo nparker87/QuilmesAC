@@ -197,24 +197,24 @@
         <classShapeMoniker Id="4d410078-9353-4232-a5f6-6125a6693134" />
       </nodes>
     </associationConnector>
-    <classShape Id="798962f4-a6c3-427b-bdc5-eb923851bf18" absoluteBounds="7.625, 4.75, 2, 2.5401025390625">
+    <classShape Id="f56ff885-bab9-41ea-bcb7-1c28b03f184f" absoluteBounds="7.75, 4.75, 2, 3.1170068359375">
       <DataClassMoniker Name="/QuilmesDataContext/Standing" />
       <nestedChildShapes>
-        <elementListCompartment Id="6c9f6bed-fd9b-47f4-b1fb-bc6d019f56c1" absoluteBounds="7.6400000000000006, 5.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="84e4aa03-7ce6-4e0e-b3b6-86ffdb2d9528" absoluteBounds="7.7650000000000006, 5.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.875 : 6.70119466145833); (6.16666666666667 : 6.70119466145833 : JumpStart); (6.33333333333333 : 6.70119466145833 : JumpEnd); (7.625 : 6.70119466145833)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.875 : 6.70119466145833); (6.16666666666667 : 6.70119466145833 : JumpStart); (6.33333333333333 : 6.70119466145833 : JumpEnd); (7.75 : 6.70119466145833)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuilmesDataContext/Opponent/Opponent_Standing" />
       <nodes>
         <classShapeMoniker Id="e9d685a4-2b3b-4304-a517-60de086bcf32" />
-        <classShapeMoniker Id="798962f4-a6c3-427b-bdc5-eb923851bf18" />
+        <classShapeMoniker Id="f56ff885-bab9-41ea-bcb7-1c28b03f184f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.25 : 5.63544840494792); (7.625 : 5.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.25 : 5.63544840494792); (7.75 : 5.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuilmesDataContext/Season/Season_Standing" />
       <nodes>
         <classShapeMoniker Id="4d410078-9353-4232-a5f6-6125a6693134" />
-        <classShapeMoniker Id="798962f4-a6c3-427b-bdc5-eb923851bf18" />
+        <classShapeMoniker Id="f56ff885-bab9-41ea-bcb7-1c28b03f184f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

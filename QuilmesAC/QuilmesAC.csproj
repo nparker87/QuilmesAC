@@ -194,7 +194,6 @@
     <Content Include="Content\Images\SocialMedia\vimeo.png" />
     <Content Include="Content\Images\SocialMedia\youtube.png" />
     <Content Include="Content\Images\Stachesquatch.jpg" />
-    <Content Include="Content\Images\world cup.jpg" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -255,18 +254,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Less\Site.less" />
-    <Content Include="git.ignore" />
+    <None Include="Properties\PublishProfiles\QuilmesAC.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.1.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.jqGrid.src.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
@@ -304,8 +300,8 @@
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Views\Match\Edit.cshtml" />
-    <Content Include="Views\Standing\Edit.cshtml" />
-    <Content Include="Views\Standing\Edit.less" />
+    <Content Include="Views\Standing\Index.cshtml" />
+    <Content Include="Views\Standing\Index.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

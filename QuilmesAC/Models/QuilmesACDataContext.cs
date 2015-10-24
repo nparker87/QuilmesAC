@@ -322,7 +322,10 @@
                 Draw = submission.Draw,
                 Loss = submission.Loss,
                 GoalsFor = submission.GoalsFor,
-                GoalsAgainst = submission.GoalsAgainst
+                GoalsAgainst = submission.GoalsAgainst,
+                GoalDifference = submission.GoalsFor - submission.GoalsAgainst,
+                Points = (submission.Win * 3) + submission.Draw,
+                Position = submission.Position
             };
             Standings.InsertOnSubmit(standing);
         }

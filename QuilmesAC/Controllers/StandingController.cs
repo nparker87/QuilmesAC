@@ -12,15 +12,15 @@
     public class StandingController : BaseController
     {
         [AuthorizeHelper(Roles = "Admin")]
-        public ActionResult Edit()
+        public ActionResult Index()
         {
             // Use last sorting choices if saved - otherwise use defaults.
-            ViewBag.SortBy = (Session["StandingLastSortID"] ?? "ID");
+            ViewBag.SortBy = (Session["StandingLastSortID"] ?? "Position");
             ViewBag.SortOrder = (Session["StandingLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["StandingLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["StandingLastSortRows"] ?? 50);
 
-            return View(new StandingViewModel());
+            return View(new StandingViewModel(QuilmesModel));
         }
 
         [HttpPost]
@@ -88,8 +88,9 @@
                             t.Loss.ToString(),
                             t.GoalsFor.ToString(),
                             t.GoalsAgainst.ToString(),
-                            Convert.ToString(t.GoalsFor - t.GoalsAgainst),
-                            Convert.ToString((t.Win * 3) + t.Draw)
+                            t.GoalDifference.ToString(),
+                            t.Points.ToString(),
+                            t.Position.ToString()
                         }
                     }).ToArray()
             };

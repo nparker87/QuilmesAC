@@ -158,6 +158,9 @@
       <Column Name="Loss" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GoalsFor" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GoalsAgainst" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Points" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GoalDifference" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Opponent_Standing" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
       <Association Name="Season_Standing" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" />
     </Type>

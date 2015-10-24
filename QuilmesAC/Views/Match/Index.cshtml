@@ -1,12 +1,12 @@
 ﻿@model QuilmesAC.ViewModels.MatchViewModel
 @{
-    ViewBag.Title = "Matches";
+    ViewBag.Title = "Fixtures";
 }
 @section Head
 {
     <link href="@Url.Content("/Views/Match/Index.less")" rel="stylesheet/less" type="text/css" />
 }
-<h2>Matches</h2>
+<h2>Fixtures and Results</h2>
 <ul>
     <li>
         @Html.LabelFor(model => model.SeasonID)

@@ -6,7 +6,10 @@
 <html>
 <head>
     <title>Quilmes AC | @ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/themes/custom/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/custom/jquery-ui.theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/jquery.jqGrid/ui.jqgrid.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Less/Site.less")" rel="stylesheet/less" type="text/css" />
     @RenderSection("Head", false)
 </head>
 <body>
@@ -51,7 +54,7 @@
                         @Html.ActionLink("Team", "Index", "Player")
                     </li>
                     <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
-                        @Html.ActionLink("Fixtures/Results", "Index", "Match")
+                        @Html.ActionLink("Fixtures", "Index", "Match")
                     </li>
                     @{
                         if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
@@ -69,13 +72,12 @@
             <div class="bottom-logos bootstrap">
                 @*<img src="~/Content/Images/adidas-logo.jpg" class="adidas-logo" alt="Quilmes" />*@
                 <img src="~/Content/Images/quilmes_beer_logo.png" class="beer-logo" alt="Adidas" />
-                <a href="https://www.facebook.com/StachesquatchDesign?fref=ts" target="_blank">
+                <a href="https://www.facebook.com/StachesquatchDesign" target="_blank">
                     <img src="~/Content/Images/Stachesquatch.jpg" class="stache" alt="Stachesquatch" />
                 </a>
-
-                @*<a href="https://www.facebook.com/306090studios" target="_blank">
-                        <img src="~/Content/Images/306090.jpg" class="erek-studio" alt="306090" />
-                    </a>*@
+                <a href="https://www.facebook.com/306090studios" target="_blank">
+                    <img src="~/Content/Images/306090.jpg" class="erek-studio" alt="306090" />
+                </a>
             </div>
         </div>
         <footer>
@@ -83,7 +85,14 @@
             <a href="http://www.cvsasoccer.org/" target="_blank">Central Virginia Soccer Association</a> | @Html.ActionLink("Privacy Policy", "Index", "PrivacyPolicy")
         </footer>
     </div>
-    @Scripts.Render("~/Scripts")
+    <script src="~/Scripts/jquery-2.1.3.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.1.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.src.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/less-2.3.1.js"></script>
+    <script src="~/Scripts/Global.js"></script>
     @RenderSection("Scripts", false)
     @MiniProfiler.RenderIncludes()
 </body>

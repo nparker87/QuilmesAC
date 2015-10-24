@@ -1,6 +1,8 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+    using QuilmesAC.Models;
     using System.ComponentModel;
+    using System.Web.Mvc;
 
     public class StandingViewModel : BaseViewModel
     {
@@ -9,11 +11,19 @@
             CurrentTab = "Admin";
         }
 
+        public StandingViewModel(QuilmesDataContext model)
+        {
+            CurrentTab = "Admin";
+            PopulateSelectLists(model);
+        }
+
         [DisplayName("ID")]
         public int ID { get; set; }
 
         [DisplayName("SeasonID")]
         public int SeasonID { get; set; }
+
+        public SelectList Seasons { get; set; }
 
         [DisplayName("OpponentID")]
         public int OpponentID { get; set; }
@@ -35,5 +45,13 @@
 
         [DisplayName("Goals Against")]
         public int? GoalsAgainst { get; set; }
+
+        [DisplayName("Position")]
+        public int? Position { get; set; }
+
+        private void PopulateSelectLists(QuilmesDataContext model)
+        {
+            Seasons = new SelectList(model.GetSeasons(), "ID", "DisplayName");
+        }
     }
 }

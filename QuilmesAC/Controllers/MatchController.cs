@@ -17,7 +17,7 @@
             ViewBag.SortOrder = (Session["MatchLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["MatchLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["MatchLastSortRows"] ?? 50);
-            ViewBag.SortBy = (Session["StandingLastSortID"] ?? "ID");
+            ViewBag.SortBy = (Session["StandingLastSortID" ?? "Position"]);
             ViewBag.SortOrder = (Session["StandingLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["StandingLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["StandingLastSortRows"] ?? 50);

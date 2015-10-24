@@ -1,12 +1,18 @@
-﻿@{
+﻿@model QuilmesAC.ViewModels.StandingViewModel
+@{
     ViewBag.Title = "Admin";
 }@section Head
 {
-    <link href="@Url.Content("/Views/Standing/Edit.less")" rel="stylesheet/less" type="text/css" />
+    <link href="@Url.Content("/Views/Standing/Index.less")" rel="stylesheet/less" type="text/css" />
 }
 
-<h2>Edit</h2>
-
+<h2>Edit Standings</h2>
+<ul>
+    <li>
+        @Html.LabelFor(model => model.SeasonID)
+        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "-- Select --")
+    </li>
+</ul>
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
     <table id="list"></table>
@@ -39,7 +45,7 @@
             width: "500",
             sortable: true,
             cellLayout: 6, // gets rid of annoying horizontal scrollbar
-            colNames: ["ID", "Season", "Team", "GP", "W", "D", "L", "GF", "GA", "Diff", "Pts."],
+            colNames: ["ID", "Season", "Team", "GP", "W", "D", "L", "GF", "GA", "Diff", "Pts.", "Pos."],
             colModel: [
                 // index must be the column name for sorting with orderby
                 { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
@@ -51,8 +57,9 @@
                 { name: "Loss", index: "Loss", align: "center", width: "20px", editable: true },
                 { name: "GoalsFor", index: "GoalsFor", align: "center", width: "20px", editable: true, formoptions: { elmsuffix: "(*)" } },
                 { name: "GoalsAgainst", index: "GoalsAgainst", align: "center", width: "20px", editable: true, formoptions: { elmsuffix: "(*)" } },
-                { name: "Difference", index: "Difference", align: "center", width: "20px", editable: false, formoptions: { elmsuffix: "(*)" } },
-                { name: "Points", index: "Points", align: "center", width: "20px", editable: false, formoptions: { elmsuffix: "(*)" } }
+                { name: "Difference", index: "Difference", align: "center", width: "20px", editable: false },
+                { name: "Points", index: "Points", align: "center", width: "20px", editable: false },
+                { name: "Points", index: "Points", align: "center", width: "20px", editable: true }
             ],
             cellEdit: false,
             pager: "#pager",
@@ -61,7 +68,9 @@
             sortorder: "@(ViewBag.SortOrder)",
             page: "@(ViewBag.Page)",
             rowNum: "@(ViewBag.Rows)",
-            postData: { seasonID: "@Model.ID" },
+            postData: {
+                seasonID: function () { return $("#SeasonID").val(); }
+            },
             viewrecords: true
         }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
             updateDialog("@Url.Action("EditStanding")"),
@@ -71,6 +80,10 @@
         .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
         $("#list")[0].triggerToolbar();
+
+        $("SeasonID").change(function () {
+            $("#list").trigger("reloadGrid");
+        });
     });
 </script>
 }
