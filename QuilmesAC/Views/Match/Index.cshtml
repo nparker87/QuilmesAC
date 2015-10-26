@@ -16,10 +16,15 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
-    <table id="list"></table>
-    <div id="pager"></div>
-    <table id="standingList"></table>
-    <div id="standingPager"></div>
+    <div id="matchTable">
+        <table id="list"></table>
+        <div id="pager"></div>
+    </div>
+    <div id="standingTable">
+        <table id="standingList"></table>
+        <div id="standingPager"></div>
+    </div>
+    <div class="clear"></div>
     <div class="allTimeRecord">
         All Time Record
         <table>
@@ -62,8 +67,8 @@
 
     <script id="Standing.js" src="~/Views/Match/Standing.js"
             data-url="@Url.Action("StandingGridData")"
-            data-sort-by="@ViewBag.SortBy"
-            data-sort-order="@ViewBag.SortOrder"
-            data-page="@ViewBag.Page"
-            data-rows="@ViewBag.Rows"></script>
+            data-sort-by="@ViewBag.StandingSortBy"
+            data-sort-order="@ViewBag.StandingSortOrder"
+            data-page="@ViewBag.StandingPage"
+            data-rows="@ViewBag.StandingRows"></script>
 }

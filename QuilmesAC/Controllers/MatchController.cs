@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Controllers
 {
-    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
+    using Helpers;
     using ViewModels;
 
     public class MatchController : BaseController
@@ -17,10 +17,10 @@
             ViewBag.SortOrder = (Session["MatchLastSortOrder"] ?? "asc");
             ViewBag.Page = (Session["MatchLastSortPage"] ?? 1);
             ViewBag.Rows = (Session["MatchLastSortRows"] ?? 50);
-            ViewBag.SortBy = (Session["StandingLastSortID" ?? "Position"]);
-            ViewBag.SortOrder = (Session["StandingLastSortOrder"] ?? "asc");
-            ViewBag.Page = (Session["StandingLastSortPage"] ?? 1);
-            ViewBag.Rows = (Session["StandingLastSortRows"] ?? 50);
+            ViewBag.StandingSortBy = (Session["StandingLastSortID"] ?? "Position");
+            ViewBag.StandingSortOrder = (Session["StandingLastSortOrder"] ?? "asc");
+            ViewBag.StandingPage = (Session["StandingLastSortPage"] ?? 1);
+            ViewBag.StandingRows = (Session["StandingLastSortRows"] ?? 50);
 
             return View(new MatchViewModel(QuilmesModel));
         }
@@ -104,7 +104,6 @@
             return Json(jsonData);
         }
 
-
         /// <summary> Returns the JSON data to display a jqGrid of the league table </summary>
         /// POST: /Match/StandingGridData
         [HttpPost]
@@ -117,7 +116,7 @@
             Session["StandingLastSortRows"] = rows;
 
             var standings = from standing in QuilmesModel.Standings
-                           select standing;
+                            select standing;
 
             // Get matches for a specific season else get all played matches, no future ones
             if (!String.IsNullOrWhiteSpace(seasonID))
