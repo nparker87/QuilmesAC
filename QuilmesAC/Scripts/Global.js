@@ -28,3 +28,4 @@
         modifyTheme(rgb2Hex(color));
     });
 })
+

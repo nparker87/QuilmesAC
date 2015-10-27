@@ -1,4 +1,5 @@
 ﻿jQuery(document).ready(function ($) {
+
     // Import all the variables from the model
     var $vars = $('#Standing\\.js').data();
 
@@ -7,7 +8,7 @@
         // index must be the column name for sorting with orderby
         { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
         { displayname: "Season", name: "SeasonID", index: "Season.DisplayName", hidden: true, align: "left", width: "50px", editable: false },
-        { displayname: "", name: "OpponentID", index: "Opponent.Name", align: "left", width: "95px", editable: false },
+        { displayname: "League Table", name: "OpponentID", index: "Opponent.Name", align: "left", width: "150px", editable: false },
         { displayname: "GP", name: "GamesPlayed", index: "GamesPlayed", align: "center", width: "20px", editable: false },
         { displayname: "W", name: "Win", index: "Win", align: "center", width: "20px", editable: true },
         { displayname: "D", name: "Draw", index: "Draw", align: "center", width: "20px", editable: true },
@@ -54,7 +55,22 @@
 
     $("#standingList")[0].triggerToolbar();
 
+    highlightQuilmes($("#SeasonID").val());
+
     $("#SeasonID").change(function () {
         $("#standingList").trigger("reloadGrid");
+        highlightQuilmes($("#SeasonID").val());
     });
 });
+
+function highlightQuilmes(seasonID) {
+    $.ajax({
+        type: "POST",
+        url: "/Match/GetQuilmesStandingID",
+        data: { seasonID: seasonID },
+        success: function (data) {
+            var quilmesRow = "#standingTable tr#" + data;
+            $(quilmesRow).addClass("ui-state-highlight");
+        }
+    })
+}

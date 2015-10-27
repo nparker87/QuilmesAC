@@ -229,5 +229,10 @@
             var viewModel = new MatchViewModel(QuilmesModel, match);
             return View(viewModel);
         }
+
+        public int GetQuilmesStandingID(int seasonID)
+        {
+            return QuilmesModel.GetQuilmesStandingIDBySeason(seasonID).ID;
+        }
     }
 }

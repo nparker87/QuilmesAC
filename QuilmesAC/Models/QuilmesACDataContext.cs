@@ -340,11 +340,19 @@
             standing.Loss = submission.Loss;
             standing.GoalsFor = submission.GoalsFor;
             standing.GoalsAgainst = submission.GoalsAgainst;
+            standing.GoalDifference = submission.GoalsFor - submission.GoalsAgainst;
+            standing.Points = (submission.Win * 3) + submission.Draw;
+            standing.Position = submission.Position;
         }
 
         public void Delete(Standing standing)
         {
             Standings.DeleteOnSubmit(standing);
+        }
+
+        public Standing GetQuilmesStandingIDBySeason(int seasonID)
+        {
+            return Standings.FirstOrDefault(x => x.SeasonID == seasonID && x.Opponent.Name == "Quilmes AC");
         }
 
         /* Division Methods */

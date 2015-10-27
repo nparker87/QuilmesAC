@@ -15,6 +15,7 @@
         {
             CurrentTab = "Admin";
             PopulateSelectLists(model);
+            SeasonID = model.GetCurrentSeason();
         }
 
         [DisplayName("ID")]

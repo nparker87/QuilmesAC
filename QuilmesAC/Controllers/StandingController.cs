@@ -24,7 +24,7 @@
         }
 
         [HttpPost]
-        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters)
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters, string seasonID)
         {
             // Save the last sort choices to session data.
             Session["StandingLastSortID"] = sidx;
@@ -34,6 +34,9 @@
 
             var table = from standing in QuilmesModel.Standings
                         select standing;
+
+            if (!String.IsNullOrWhiteSpace(seasonID))
+                table = table.Where(x => x.SeasonID == Int32.Parse(seasonID));
 
             // Check for any filtering and prepare Where clauses.
             if (_search)
