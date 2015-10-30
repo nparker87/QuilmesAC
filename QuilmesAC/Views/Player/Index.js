@@ -6,12 +6,12 @@
     var columnModel = [
         { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
         { displayname: "Name", name: "Name", index: "LastName", align: "left", width: 200 },
-        { displayname: "No.", name: "Number", index: "Number", align: "left", width: 50 },
-        { displayname: "Goals", name: "Goals", index: "Goals.Count()", align: "left", width: 55 },
-        { displayname: "Assists", name: "Assists", index: "Assists.Count()", align: "left", width: 55 },
-        { displayname: "YC", name: "YellowCard", index: "Cards.Count(x => x.CardType.Name == \"Yellow\")", align: "left", width: 50 },
-        { displayname: "RC", name: "RedCard", index: "Cards.Count(x => x.CardType.Name == \"Red\")", align: "left", width: 50 },
-        { displayname: "Status", name: "Status", hidden: true, index: "Status.Name", align: "left", width: 100 }
+        { displayname: "No.", name: "Number", index: "Number", align: "center", width: 50 },
+        { displayname: "Goals", name: "Goals", index: "Goals.Count()", align: "center", width: 55 },
+        { displayname: "Assists", name: "Assists", index: "Assists.Count()", align: "center", width: 55 },
+        { displayname: "YC", name: "YellowCard", index: "Cards.Count(x => x.CardType.Name == \"Yellow\")", align: "center", width: 50 },
+        { displayname: "RC", name: "RedCard", index: "Cards.Count(x => x.CardType.Name == \"Red\")", align: "center", width: 50 },
+        { displayname: "Status", name: "Status", hidden: true, index: "Status.Name", align: "center", width: 100 }
     ];
 
     var columnNames = [];

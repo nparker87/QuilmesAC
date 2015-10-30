@@ -1,4 +1,8 @@
-﻿jQuery(document).ready(function ($) {
+﻿$(function () {
+    highlightQuilmes($("#SeasonID").val());
+})
+
+jQuery(document).ready(function ($) {
 
     // Import all the variables from the model
     var $vars = $('#Standing\\.js').data();

@@ -5,13 +5,13 @@
     // Default columns for jqGrid
     var columnModel = [
         { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
-        { displayname: "Season", name: "Season", index: "Season.DisplayName", hidden: true, align: "left", width: 120, editable: true, formoptions: { elmsuffix: "(*)" } },
-        { displayname: "Match Day", name: "MatchDay", index: "MatchDay", align: "center", width: 60, editable: true },
-        { displayname: "Match Date", name: "MatchDate", index: "MatchDate", align: "left", width: 90, editable: true },
-        { displayname: "Opponent", name: "Opponent", index: "Opponent.Name", align: "left", width: 150, editable: true, formoptions: { elmsuffix: "(*)" } },
-        { displayname: "GF", name: "GoalsFor", index: "GoalsFor", align: "center", width: 25, editable: true },
-        { displayname: "GA", name: "GoalsAgainst", index: "GoalsAgainst", align: "center", width: 25, editable: true },
-        { displayname: "Result", name: "Result", index: "Result", align: "center", width: 44, editable: true }
+        { displayname: "Season", name: "SeasonID", index: "Season.DisplayName", hidden: true, align: "left", width: "120px", editable: true, formoptions: { elmsuffix: "(*)" } },
+        { displayname: "Match Day", name: "MatchDay", index: "MatchDay", align: "center", width: "55px", editable: true },
+        { displayname: "Match Date", name: "MatchDate", index: "MatchDate", align: "left", width: "60px", editable: true },
+        { displayname: "Opponent", name: "Opponent", index: "Opponent.Name", align: "left", width: "150px", editable: true, formoptions: { elmsuffix: "(*)" } },
+        { displayname: "GF", name: "GoalsFor", index: "GoalsFor", align: "center", width: "20px", editable: true },
+        { displayname: "GA", name: "GoalsAgainst", index: "GoalsAgainst", align: "center", width: "20px", editable: true },
+        { displayname: "Result", name: "Result", index: "Result", align: "center", width: "45px", editable: true }
     ];
 
     var columnNames = [];
