@@ -4,6 +4,4 @@
 
 2. Sorting players by yc/rc does not work properly since they are from the same table but seperated into different columns
 
-3. Create a league table
-
-4. admin - standing, season id doesnt reload grid
+3. Auto snap to username on admin page
