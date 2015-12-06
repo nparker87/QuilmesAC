@@ -255,6 +255,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Less\Site.less" />
+    <None Include="Properties\PublishProfiles\--Live--.pubxml" />
     <None Include="Properties\PublishProfiles\QuilmesAC.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -303,6 +304,7 @@
     <Content Include="Views\Match\Edit.cshtml" />
     <Content Include="Views\Standing\Index.cshtml" />
     <Content Include="Views\Standing\Index.less" />
+    <Content Include="Views\User\RegisterSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -91,11 +91,16 @@
             {
                 QuilmesModel.AddUser(submission);
                 QuilmesModel.Save();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("RegisterSuccess", "User");
             }
 
-            // Return Error
+            // TODO: Return Error
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult RegisterSuccess()
+        {
+            return View(new BaseViewModel());
         }
 
         public ActionResult NotAuthorized()
