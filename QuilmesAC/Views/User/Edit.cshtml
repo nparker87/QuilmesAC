@@ -1,0 +1,95 @@
+﻿@model QuilmesAC.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+@section Head
+{
+    <link href="@Url.Content("/Views/User/Edit.less")" re rel="stylesheet/less" type="text/css" />
+}
+
+<h2>Edit User</h2>
+
+<ul class="center">
+    <li class="main-left">
+        <fieldset>
+            <legend>@Model.Username</legend>
+            <ul>
+                @using (Html.BeginForm())
+                {
+                    <li>
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email)
+                    </li>
+                }
+                @using (Html.BeginForm("Delete", "User", new { id = Model.ID }))
+                {
+                    <li class="form-submit">
+                        <input id="deleteUser" type="submit" value="Delete" />
+                    </li>
+                }
+            </ul>
+        </fieldset>
+    </li>
+    <li class="main-left">
+        <!-- roles grid -->
+        <table id="rolesList"></table>
+        <div id="rolesPager"></div>
+    </li>
+    <li class="clear"></li>
+</ul>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            function updateDialog(url) {
+                return {
+                    url: url,
+                    closeAfterAdd: true,
+                    closeAfterEdit: true,
+                    modal: true
+                };
+            }
+
+            //jqGrid for goals
+            jQuery("#rolesList").jqGrid({
+                url: "@Url.Action("RolesGridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Roles...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "250",
+                caption: "Roles",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "Name"],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "Name", index: "Role.Name", editable: true }
+                ],
+                pager: "#rolesPager",
+                rowList: [],
+                pgbuttons: false,
+                pgtext: null,
+                sortname: "@(ViewBag.RolesSortBy)",
+                sortorder: "@(ViewBag.RolesSortOrder)",
+                page: "@(ViewBag.RolesPage)",
+                rowNum: "@(ViewBag.RolesRows)",
+                postData: { userID: "@Model.ID" },
+                viewrecords: false
+            }).navGrid("#rolesPager", { add: true, edit: true, del: true, search: false, refresh: false },
+                    updateDialog("@Url.Action("EditRole")"),
+                    updateDialog("@Url.Action("AddRole")"),
+                    updateDialog("@Url.Action("DeleteRole")"))
+                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
+
+            $("#rolesList")[0].triggerToolbar();
+        });
+    </script>
+}

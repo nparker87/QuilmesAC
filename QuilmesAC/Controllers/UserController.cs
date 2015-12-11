@@ -1,13 +1,15 @@
 ﻿namespace QuilmesAC.Controllers
 {
-    using Helpers;
-    using Models;
     using System;
     using System.Linq;
+    using System.Linq.Dynamic;
     using System.Web;
     using System.Web.Configuration;
     using System.Web.Mvc;
+    using System.Web.Script.Serialization;
     using System.Web.Security;
+    using Helpers;
+    using Models;
     using ViewModels;
 
     public class UserController : BaseController
@@ -96,6 +98,195 @@
 
             // TODO: Return Error
             return RedirectToAction("Index", "Home");
+        }
+
+        [AuthorizeHelper(Roles = "Admin")]
+        public ActionResult Index()
+        {
+            // Use last sorting choices if saved - otherwise use defaults.
+            ViewBag.UserSortBy = (Session["UserLastSortID"] ?? "ID");
+            ViewBag.UserSortOrder = (Session["UserLastSortOrder"] ?? "asc");
+            ViewBag.UserPage = (Session["UserLastSortPage"] ?? 1);
+            ViewBag.UserRows = (Session["UserLastSortRows"] ?? 50);
+
+            return View(new UserViewModel());
+        }
+
+        /// <summary> Returns the JSON data to display a jqGrid of users </summary>
+        /// POST: /User/GridData
+        [HttpPost]
+        public ActionResult GridData(string sidx, string sord, int page, int rows, bool _search, string filters)
+        {
+            // Save the last sort choices to session data.
+            Session["UserLastSortID"] = sidx;
+            Session["UserLastSortOrder"] = sord;
+            Session["UserLastSortPage"] = page;
+            Session["UserLastSortRows"] = rows;
+
+            var allRecords = from user in QuilmesModel.Users
+                             select user;
+
+            // Check for any filtering and prepare Where clauses.
+            if (_search)
+            {
+                // Deserialize the filters.
+                // TODO: MVC3 supports automagic JSON->object model binding. Cleaner to use that instead.
+                var js = new JavaScriptSerializer();
+                var search = js.Deserialize<JqgridHelper.FilterSettings>(filters);
+
+                // Note: Only groupOp="AND" and op="cn" (contains) is supported. Other options are ignored.
+                foreach (JqgridHelper.FilterRule r in search.Rules)
+                {
+                    // simplest way to handle both nullables and non-nullables
+                    try
+                    {
+                        // for strings and other non-nullables
+                        allRecords = allRecords.Where(r.Field + ".ToString().Contains(@0)", r.Data);
+                    }
+                    catch (Exception)
+                    {
+                        // null types
+                        allRecords = allRecords.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
+                    }
+                }
+            }
+
+            var totalRecords = allRecords.Count();
+            var currentPage = allRecords
+                .OrderBy(sidx + " " + sord + ", ID asc")
+                .Skip((Convert.ToInt32(page) - 1) * rows)
+                .Take(rows)
+                .ToList();
+
+            // This JSON Documentation is here: http://www.secondpersonplural.ca/jqgriddocs/_2eb0f6jhe.htm
+            var jsonData = new
+            {
+                total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
+                page, // current page
+                records = totalRecords, // total number of records of all pages
+                rows = ( //actual data records for current page
+                    from t in currentPage
+                    select new
+                    {
+                        id = t.ID,
+                        cell = new[]
+                        {
+                            t.ID.ToString(),
+                            t.Username,
+                            t.Email
+                        }
+                    }).ToArray()
+            };
+            return Json(jsonData);
+        }
+
+        [AuthorizeHelper(Roles = "Admin")]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index");
+
+            ViewBag.RolesSortBy = (Session["RolesLastSortID"] ?? "ID");
+            ViewBag.RolesSortOrder = (Session["RolesLastSortOrder"] ?? "desc");
+            ViewBag.RolesPage = (Session["RolesLastSortPage"] ?? 1);
+            ViewBag.RolesRows = (Session["RolesLastSortRows"] ?? 50);
+
+            var user = QuilmesModel.GetUserByID(id);
+            return View(new UserViewModel(user));
+        }
+
+        /// <summary> Returns the JSON data to display a jqGrid of users </summary>
+        /// POST: /User/GridData
+        [HttpPost]
+        public ActionResult RolesGridData(string sidx, string sord, int page, int rows, bool _search, string filters, int userID)
+        {
+            // Save the last sort choices to session data.
+            Session["RolesLastSortID"] = sidx;
+            Session["RolesLastSortOrder"] = sord;
+            Session["RolesLastSortPage"] = page;
+            Session["RolesLastSortRows"] = rows;
+
+            var allRecords = from userRole in QuilmesModel.UserRoles
+                             where userRole.UserID == userID
+                             select userRole;
+
+            // Check for any filtering and prepare Where clauses.
+            if (_search)
+            {
+                // Deserialize the filters.
+                // TODO: MVC3 supports automagic JSON->object model binding. Cleaner to use that instead.
+                var js = new JavaScriptSerializer();
+                var search = js.Deserialize<JqgridHelper.FilterSettings>(filters);
+
+                // Note: Only groupOp="AND" and op="cn" (contains) is supported. Other options are ignored.
+                foreach (JqgridHelper.FilterRule r in search.Rules)
+                {
+                    // simplest way to handle both nullables and non-nullables
+                    try
+                    {
+                        // for strings and other non-nullables
+                        allRecords = allRecords.Where(r.Field + ".ToString().Contains(@0)", r.Data);
+                    }
+                    catch (Exception)
+                    {
+                        // null types
+                        allRecords = allRecords.Where(r.Field + ".Value.ToString().Contains(@0)", r.Data);
+                    }
+                }
+            }
+
+            var totalRecords = allRecords.Count();
+            var currentPage = allRecords
+                .OrderBy(sidx + " " + sord + ", ID asc")
+                .Skip((Convert.ToInt32(page) - 1) * rows)
+                .Take(rows)
+                .ToList();
+
+            // This JSON Documentation is here: http://www.secondpersonplural.ca/jqgriddocs/_2eb0f6jhe.htm
+            var jsonData = new
+            {
+                total = (int)Math.Ceiling(totalRecords / (float)rows), // total number of pages
+                page, // current page
+                records = totalRecords, // total number of records of all pages
+                rows = ( //actual data records for current page
+                    from t in currentPage
+                    select new
+                    {
+                        id = t.ID,
+                        cell = new[]
+                        {
+                            t.ID.ToString(),
+                            t.Role.Name
+                        }
+                    }).ToArray()
+            };
+            return Json(jsonData);
+        }
+
+        public ContentResult AddRole(UserRoleViewModel userRoleViewModel)
+        {
+            QuilmesModel.Add(userRoleViewModel);
+            QuilmesModel.Save();
+
+            return Content("Success");
+        }
+
+        public ContentResult EditRole(UserRoleViewModel userRoleViewModel)
+        {
+            var userRole = QuilmesModel.GetUserRoleByID(userRoleViewModel.ID);
+            QuilmesModel.Update(userRole, userRoleViewModel);
+            QuilmesModel.Save();
+
+            return Content("Success");
+        }
+
+        public ContentResult DeleteUserRole(int id)
+        {
+            var userRole = QuilmesModel.GetUserRoleByID(id);
+            QuilmesModel.Delete(userRole);
+            QuilmesModel.Save();
+
+            return Content("Success");
         }
 
         public ActionResult RegisterSuccess()

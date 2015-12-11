@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.Models
 {
-    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -50,6 +50,37 @@
         public User GetUserByUsername(string username)
         {
             return Users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower());
+        }
+
+        public User GetUserByID(int? id)
+        {
+            return Users.FirstOrDefault(x => x.ID == id);
+        }
+
+        public UserRole GetUserRoleByID(int id)
+        {
+            return UserRoles.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(UserRoleViewModel submission)
+        {
+            var userRole = new UserRole
+            {
+                UserID = submission.UserID,
+                RoleID = submission.RoleID
+            };
+            UserRoles.InsertOnSubmit(userRole);
+        }
+
+        public void Update(UserRole userRole, UserRoleViewModel submission)
+        {
+            userRole.UserID = submission.UserID;
+            userRole.RoleID = submission.RoleID;
+        }
+
+        public void Delete(UserRole userRole)
+        {
+            UserRoles.DeleteOnSubmit(userRole);
         }
 
         /* Player Methods */

@@ -152,6 +152,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GoalViewModel.cs" />
+    <Compile Include="ViewModels\UserRoleViewModel.cs" />
     <Compile Include="ViewModels\StandingViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\OpponentViewModel.cs" />
@@ -272,6 +273,8 @@
     <Content Include="Views\Match\Match.js" />
     <Content Include="Views\Match\Standing.js" />
     <Content Include="Views\Player\Index.js" />
+    <None Include="Views\User\Edit.less" />
+    <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -305,6 +308,8 @@
     <Content Include="Views\Standing\Index.cshtml" />
     <Content Include="Views\Standing\Index.less" />
     <Content Include="Views\User\RegisterSuccess.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

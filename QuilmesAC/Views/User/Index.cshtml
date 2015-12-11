@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+<p class="center">
+    Double click to edit a user.
+</p>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
+{
+    <table id="list"></table>
+    <div id="pager"></div>
+}
+
+@section Scripts
+{
+    <script id="Index.js" src="~/Views/User/Index.js"
+            data-url="@Url.Action("GridData")"
+            data-sort-by="@ViewBag.UserSortBy"
+            data-sort-order="@ViewBag.UserSortOrder"
+            data-page="@ViewBag.UserPage"
+            data-rows="@ViewBag.UserRows"
+            data-action-edit="@Url.Action("Edit", "User", new { id = "" })"></script>
+}
