@@ -273,7 +273,6 @@
     <Content Include="Views\Match\Match.js" />
     <Content Include="Views\Match\Standing.js" />
     <Content Include="Views\Player\Index.js" />
-    <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

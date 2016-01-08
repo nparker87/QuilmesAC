@@ -263,7 +263,7 @@
             return Json(jsonData);
         }
 
-        public ContentResult AddRole(UserRoleViewModel userRoleViewModel)
+        public ContentResult AddUserRole(UserRoleViewModel userRoleViewModel)
         {
             QuilmesModel.Add(userRoleViewModel);
             QuilmesModel.Save();
@@ -271,7 +271,7 @@
             return Content("Success");
         }
 
-        public ContentResult EditRole(UserRoleViewModel userRoleViewModel)
+        public ContentResult EditUserRole(UserRoleViewModel userRoleViewModel)
         {
             var userRole = QuilmesModel.GetUserRoleByID(userRoleViewModel.ID);
             QuilmesModel.Update(userRole, userRoleViewModel);
