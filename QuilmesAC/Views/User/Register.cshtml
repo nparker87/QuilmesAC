@@ -26,6 +26,7 @@
                         @Html.ValidationMessageFor(model => model.Password)
                     </li>
                     <li>
+                        @Html.RequriedLabelFor(model => model.Email)
                         @Html.LabelFor(model => model.Email)
                         @Html.TextBoxFor(model => model.Email)
                     </li>

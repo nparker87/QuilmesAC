@@ -27,6 +27,13 @@
         public string ReturnUrl { get; set; }
     }
 
+    public class ForgotPassword : BaseViewModel
+    {
+        [Required]
+        [Display(Name = "Email address")]
+        public string Email { get; set; }
+    }
+
     #region Providers
 
     public class MembershipProvider : System.Web.Security.MembershipProvider
