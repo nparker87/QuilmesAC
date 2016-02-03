@@ -5,3 +5,5 @@
 2. Sorting players by yc/rc does not work properly since they are from the same table but seperated into different columns
 
 3. Auto snap to username on admin page
+
+4. Some model methods have inconsistent naming, add vs. addplayer

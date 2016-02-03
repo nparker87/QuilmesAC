@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Positions";
+}
+
+<h2>Positions</h2>
+@using (Html.BeginForm())
+{
+    <table id="list"></table>
+    <div id="pager"></div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        //jqGrid for positions
+        jQuery(document).ready(function () {
+            function updateDialog(url) {
+                return {
+                    url: url,
+                    closeAfterAdd: true,
+                    closeAfterEdit: true,
+                    modal: true
+                };
+            }
+
+            jQuery("#list").jqGrid({
+                url: "@Url.Action("GridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Positions...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "550",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "Name", "Abbv."],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "Name", index: "Name", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
+                    { name: "ShortName", index: "ShortName", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } }
+                ],
+                cellEdit: false,
+                pager: "#pager",
+                rowList: [15, 50, 100],
+                sortname: "@(ViewBag.SortBy)",
+                sortorder: "@(ViewBag.SortOrder)",
+                page: "@(ViewBag.Page)",
+                rowNum: "@(ViewBag.Rows)",
+                postData: { seasonID: "@Model.ID" },
+                viewrecords: true
+            }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
+                    updateDialog("@Url.Action("EditPosition")"),
+                    updateDialog("@Url.Action("AddPosition")"),
+                    updateDialog("@Url.Action("DeletePosition")"))
+                .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+                .setGridParam({ datatype: "json" }); // Done this way for default filter values.
+
+            $("#list")[0].triggerToolbar();
+        });
+    </script>
+}

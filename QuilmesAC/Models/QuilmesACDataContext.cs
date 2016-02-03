@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.Models
 {
+    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -126,6 +126,32 @@
         public List<Position> GetPositions()
         {
             return Positions.ToList();
+        }
+
+        public Position GetPositionByID(int id)
+        {
+            return Positions.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(PositionViewModel submission)
+        {
+            var position = new Position
+            {
+                Name = submission.Name,
+                ShortName = submission.ShortName
+            };
+            Positions.InsertOnSubmit(position);
+        }
+
+        public void Update(Position position, PositionViewModel submission)
+        {
+            position.Name = submission.Name;
+            position.ShortName = submission.ShortName;
+        }
+
+        public void Delete(Position position)
+        {
+            Positions.DeleteOnSubmit(position);
         }
 
         /* Status Methods */

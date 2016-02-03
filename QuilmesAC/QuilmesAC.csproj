@@ -117,6 +117,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
     <Compile Include="ViewModels\GoalViewModel.cs" />
+    <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="ViewModels\UserRoleViewModel.cs" />
     <Compile Include="ViewModels\StandingViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
@@ -273,6 +275,7 @@
     <Content Include="Views\Match\Match.js" />
     <Content Include="Views\Match\Standing.js" />
     <Content Include="Views\Player\Index.js" />
+    <Content Include="Views\Position\Index.cshtml" />
     <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">
