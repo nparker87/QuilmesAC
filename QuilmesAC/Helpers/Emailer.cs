@@ -20,7 +20,7 @@
         /// <param name="bcc">List of type EmailList</param>
         public static void SendMsg(string toAddress, string fromAddress, string fromName, string subject, string body, EmailList cc, EmailList bcc)
         {
-            toAddress = String.IsNullOrWhiteSpace(toAddress) ? "parkerjn2@vcu.edu" : toAddress;
+            toAddress = String.IsNullOrWhiteSpace(toAddress) ? "quilmesrva@gmail.com" : toAddress;
 
             // Error handling for addresses
             if (!IsValidEmail(toAddress)) return;
