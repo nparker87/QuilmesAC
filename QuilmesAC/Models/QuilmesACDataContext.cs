@@ -57,6 +57,11 @@
             return Users.FirstOrDefault(x => x.ID == id);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return Users.FirstOrDefault(x => x.Email == email);
+        }
+
         public UserRole GetUserRoleByID(int id)
         {
             return UserRoles.FirstOrDefault(x => x.ID == id);

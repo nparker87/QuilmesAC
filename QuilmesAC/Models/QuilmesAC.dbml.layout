@@ -101,7 +101,7 @@
         <classShapeMoniker Id="6b6dfc7c-672d-4954-9a3e-b9cb7f35e5b2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 3.19314697265625); (2.5 : 3.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.875 : 3.19314697265625); (2.5 : 3.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuilmesDataContext/Match/Match_Goal" />
       <nodes>
         <classShapeMoniker Id="62dd9572-bf8b-46a7-a350-d50d433c55b5" />
@@ -190,7 +190,7 @@
         <elementListCompartment Id="84e4aa03-7ce6-4e0e-b3b6-86ffdb2d9528" absoluteBounds="7.7650000000000006, 5.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.875 : 6.70119466145833); (6.16666666666667 : 6.70119466145833 : JumpStart); (6.33333333333333 : 6.70119466145833 : JumpEnd); (7.75 : 6.70119466145833)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.875 : 6.70119466145833); (7.75 : 6.70119466145833)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QuilmesDataContext/Opponent/Opponent_Standing" />
       <nodes>
         <classShapeMoniker Id="e9d685a4-2b3b-4304-a517-60de086bcf32" />
@@ -204,16 +204,16 @@
         <classShapeMoniker Id="f56ff885-bab9-41ea-bcb7-1c28b03f184f" />
       </nodes>
     </associationConnector>
-    <classShape Id="7c81d920-d6eb-4989-beec-8c4106f94b1a" absoluteBounds="10.375, 0.5, 2, 1.7708968098958331">
+    <classShape Id="02bcc128-c1db-4913-8ec5-7ce4f29966cd" absoluteBounds="10.5, 0.5, 2, 1.9631982421875">
       <DataClassMoniker Name="/QuilmesDataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="2febd16c-130f-48f7-ad11-7ab2313e907d" absoluteBounds="10.39, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="88873aba-805a-4da2-acbc-022753b41a53" absoluteBounds="10.515, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(12.375 : 1.19314697265625); (12.75 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(12.5 : 1.19314697265625); (12.75 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QuilmesDataContext/User/User_UserRole" />
       <nodes>
-        <classShapeMoniker Id="7c81d920-d6eb-4989-beec-8c4106f94b1a" />
+        <classShapeMoniker Id="02bcc128-c1db-4913-8ec5-7ce4f29966cd" />
         <classShapeMoniker Id="47c9d7f4-1f20-449a-9eac-6b8c523e53a8" />
       </nodes>
     </associationConnector>

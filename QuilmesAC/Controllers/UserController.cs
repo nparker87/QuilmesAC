@@ -100,6 +100,42 @@
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPassword forgotPassword)
+        {
+            var user = QuilmesModel.GetUserByEmail(forgotPassword.Email);
+            if (user == null || user.Email == null)
+                ModelState.AddModelError("", "The email you entered does not belong to anny account.");
+
+            if (ModelState.IsValid)
+            {
+                // Set up the reset password verification if blank
+                if (user.PasswordReset == null)
+                {
+                    user.PasswordReset = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 19);
+                    QuilmesModel.Save();
+                }
+
+                // Email the user
+                var domain = WebConfigurationManager.AppSettings["Domain"];
+                var resetUrl = String.Format("{0}/Login/ForgotPassword/Reset/{1}", domain, user.PasswordReset);
+                var emailMsg = "Your login username is: " + user.Username + "<br /><br />";
+                emailMsg += "To reset your password to a new one, visit the special link below to complete your new password request:<br />";
+                emailMsg += "<a href=\"" + resetUrl + "\">" + resetUrl + "</a><br /><br />";
+                emailMsg += "If you did not request your username nor a password reset, please email <a href=\"mailto:quilmesrva@gmail.com\">quilmesrva@gmail.com</a>. ";
+                emailMsg += "As long as you do not click the reset link contained in this email, no action will be taken and your password will remain the same.";
+
+                Emailer.SendMsg(user.Email, "quilmesrva@gmail.com", "QuilmesRVA", "QuilmesRVA website login information", emailMsg, null, null);
+            }
+
+            return View(forgotPassword);
+        }
+
         [AuthorizeHelper(Roles = "Admin")]
         public ActionResult Index()
         {
@@ -263,7 +299,7 @@
             return Json(jsonData);
         }
 
-        public ContentResult AddRole(UserRoleViewModel userRoleViewModel)
+        public ContentResult AddUserRole(UserRoleViewModel userRoleViewModel)
         {
             QuilmesModel.Add(userRoleViewModel);
             QuilmesModel.Save();
@@ -271,7 +307,7 @@
             return Content("Success");
         }
 
-        public ContentResult EditRole(UserRoleViewModel userRoleViewModel)
+        public ContentResult EditUserRole(UserRoleViewModel userRoleViewModel)
         {
             var userRole = QuilmesModel.GetUserRoleByID(userRoleViewModel.ID);
             QuilmesModel.Update(userRole, userRoleViewModel);

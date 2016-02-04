@@ -2,10 +2,6 @@
 @{
     ViewBag.Title = "Edit";
 }
-@section Head
-{
-    <link href="@Url.Content("/Views/User/Edit.less")" re rel="stylesheet/less" type="text/css" />
-}
 
 <h2>Edit User</h2>
 
@@ -83,9 +79,9 @@
                 postData: { userID: "@Model.ID" },
                 viewrecords: false
             }).navGrid("#rolesPager", { add: true, edit: true, del: true, search: false, refresh: false },
-                    updateDialog("@Url.Action("EditRole")"),
-                    updateDialog("@Url.Action("AddRole")"),
-                    updateDialog("@Url.Action("DeleteRole")"))
+                    updateDialog("@Url.Action("EditUserRole")"),
+                    updateDialog("@Url.Action("AddUserRole")"),
+                    updateDialog("@Url.Action("DeleteUserRole")"))
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
                 .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
