@@ -1,10 +1,10 @@
 ﻿namespace QuilmesAC.Helpers
 {
+    using Models;
     using System;
     using System.Security.Cryptography;
     using System.Text;
     using System.Web.Mvc;
-    using Models;
 
     public static class LoginHelper
     {

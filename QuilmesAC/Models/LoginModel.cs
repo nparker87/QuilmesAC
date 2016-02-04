@@ -1,12 +1,12 @@
 ﻿namespace QuilmesAC.Models
 {
+    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Helpers;
     using ViewModels;
 
     public class Login : BaseViewModel

@@ -1,11 +1,11 @@
 ﻿namespace QuilmesAC.Helpers
 {
+    using StackExchange.Profiling.Data;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data.SqlClient;
     using System.Reflection;
-    using StackExchange.Profiling.Data;
 
     public static class MiniProfilerHelper
     {

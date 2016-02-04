@@ -1,12 +1,12 @@
 ﻿namespace QuilmesAC.MiniProfiler
 {
+    using Helpers;
+    using StackExchange.Profiling.Data;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data.SqlClient;
     using System.Reflection;
-    using Helpers;
-    using StackExchange.Profiling.Data;
 
     public class MiniProfilerHelper
     {
@@ -17,16 +17,16 @@
         /// <param name="connectionStringName">Connection string name from the Web.Config</param>
         public static T Create<T>(string connectionStringName = null) where T : System.Data.Linq.DataContext, new()
         {
-            var type = typeof (T);
+            var type = typeof(T);
 
             // if connectionStringName was not specified, attempt to pull the name from Constants class
             if (connectionStringName == null)
             {
-                var constantType = typeof (Constants.ConnectionStrings);
+                var constantType = typeof(Constants.ConnectionStrings);
                 var field = constantType.GetField(type.Name, BindingFlags.Static | BindingFlags.NonPublic)
                             ?? constantType.GetField(type.Name, BindingFlags.Static | BindingFlags.Public);
                 if (field != null)
-                    connectionStringName = (string) field.GetRawConstantValue();
+                    connectionStringName = (string)field.GetRawConstantValue();
             }
 
             // try to get the connection string. throw error if not found
@@ -40,7 +40,7 @@
                 StackExchange.Profiling.MiniProfiler.Current);
 
             // return new data context instance, passing the connection to constructor
-            return (T) Activator.CreateInstance(type, connection);
+            return (T)Activator.CreateInstance(type, connection);
         }
     }
 }

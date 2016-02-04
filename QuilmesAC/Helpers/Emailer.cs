@@ -1,10 +1,10 @@
 ﻿namespace QuilmesAC.Helpers
 {
+    using Microsoft.Ajax.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Net.Mail;
     using System.Text.RegularExpressions;
-    using Microsoft.Ajax.Utilities;
 
     public class Emailer
     {

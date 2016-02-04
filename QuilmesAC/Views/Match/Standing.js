@@ -3,7 +3,6 @@
 })
 
 jQuery(document).ready(function ($) {
-
     // Import all the variables from the model
     var $vars = $('#Standing\\.js').data();
 

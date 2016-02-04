@@ -127,7 +127,7 @@
 
             return Content("Success");
         }
-        
+
         public string GetSeasons()
         {
             var result = new StringBuilder();

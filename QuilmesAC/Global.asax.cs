@@ -1,12 +1,12 @@
 ﻿namespace QuilmesAC
 {
+    using App_Start;
     using System;
     using System.Security.Principal;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
     using System.Web.Security;
-    using App_Start;
 
     public class MvcApplication : System.Web.HttpApplication
     {

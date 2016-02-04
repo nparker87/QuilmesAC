@@ -1,8 +1,8 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+    using Models;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using Models;
 
     public class UserViewModel : BaseViewModel
     {

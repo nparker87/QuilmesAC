@@ -1,10 +1,10 @@
 ﻿namespace QuilmesAC.ViewModels
 {
+    using Models;
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    using Models;
 
     public class PlayerViewModel : BaseViewModel
     {

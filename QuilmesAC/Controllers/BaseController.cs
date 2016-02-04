@@ -1,8 +1,8 @@
 ﻿namespace QuilmesAC.Controllers
 {
-    using System.Web.Mvc;
     using MiniProfiler;
     using Models;
+    using System.Web.Mvc;
 
     public class BaseController : Controller
     {
@@ -13,6 +13,5 @@
             // need to build the db before this can work
             get { return _quilmes ?? (_quilmes = MiniProfilerHelper.Create<QuilmesDataContext>()); }
         }
-
     }
 }

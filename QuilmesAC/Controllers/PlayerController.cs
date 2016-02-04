@@ -1,12 +1,12 @@
 ﻿namespace QuilmesAC.Controllers
 {
+    using Helpers;
     using System;
     using System.Linq;
     using System.Linq.Dynamic;
     using System.Text;
     using System.Web.Mvc;
     using System.Web.Script.Serialization;
-    using Helpers;
     using ViewModels;
 
     public class PlayerController : BaseController
