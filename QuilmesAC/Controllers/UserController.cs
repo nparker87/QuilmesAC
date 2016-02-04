@@ -16,7 +16,6 @@
     {
         public ActionResult Login(string returnUrl)
         {
-            // test
             // check if already logged in
             if (!String.IsNullOrEmpty(User.Identity.Name))
             {
