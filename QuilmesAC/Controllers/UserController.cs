@@ -100,9 +100,14 @@
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult RegisterSuccess()
+        {
+            return View(new BaseViewModel());
+        }
+
         public ActionResult ForgotPassword()
         {
-            return View();
+            return View(new ForgotPassword());
         }
 
         [HttpPost]
@@ -323,11 +328,6 @@
             QuilmesModel.Save();
 
             return Content("Success");
-        }
-
-        public ActionResult RegisterSuccess()
-        {
-            return View(new BaseViewModel());
         }
 
         public ActionResult NotAuthorized()

@@ -30,7 +30,7 @@
     public class ForgotPassword : BaseViewModel
     {
         [Required]
-        [Display(Name = "Email address")]
+        [Display(Name = "Email:")]
         public string Email { get; set; }
     }
 
