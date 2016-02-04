@@ -33,9 +33,9 @@
                         @Html.EditorFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password)
                     </li>
-                    <li>
-                        @Html.ActionLink("Forgot username or password?", "ForgotPassword", "User")
-                    </li>
+                    @*<li>
+                            @Html.ActionLink("Forgot username or password?", "ForgotPassword", "User")
+                        </li>*@
                     <li class="center">
                         <input type="submit" value="Login" />
                         @Html.ActionLink("Register", "Register", "User")

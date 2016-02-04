@@ -111,11 +111,11 @@
         }
 
         [HttpPost]
-        public ActionResult ForgotPassword(ForgotPassword forgotPassword)
+        public ActionResult ForgotPassword(ForgotPassword submission)
         {
-            var user = QuilmesModel.GetUserByEmail(forgotPassword.Email);
+            var user = QuilmesModel.GetUserByEmail(submission.Email);
             if (user == null || user.Email == null)
-                ModelState.AddModelError("", "The email you entered does not belong to anny account.");
+                ModelState.AddModelError("", "The email you entered does not belong to any account.");
 
             if (ModelState.IsValid)
             {
@@ -128,7 +128,7 @@
 
                 // Email the user
                 var domain = WebConfigurationManager.AppSettings["Domain"];
-                var resetUrl = String.Format("{0}/Login/ForgotPassword/Reset/{1}", domain, user.PasswordReset);
+                var resetUrl = String.Format("{0}/User/Reset/{1}", domain, user.PasswordReset);
                 var emailMsg = "Your login username is: " + user.Username + "<br /><br />";
                 emailMsg += "To reset your password to a new one, visit the special link below to complete your new password request:<br />";
                 emailMsg += "<a href=\"" + resetUrl + "\">" + resetUrl + "</a><br /><br />";
@@ -138,7 +138,7 @@
                 Emailer.SendMsg(user.Email, "quilmesrva@gmail.com", "QuilmesRVA", "QuilmesRVA website login information", emailMsg, null, null);
             }
 
-            return View(forgotPassword);
+            return View(submission);
         }
 
         [AuthorizeHelper(Roles = "Admin")]
