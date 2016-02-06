@@ -136,6 +136,8 @@
                 emailMsg += "As long as you do not click the reset link contained in this email, no action will be taken and your password will remain the same.";
 
                 Emailer.SendMsg(user.Email, "quilmesrva@gmail.com", "QuilmesRVA", "QuilmesRVA website login information", emailMsg, null, null);
+
+                return RedirectToAction("EmailSent");
             }
 
             return View(submission);
@@ -370,6 +372,11 @@
         }
 
         public ActionResult ResetSuccess()
+        {
+            return View(new BaseViewModel());
+        }
+
+        public ActionResult EmailSent()
         {
             return View(new BaseViewModel());
         }

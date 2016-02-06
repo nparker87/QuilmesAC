@@ -3,8 +3,10 @@
     using Microsoft.Ajax.Utilities;
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Mail;
     using System.Text.RegularExpressions;
+    using System.Web.Configuration;
 
     public class Emailer
     {
@@ -28,6 +30,7 @@
             var msg = new MailMessage
             {
                 To = { new MailAddress(toAddress) },
+                From = new MailAddress(fromAddress),
                 Body = body,
                 IsBodyHtml = true,
                 Priority = MailPriority.Normal,
@@ -46,7 +49,13 @@
                     if (IsValidEmail(email))
                         msg.CC.Add(new MailAddress(bcc.ToString()));
 
-            var smtp = new SmtpClient("");
+            var smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.Timeout = 10000;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(WebConfigurationManager.AppSettings["GmailUsername"], WebConfigurationManager.AppSettings["GmailPassword"]);
+
             smtp.Send(msg);
         }
 
