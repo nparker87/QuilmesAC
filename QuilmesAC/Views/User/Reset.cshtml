@@ -1,0 +1,38 @@
+﻿@model QuilmesAC.Models.PasswordReset
+@{
+    ViewBag.Title = "Reset Password";
+}
+<h2 class="title">
+    Reset Your Password
+</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Password change was unsuccessful. Please correct the errors and try again.")
+    <fieldset>
+        <ul>
+            <li>
+                <p>
+                    Use the form below to change your password. New passwords are required to be a minimum
+                    of 5 characters in length.
+                </p>
+            </li>
+            <li>
+                @Html.HiddenFor(model => model.UserName)
+                @Html.HiddenFor(model => model.OldPassword)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.NewPassword)
+                @Html.PasswordFor(model => model.NewPassword)
+                @Html.ValidationMessageFor(model => model.NewPassword)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.ConfirmPassword)
+                @Html.PasswordFor(model => model.ConfirmPassword)
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            </li>
+        </ul>
+    </fieldset>
+    <p>
+        <input type="submit" value="Reset Your Password" />
+    </p>
+}

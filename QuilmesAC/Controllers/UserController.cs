@@ -141,6 +141,45 @@
             return View(submission);
         }
 
+        public ActionResult Reset(string id)
+        {
+            User user = QuilmesModel.GetUserByPasswordReset(id);
+            if (user != null && user.PasswordReset != null)
+            {
+                var viewModel = new PasswordReset
+                {
+                    UserName = user.Username,
+                    OldPassword = id
+                };
+
+                return View(viewModel);
+            }
+
+            // password reset is null or invalid
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reset(PasswordReset passwordReset)
+        {
+            if (ModelState.IsValid)
+            {
+                // get user
+                User user = QuilmesModel.GetUserByPasswordReset(passwordReset.OldPassword);
+
+                if (user != null && user.PasswordReset != null)
+                {
+                    // change to new password
+                    user.Password = LoginHelper.EncryptPassword(user.Username, passwordReset.NewPassword);
+                    QuilmesModel.Save();
+
+                    return RedirectToAction("ResetSuccess");
+                }
+            }
+
+            return View();
+        }
+
         [AuthorizeHelper(Roles = "Admin")]
         public ActionResult Index()
         {
@@ -328,6 +367,11 @@
             QuilmesModel.Save();
 
             return Content("Success");
+        }
+
+        public ActionResult ResetSuccess()
+        {
+            return View(new BaseViewModel());
         }
 
         public ActionResult NotAuthorized()

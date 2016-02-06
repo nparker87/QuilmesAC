@@ -45,6 +45,11 @@
             Users.InsertOnSubmit(user);
         }
 
+        public User GetUserByPasswordReset(string passwordReset)
+        {
+            return Users.FirstOrDefault(x => x.PasswordReset == passwordReset);
+        }
+
         /// <summary> Returns a single user for the given username </summary>
         /// <remarks> Currently case insensitive </remarks>
         public User GetUserByUsername(string username)
