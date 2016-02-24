@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Match\Standing.js" />
     <Content Include="Views\Player\Index.js" />
     <Content Include="Views\Position\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
     <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">

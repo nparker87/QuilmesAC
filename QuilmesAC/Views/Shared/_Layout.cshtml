@@ -57,6 +57,9 @@
                     <li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
                         @Html.ActionLink("Fixtures", "Index", "Match")
                     </li>
+                    <li class="@(Model.CurrentTab == "About" ? "selected" : "")">
+                        @Html.ActionLink("About", "Index", "About")
+                    </li>
                     @{
                         if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
                         {
