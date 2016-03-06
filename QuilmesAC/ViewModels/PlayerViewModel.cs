@@ -18,6 +18,7 @@
             CurrentTab = "Player";
             PopulateSelectLists(model);
             StatusID = 1;
+            SeasonID = model.GetCurrentSeason();
         }
 
         public PlayerViewModel(QuilmesDataContext model, Player player)
