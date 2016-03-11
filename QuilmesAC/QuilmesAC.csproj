@@ -192,6 +192,7 @@
     <Content Include="Content\Images\SocialMedia\flickr.png" />
     <Content Include="Content\Images\SocialMedia\forrst.png" />
     <Content Include="Content\Images\SocialMedia\google+.png" />
+    <Content Include="Content\Images\SocialMedia\instagram.png" />
     <Content Include="Content\Images\SocialMedia\rss.png" />
     <Content Include="Content\Images\SocialMedia\share.png" />
     <Content Include="Content\Images\SocialMedia\skype.png" />
@@ -261,6 +262,7 @@
     </Content>
     <Content Include="Content\Less\Site.less" />
     <None Include="Properties\PublishProfiles\--Live--.pubxml" />
+    <None Include="Properties\PublishProfiles\Live.pubxml" />
     <None Include="Properties\PublishProfiles\QuilmesAC.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
