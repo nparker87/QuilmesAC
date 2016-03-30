@@ -85,7 +85,7 @@
                         cell = new[]
                         {
                             t.ID.ToString(),
-                            t.LastName + ", " + t.FirstName,
+                            t.LastName + ", " + t.FirstName + (t.LastName == "Porter" ? " <em>(Captain)</em>" : ""),
                             t.Number.ToString(),
                             (String.IsNullOrEmpty(seasonID)
                                 ? t.Goals.Count.ToString()
