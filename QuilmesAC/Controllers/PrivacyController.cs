@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using ViewModels;
 
-    public class PrivacyPolicyController : BaseController
+    public class PrivacyController : BaseController
     {
         public ActionResult Index()
         {
