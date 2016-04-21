@@ -5,8 +5,10 @@
 <h2>Positions</h2>
 @using (Html.BeginForm())
 {
-    <table id="list"></table>
-    <div id="pager"></div>
+    <table id="positionList"></table>
+    <div id="positionPager"></div>
+    <table id="playerPositionList"></table>
+    <div id="playerPositionPager"></div>
 }
 
 @section Scripts
@@ -23,8 +25,8 @@
                 };
             }
 
-            jQuery("#list").jqGrid({
-                url: "@Url.Action("GridData")",
+            jQuery("#positionList").jqGrid({
+                url: "@Url.Action("PositionGridData")",
                 datatype: "local",
                 gridview: true,
                 height: "100%",
@@ -44,7 +46,7 @@
                     { name: "ShortName", index: "ShortName", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } }
                 ],
                 cellEdit: false,
-                pager: "#pager",
+                pager: "#positionPager",
                 rowList: [15, 50, 100],
                 sortname: "@(ViewBag.SortBy)",
                 sortorder: "@(ViewBag.SortOrder)",
@@ -52,14 +54,53 @@
                 rowNum: "@(ViewBag.Rows)",
                 postData: { seasonID: "@Model.ID" },
                 viewrecords: true
-            }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
+            }).navGrid("#positionPager", { edit: true, add: true, del: true, search: false, refresh: false },
                     updateDialog("@Url.Action("EditPosition")"),
                     updateDialog("@Url.Action("AddPosition")"),
                     updateDialog("@Url.Action("DeletePosition")"))
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
                 .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-            $("#list")[0].triggerToolbar();
+            $("#positionList")[0].triggerToolbar();
+
+            jQuery("#playerPositionList").jqGrid({
+                url: "@Url.Action("PlayerPositionGridData")",
+                datatype: "local",
+                gridview: true,
+                height: "100%",
+                hidegrid: false,
+                loadtext: "Retrieving Positions...",
+                mtype: "POST",
+                forceFit: true,
+                autowidth: false,
+                sortable: true,
+                width: "550",
+                cellLayout: 6, // gets rid of annoying horizontal scrollbar
+                colNames: ["ID", "Player", "Position", "Primary"],
+                colModel: [
+                    // index must be the column name for sorting with orderby
+                    { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
+                    { name: "PlayerID", index: "Player.LastName", align: "left", editable: true, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Position/GetPlayers/")" }, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
+                    { name: "PositionID", index: "PositionID", align: "left", editable: true, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Position/GetPositions/")" }, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
+                    { name: "PrimaryPosition", index: "PrimaryPosition", align: "left", editable: true, edittype: "checkbox", editoptions: { value: "true:false" } }
+                ],
+                cellEdit: false,
+                pager: "#playerPositionPager",
+                rowList: [15, 50, 100],
+                sortname: "@(ViewBag.SortBy)",
+                sortorder: "@(ViewBag.SortOrder)",
+                page: "@(ViewBag.Page)",
+                rowNum: "@(ViewBag.Rows)",
+                postData: { seasonID: "@Model.ID" },
+                viewrecords: true
+            }).navGrid("#playerPositionPager", { edit: true, add: true, del: true, search: false, refresh: false },
+                updateDialog("@Url.Action("EditPlayerPosition")"),
+                updateDialog("@Url.Action("AddPlayerPosition")"),
+                updateDialog("@Url.Action("DeletePlayerPosition")"))
+            .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
+            .setGridParam({ datatype: "json" }); // Done this way for default filter values.
+
+            $("#playerPositionList")[0].triggerToolbar();
         });
     </script>
 }

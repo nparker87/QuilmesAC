@@ -1,8 +1,4 @@
-﻿$(function () {
-    highlightQuilmes($("#SeasonID").val());
-})
-
-jQuery(document).ready(function ($) {
+﻿jQuery(document).ready(function ($) {
     // Import all the variables from the model
     var $vars = $('#Standing\\.js').data();
 
@@ -75,5 +71,9 @@ function highlightQuilmes(seasonID) {
             var quilmesRow = "#standingTable tr#" + data;
             $(quilmesRow).addClass("ui-state-highlight");
         }
-    })
+    });
 }
+
+$(function () {
+    highlightQuilmes($("#SeasonID").val());
+});

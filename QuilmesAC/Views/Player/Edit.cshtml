@@ -96,8 +96,8 @@
                     { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
                     { name: "PlayerID", index: "PlayerID", editable: true, hidden: true, editoptions: { readonly: true, defaultValue: "@Model.ID" } },
                     { name: "MatchID", index: "MatchID", editable: true, hidden: true, editrules: { required: true, edithidden: true }, edittype: "select", editoptions: { dataUrl: "@Url.Action("GetMatches")" }, formoptions: { elmsuffix: "(*)" } },
-                        { name: "Opponent", index: "Match.Opponent.Name", width: 100, align: "left", editable: false },
-                        { name: "MatchDate", index: "Match.MatchDate", width: 100, align: "left", editable: false }
+                    { name: "Opponent", index: "Match.Opponent.Name", width: 100, align: "left", editable: false },
+                    { name: "MatchDate", index: "Match.MatchDate", width: 100, align: "left", editable: false }
                 ],
                 pager: "#goalPager",
                 rowList: [],

@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.Models
 {
-    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -162,6 +162,36 @@
         public void Delete(Position position)
         {
             Positions.DeleteOnSubmit(position);
+        }
+
+        /* Player Position Methods */
+
+        public PlayerPosition GetPlayerPositionByID(int id)
+        {
+            return PlayerPositions.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(PlayerPositionViewModel submission)
+        {
+            var playerPosition = new PlayerPosition
+            {
+                PlayerID = submission.PlayerID,
+                PositionID = submission.PositionID,
+                PrimaryPosition = submission.PrimaryPosition
+            };
+            PlayerPositions.InsertOnSubmit(playerPosition);
+        }
+
+        public void Update(PlayerPosition playerPosition, PlayerPositionViewModel submission)
+        {
+            playerPosition.PlayerID = submission.PlayerID;
+            playerPosition.PositionID = submission.PositionID;
+            playerPosition.PrimaryPosition = submission.PrimaryPosition;
+        }
+
+        public void Delete(PlayerPosition playerPosition)
+        {
+            PlayerPositions.DeleteOnSubmit(playerPosition);
         }
 
         /* Status Methods */
