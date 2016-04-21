@@ -273,6 +273,7 @@
     <Content Include="Views\Player\Index.js" />
     <Content Include="Views\Position\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Position\Index.less" />
     <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">

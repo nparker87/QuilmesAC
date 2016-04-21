@@ -1,14 +1,25 @@
 ﻿@{
     ViewBag.Title = "Positions";
 }
+@section Head
+{
+    <link href="@Url.Content("/Views/Position/Index.less")" rel="stylesheet/less" type="text/css" />
+}
 
 <h2>Positions</h2>
 @using (Html.BeginForm())
 {
-    <table id="positionList"></table>
-    <div id="positionPager"></div>
-    <table id="playerPositionList"></table>
-    <div id="playerPositionPager"></div>
+    <div class="center-table">
+        <div id="positionTable">
+            <table id="positionList"></table>
+            <div id="positionPager"></div>
+        </div>
+        <div id="playerPositionTable">
+            <table id="playerPositionList"></table>
+            <div id="playerPositionPager"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
 }
 
 @section Scripts
@@ -36,7 +47,7 @@
                 forceFit: true,
                 autowidth: false,
                 sortable: true,
-                width: "550",
+                width: "250",
                 cellLayout: 6, // gets rid of annoying horizontal scrollbar
                 colNames: ["ID", "Name", "Abbv."],
                 colModel: [
