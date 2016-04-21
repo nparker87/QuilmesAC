@@ -173,6 +173,10 @@
 
         public void Add(PlayerPositionViewModel submission)
         {
+            if (submission.PrimaryPosition)
+                foreach (var primaryPosition in PlayerPositions.Where(x => x.PlayerID == submission.PlayerID && x.PrimaryPosition))
+                    primaryPosition.PrimaryPosition = false;
+
             var playerPosition = new PlayerPosition
             {
                 PlayerID = submission.PlayerID,
@@ -184,6 +188,10 @@
 
         public void Update(PlayerPosition playerPosition, PlayerPositionViewModel submission)
         {
+            if (submission.PrimaryPosition)
+                foreach (var primaryPosition in PlayerPositions.Where(x => x.PlayerID == submission.PlayerID && x.PrimaryPosition))
+                    primaryPosition.PrimaryPosition = false;
+
             playerPosition.PlayerID = submission.PlayerID;
             playerPosition.PositionID = submission.PositionID;
             playerPosition.PrimaryPosition = submission.PrimaryPosition;
