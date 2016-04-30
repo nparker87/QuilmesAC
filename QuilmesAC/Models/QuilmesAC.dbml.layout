@@ -101,7 +101,7 @@
         <classShapeMoniker Id="6b6dfc7c-672d-4954-9a3e-b9cb7f35e5b2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 3.19314697265625); (2.5 : 3.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 3.19314697265625); (2.5 : 3.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QuilmesDataContext/Match/Match_Goal" />
       <nodes>
         <classShapeMoniker Id="62dd9572-bf8b-46a7-a350-d50d433c55b5" />
@@ -115,7 +115,7 @@
         <classShapeMoniker Id="62dd9572-bf8b-46a7-a350-d50d433c55b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.843748 : 2.4631982421875); (3.843748 : 2.8125); (2.8125 : 2.8125); (2.8125 : 4.56814697265625); (2.5 : 4.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.843748 : 2.4631982421875); (3.843748 : 2.8125); (2.8125 : 2.8125); (2.8125 : 4.56814697265625); (2.5 : 4.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QuilmesDataContext/Player/Player_Assist" />
       <nodes>
         <classShapeMoniker Id="f8a83773-3573-4f6f-b5a3-bcd4bf1b8a5d" />
@@ -210,11 +210,37 @@
         <elementListCompartment Id="88873aba-805a-4da2-acbc-022753b41a53" absoluteBounds="10.515, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(12.5 : 1.19314697265625); (12.75 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(12.5 : 1.19314697265625); (12.75 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QuilmesDataContext/User/User_UserRole" />
       <nodes>
         <classShapeMoniker Id="02bcc128-c1db-4913-8ec5-7ce4f29966cd" />
         <classShapeMoniker Id="47c9d7f4-1f20-449a-9eac-6b8c523e53a8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0698e683-b32d-49b6-8c0d-6e080a3caea9" absoluteBounds="10.5, 2.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/QuilmesDataContext/Lineup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="260c0804-9eba-460f-852c-9372f33b9388" absoluteBounds="10.515, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.875 : 4.60179768880208); (11.5 : 4.60179768880208); (11.5 : 4.2612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QuilmesDataContext/Match/Match_Lineup" />
+      <nodes>
+        <classShapeMoniker Id="62dd9572-bf8b-46a7-a350-d50d433c55b5" />
+        <classShapeMoniker Id="0698e683-b32d-49b6-8c0d-6e080a3caea9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a122307f-2b20-47ce-9c68-0a4d7ff6f3f8" absoluteBounds="12.75, 2.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/QuilmesDataContext/Formation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb85583e-eed0-4e04-a202-a9ecba2a68a0" absoluteBounds="12.765, 3.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(12.75 : 3.47199625651042); (12.5 : 3.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QuilmesDataContext/Formation/Formation_Lineup" />
+      <nodes>
+        <classShapeMoniker Id="a122307f-2b20-47ce-9c68-0a4d7ff6f3f8" />
+        <classShapeMoniker Id="0698e683-b32d-49b6-8c0d-6e080a3caea9" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
