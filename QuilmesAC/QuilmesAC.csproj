@@ -117,6 +117,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FormationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Views\Position\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Position\Index.less" />
+    <Content Include="Views\Formation\Index.cshtml" />
     <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">
