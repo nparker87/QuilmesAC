@@ -1,9 +1,9 @@
 ﻿namespace QuilmesAC.Models
 {
+    using Helpers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
     using ViewModels;
 
     public partial class QuilmesDataContext
@@ -465,6 +465,32 @@
         public List<Division> GetDivisions()
         {
             return Divisions.OrderBy(x => x.ID).ToList();
+        }
+
+        /* Formation Methods */
+
+        public Formation GetFormationByID(int id)
+        {
+            return Formations.FirstOrDefault(x => x.ID == id);
+        }
+
+        public void Add(FormationViewModel submission)
+        {
+            var formation = new Formation
+            {
+                Name = submission.Name
+            };
+            Formations.InsertOnSubmit(formation);
+        }
+
+        public void Update(Formation formation, FormationViewModel submission)
+        {
+            formation.Name = submission.Name;
+        }
+
+        public void Delete(Formation formation)
+        {
+            Formations.DeleteOnSubmit(formation);
         }
     }
 }

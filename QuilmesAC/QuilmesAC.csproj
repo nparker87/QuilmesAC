@@ -154,6 +154,7 @@
     <Compile Include="ViewModels\AssistViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CardViewModel.cs" />
+    <Compile Include="ViewModels\FormationViewModel.cs" />
     <Compile Include="ViewModels\GoalViewModel.cs" />
     <Compile Include="ViewModels\PlayerPositionViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Scripts\less-2.3.1.js" />
     <Content Include="Scripts\less-2.3.1.min.js" />
     <Content Include="ToDo.txt" />
+    <Content Include="Views\Formation\Index.js" />
     <Content Include="Views\Match\Match.js" />
     <Content Include="Views\Match\Standing.js" />
     <Content Include="Views\Player\Index.js" />

@@ -12,4 +12,10 @@
 
 @section Scripts
 {
+    <script id="Index.js" src="~/Views/Formation/Index.js"
+            data-url="@Url.Action("GridData")"
+            data-sort-by="@ViewBag.SortBy"
+            data-sort-order="@ViewBag.SortOrder"
+            data-page="@ViewBag.Page"
+            data-rows="@ViewBag.Rows" )"></script>
 }
