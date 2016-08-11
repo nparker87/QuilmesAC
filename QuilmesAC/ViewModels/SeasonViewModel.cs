@@ -34,6 +34,9 @@
         [Required(ErrorMessage = "Required")]
         public int DivisionID { get; set; }
 
+        [DisplayName("Current season:")]
+        public bool IsCurrent { get; set; }
+
         public SelectList Divisions { get; set; }
 
         private void PopulateSelectLists(QuilmesDataContext model)

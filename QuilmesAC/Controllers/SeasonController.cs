@@ -84,7 +84,8 @@
                             t.ID.ToString(),
                             t.DisplayName,
                             String.Format("{0:M/d/yyyy}", t.StartDate),
-                            t.Division.Name
+                            t.Division.Name,
+                            t.IsCurrent.ToString()
                         }
                     }).ToArray()
             };
@@ -94,6 +95,10 @@
         /// <summary> Modal add </summary>
         public ContentResult AddSeason(SeasonViewModel seasonViewModel)
         {
+            if (seasonViewModel.IsCurrent)
+                foreach (var s in QuilmesModel.Seasons)
+                    s.IsCurrent = false;
+
             QuilmesModel.Add(seasonViewModel);
             QuilmesModel.Save();
 
@@ -103,6 +108,10 @@
         /// <summary> Modal edit </summary>
         public ContentResult EditSeason(SeasonViewModel seasonViewModel)
         {
+            if (seasonViewModel.IsCurrent)
+                foreach (var s in QuilmesModel.Seasons)
+                    s.IsCurrent = false;
+
             var season = QuilmesModel.GetSeasonByID(seasonViewModel.ID);
             QuilmesModel.Update(season, seasonViewModel);
             QuilmesModel.Save();
