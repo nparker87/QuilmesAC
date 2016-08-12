@@ -43,7 +43,7 @@
                     { name: "DisplayName", index: "DisplayName", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
                     { name: "StartDate", index: "StartDate", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
                     { name: "DivisionID", index: "Division.Name", align: "left", editable: true, editrules: { required: true }, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Season/GetDivisions/")" }, formoptions: { elmsuffix: "(*)" } },
-                    { name: "IsCurrent", index: "IsCurrent", align: "left", editable: true, edittype: "checkbox" }
+                    { name: "IsCurrent", index: "IsCurrent", align: "left", editable: true, edittype: "checkbox", editoptions: { value: "true:false" } }
                 ],
                 cellEdit: false,
                 pager: "#pager",

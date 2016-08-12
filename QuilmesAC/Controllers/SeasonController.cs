@@ -96,7 +96,7 @@
         public ContentResult AddSeason(SeasonViewModel seasonViewModel)
         {
             if (seasonViewModel.IsCurrent)
-                foreach (var s in QuilmesModel.Seasons)
+                foreach (var s in QuilmesModel.Seasons.Where(x => x.IsCurrent == true))
                     s.IsCurrent = false;
 
             QuilmesModel.Add(seasonViewModel);
@@ -109,7 +109,7 @@
         public ContentResult EditSeason(SeasonViewModel seasonViewModel)
         {
             if (seasonViewModel.IsCurrent)
-                foreach (var s in QuilmesModel.Seasons)
+                foreach (var s in QuilmesModel.Seasons.Where(x => x.IsCurrent == true))
                     s.IsCurrent = false;
 
             var season = QuilmesModel.GetSeasonByID(seasonViewModel.ID);

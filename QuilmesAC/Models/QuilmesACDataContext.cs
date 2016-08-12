@@ -296,7 +296,8 @@
             {
                 StartDate = submission.StartDate,
                 DisplayName = submission.DisplayName,
-                DivisionID = submission.DivisionID
+                DivisionID = submission.DivisionID,
+                IsCurrent = submission.IsCurrent
             };
             Seasons.InsertOnSubmit(season);
         }
@@ -306,6 +307,7 @@
             season.StartDate = submission.StartDate;
             season.DisplayName = submission.DisplayName;
             season.DivisionID = submission.DivisionID;
+            season.IsCurrent = submission.IsCurrent;
         }
 
         public void Delete(Season season)
