@@ -91,7 +91,7 @@
         {
             if (ModelState.IsValid)
             {
-                QuilmesModel.AddUser(submission);
+                QuilmesModel.Add(submission);
                 QuilmesModel.Save();
                 return RedirectToAction("RegisterSuccess", "User");
             }

@@ -33,7 +33,7 @@
 
         /* User Methods */
 
-        public void AddUser(UserViewModel submission)
+        public void Add(UserViewModel submission)
         {
             var encryptedPassword = LoginHelper.EncryptPassword(submission.Username, submission.Password);
             var user = new User
@@ -100,7 +100,7 @@
             return Players.FirstOrDefault(x => x.ID == id);
         }
 
-        public void AddPlayer(PlayerViewModel submission)
+        public void Add(PlayerViewModel submission)
         {
             var player = new Player
             {
@@ -216,7 +216,7 @@
             return Matches.FirstOrDefault(x => x.ID == id);
         }
 
-        public void AddMatch(MatchViewModel submission)
+        public void Add(MatchViewModel submission)
         {
             var match = new Match
             {

@@ -278,7 +278,6 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Position\Index.less" />
     <Content Include="Views\Formation\Index.cshtml" />
-    <None Include="Views\User\Edit.less" />
     <Content Include="Views\User\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -195,7 +195,7 @@
         {
             if (ModelState.IsValid)
             {
-                QuilmesModel.AddMatch(submission);
+                QuilmesModel.Add(submission);
                 QuilmesModel.Save();
 
                 return View(new MatchViewModel(QuilmesModel));

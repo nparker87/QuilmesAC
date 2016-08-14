@@ -116,7 +116,7 @@
         public ActionResult Add(PlayerViewModel submission)
         {
             if (!ModelState.IsValid) return View(submission);
-            QuilmesModel.AddPlayer(submission);
+            QuilmesModel.Add(submission);
             try
             {
                 QuilmesModel.Save();
