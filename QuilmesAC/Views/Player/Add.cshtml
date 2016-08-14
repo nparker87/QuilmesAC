@@ -2,51 +2,51 @@
 @using QuilmesAC.Helpers
 @model QuilmesAC.ViewModels.PlayerViewModel
 @{
-    ViewBag.Title = "Team";
+	ViewBag.Title = "Team";
 }
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true).Raw()
-    <ul>
-        @if (ViewBag.PlayerAdded != null)
-        {
-            if (ViewBag.PlayerAdded)
-            {
-                <li>Player successfully added.</li>
-            }
-            else
-            {
-                <li>There was an error creating the player.</li>
-            }
-        }
-        <li class="main-left">
-            <fieldset>
-                <legend>Add Player</legend>
-                <ul>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.FirstName)
-                        @Html.TextBoxFor(model => model.FirstName)
-                        @Html.ValidationMessageFor(model => model.FirstName)
-                    </li>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.LastName)
-                        @Html.TextBoxFor(model => model.LastName)
-                        @Html.ValidationMessageFor(model => model.LastName)
-                    </li>
-                    <li>
-                        @Html.LabelFor(model => model.Number)
-                        @Html.TextBoxFor(model => model.Number)
-                    </li>
-                    <li>
-                        @Html.LabelFor(model => model.StatusID)
-                        @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "-- Select --")
-                    </li>
-                    <li class="center">
-                        <input type="submit" value="Add Player" />
-                    </li>
-                </ul>
-            </fieldset>
-        </li>
-        <li class="clear" />
-    </ul>
+	@Html.ValidationSummary(true).Raw()
+	<ul>
+		@if (ViewBag.PlayerAdded != null)
+		{
+			if (ViewBag.PlayerAdded)
+			{
+				<li>Player successfully added.</li>
+			}
+			else
+			{
+				<li>There was an error creating the player.</li>
+			}
+		}
+		<li class="main-left">
+			<fieldset>
+				<legend>Add Player</legend>
+				<ul>
+					<li>
+						@Html.RequriedLabelFor(model => model.FirstName)
+						@Html.TextBoxFor(model => model.FirstName)
+						@Html.ValidationMessageFor(model => model.FirstName)
+					</li>
+					<li>
+						@Html.RequriedLabelFor(model => model.LastName)
+						@Html.TextBoxFor(model => model.LastName)
+						@Html.ValidationMessageFor(model => model.LastName)
+					</li>
+					<li>
+						@Html.LabelFor(model => model.Number)
+						@Html.TextBoxFor(model => model.Number)
+					</li>
+					<li>
+						@Html.LabelFor(model => model.StatusID)
+						@Html.DropDownListFor(model => model.StatusID, Model.Statuses, "-- Select --")
+					</li>
+					<li class="center">
+						<input type="submit" value="Add Player" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="clear" />
+	</ul>
 }

@@ -2,7 +2,7 @@
 
 @model QuilmesAC.ViewModels.UserViewModel
 @{
-    ViewBag.Title = "Register";
+	ViewBag.Title = "Register";
 }
 
 <h2>Register</h2>
@@ -10,32 +10,32 @@
 @Html.ValidationSummary(true, "Please correct the errors and try again.")
 @using (Html.BeginForm())
 {
-    <ul>
-        <li class="main-left">
-            <fieldset>
-                <legend>Register for access</legend>
-                <ul>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.Username)
-                        @Html.TextBoxFor(model => model.Username)
-                        @Html.ValidationMessageFor(model => model.Username)
-                    </li>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.Password)
-                        @Html.EditorFor(model => model.Password)
-                        @Html.ValidationMessageFor(model => model.Password)
-                    </li>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.Email)
-                        @Html.TextBoxFor(model => model.Email)
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </li>
-                    <li class="center">
-                        <input type="submit" value="Submit" />
-                    </li>
-                </ul>
-            </fieldset>
-        </li>
-        <li class="clear" />
-    </ul>
+	<ul>
+		<li class="main-left">
+			<fieldset>
+				<legend>Register for access</legend>
+				<ul>
+					<li>
+						@Html.RequriedLabelFor(model => model.Username)
+						@Html.TextBoxFor(model => model.Username)
+						@Html.ValidationMessageFor(model => model.Username)
+					</li>
+					<li>
+						@Html.RequriedLabelFor(model => model.Password)
+						@Html.EditorFor(model => model.Password)
+						@Html.ValidationMessageFor(model => model.Password)
+					</li>
+					<li>
+						@Html.RequriedLabelFor(model => model.Email)
+						@Html.TextBoxFor(model => model.Email)
+						@Html.ValidationMessageFor(model => model.Email)
+					</li>
+					<li class="center">
+						<input type="submit" value="Submit" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="clear" />
+	</ul>
 }

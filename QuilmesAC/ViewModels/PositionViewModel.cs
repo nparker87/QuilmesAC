@@ -1,21 +1,21 @@
 ﻿namespace QuilmesAC.ViewModels
 {
-    using System.ComponentModel;
+	using System.ComponentModel;
 
-    public class PositionViewModel : BaseViewModel
-    {
-        public PositionViewModel()
-        {
-            CurrentTab = "Admin";
-        }
+	public class PositionViewModel : BaseViewModel
+	{
+		public PositionViewModel()
+		{
+			CurrentTab = "Admin";
+		}
 
-        [DisplayName("ID")]
-        public int ID { get; set; }
+		[DisplayName("ID")]
+		public int ID { get; set; }
 
-        [DisplayName("Name")]
-        public string Name { get; set; }
+		[DisplayName("Name")]
+		public string Name { get; set; }
 
-        [DisplayName("ShortName")]
-        public string ShortName { get; set; }
-    }
+		[DisplayName("ShortName")]
+		public string ShortName { get; set; }
+	}
 }

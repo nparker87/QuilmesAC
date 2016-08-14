@@ -1,41 +1,41 @@
 ﻿@{
-    ViewBag.Title = "Admin";
+	ViewBag.Title = "Admin";
 }
 @section Head
 {
-    <link href="@Url.Content("/Views/Admin/Index.less")" rel="stylesheet/less" type="text/css" />
+	<link href="@Url.Content("/Views/Admin/Index.less")" rel="stylesheet/less" type="text/css" />
 }
 <ul>
-    <li class="main-left">
-        <fieldset>
-            <legend>Admin Panel</legend>
-            <ul>
-                <li>
-                    @Html.ActionLink("Add a Match", "Add", "Match")
-                </li>
-                <li>
-                    @Html.ActionLink("Add a Player", "Add", "Player")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage League Tables", "Index", "Standing")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage Opponent List", "Index", "Opponent")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage Positions List", "Index", "Position")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage Season List", "Index", "Season")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage Users", "Index", "User")
-                </li>
-                <li>
-                    @Html.ActionLink("Manage Formations", "Index", "Formation")
-                </li>
-            </ul>
-        </fieldset>
-    </li>
-    <li class="clear" />
+	<li class="main-left">
+		<fieldset>
+			<legend>Admin Panel</legend>
+			<ul>
+				<li>
+					@Html.ActionLink("Add a Match", "Add", "Match")
+				</li>
+				<li>
+					@Html.ActionLink("Add a Player", "Add", "Player")
+				</li>
+				<li>
+					@Html.ActionLink("Manage League Tables", "Index", "Standing")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Opponent List", "Index", "Opponent")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Positions List", "Index", "Position")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Season List", "Index", "Season")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Users", "Index", "User")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Formations", "Index", "Formation")
+				</li>
+			</ul>
+		</fieldset>
+	</li>
+	<li class="clear" />
 </ul>

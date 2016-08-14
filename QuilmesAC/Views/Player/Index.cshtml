@@ -1,44 +1,44 @@
 ﻿@model QuilmesAC.ViewModels.PlayerViewModel
 @{
-    ViewBag.Title = "Team";
+	ViewBag.Title = "Team";
 }
 @section Head
 {
-    <link href="@Url.Content("/Views/Player/Index.less")" rel="stylesheet/less" type="text/css" />
+	<link href="@Url.Content("/Views/Player/Index.less")" rel="stylesheet/less" type="text/css" />
 }
 
 <h2>Team</h2>
 <ul class="center">
-    @{
-        if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
-        {
-            <li>
-                Double click a player to edit stats.
-            </li>
-        }
-    }
-    <li>
-        @Html.LabelFor(model => model.StatusID)
-        @Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
-    </li>
-    <li>
-        @Html.LabelFor(model => model.SeasonID)
-        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All")
-    </li>
+	@{
+		if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
+		{
+			<li>
+				Double click a player to edit stats.
+			</li>
+		}
+	}
+	<li>
+		@Html.LabelFor(model => model.StatusID)
+		@Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
+	</li>
+	<li>
+		@Html.LabelFor(model => model.SeasonID)
+		@Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All")
+	</li>
 </ul>
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
-    <table id="list"></table>
-    <div id="pager"></div>
+	<table id="list"></table>
+	<div id="pager"></div>
 }
 
 @section Scripts
 {
-    <script id="Index.js" src="~/Views/Player/Index.js"
-            data-url="@Url.Action("GridData")"
-            data-sort-by="@ViewBag.SortBy"
-            data-sort-order="@ViewBag.SortOrder"
-            data-page="@ViewBag.Page"
-            data-rows="@ViewBag.Rows"
-            data-action-edit="@Url.Action("Edit", "Player", new { id = "" })"></script>
+	<script id="Index.js" src="~/Views/Player/Index.js"
+			data-url="@Url.Action("GridData")"
+			data-sort-by="@ViewBag.SortBy"
+			data-sort-order="@ViewBag.SortOrder"
+			data-page="@ViewBag.Page"
+			data-rows="@ViewBag.Rows"
+			data-action-edit="@Url.Action("Edit", "Player", new { id = "" })"></script>
 }

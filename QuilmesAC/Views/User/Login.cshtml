@@ -2,7 +2,7 @@
 @model QuilmesAC.Models.Login
 
 @{
-    ViewBag.Title = "Log In";
+	ViewBag.Title = "Log In";
 }
 
 <h2>Login</h2>
@@ -10,39 +10,39 @@
 @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
 @using (Html.BeginForm())
 {
-    <ul>
-        <li class="main-left">
-            <fieldset>
-                <ul>
-                    <li>
-                        @if (Model != null && Model.ReturnUrl != null)
-                        {
-                            <p>
-                                @Html.HiddenFor(model => model.ReturnUrl)
-                                <b>You must be logged in to access this.</b>
-                            </p>
-                        }
-                    </li>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.Username)
-                        @Html.TextBoxFor(model => model.Username)
-                        @Html.ValidationMessageFor(model => model.Username)
-                    </li>
-                    <li>
-                        @Html.RequriedLabelFor(model => model.Password)
-                        @Html.EditorFor(model => model.Password)
-                        @Html.ValidationMessageFor(model => model.Password)
-                    </li>
-                    <li>
-                            @Html.ActionLink("Forgot username or password?", "ForgotPassword", "User")
-                        </li>
-                    <li class="center">
-                        <input type="submit" value="Login" />
-                        @Html.ActionLink("Register", "Register", "User")
-                    </li>
-                </ul>
-            </fieldset>
-        </li>
-        <li class="clear" />
-    </ul>
+	<ul>
+		<li class="main-left">
+			<fieldset>
+				<ul>
+					<li>
+						@if (Model != null && Model.ReturnUrl != null)
+						{
+							<p>
+								@Html.HiddenFor(model => model.ReturnUrl)
+								<b>You must be logged in to access this.</b>
+							</p>
+						}
+					</li>
+					<li>
+						@Html.RequriedLabelFor(model => model.Username)
+						@Html.TextBoxFor(model => model.Username)
+						@Html.ValidationMessageFor(model => model.Username)
+					</li>
+					<li>
+						@Html.RequriedLabelFor(model => model.Password)
+						@Html.EditorFor(model => model.Password)
+						@Html.ValidationMessageFor(model => model.Password)
+					</li>
+					<li>
+						@Html.ActionLink("Forgot username or password?", "ForgotPassword", "User")
+					</li>
+					<li class="center">
+						<input type="submit" value="Login" />
+						@Html.ActionLink("Register", "Register", "User")
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="clear" />
+	</ul>
 }

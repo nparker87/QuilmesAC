@@ -1,67 +1,67 @@
 ﻿@{
-    ViewBag.Title = "Season";
+	ViewBag.Title = "Season";
 }
 
 <h2>Seasons</h2>
 @using (Html.BeginForm())
 {
-    <table id="list"></table>
-    <div id="pager"></div>
+	<table id="list"></table>
+	<div id="pager"></div>
 }
 
 @section Scripts
 {
-    <script type="text/javascript">
-        //jqGrid for seasons
-        jQuery(document).ready(function () {
-            function updateDialog(url) {
-                return {
-                    url: url,
-                    closeAfterAdd: true,
-                    closeAfterEdit: true,
-                    modal: true
-                };
-            }
+	<script type="text/javascript">
+		//jqGrid for seasons
+		jQuery(document).ready(function () {
+			function updateDialog(url) {
+				return {
+					url: url,
+					closeAfterAdd: true,
+					closeAfterEdit: true,
+					modal: true
+				};
+			}
 
-            jQuery("#list").jqGrid({
-                url: "@Url.Action("GridData")",
-                datatype: "local",
-                gridview: true,
-                height: "100%",
-                hidegrid: false,
-                loadtext: "Retrieving Seasons...",
-                mtype: "POST",
-                forceFit: true,
-                autowidth: false,
-                sortable: true,
-                width: "550",
-                cellLayout: 6, // gets rid of annoying horizontal scrollbar
-                colNames: ["ID", "Name", "Start Date", "Division", "Current Season"],
-                colModel: [
+			jQuery("#list").jqGrid({
+				url: "@Url.Action("GridData")",
+				datatype: "local",
+				gridview: true,
+				height: "100%",
+				hidegrid: false,
+				loadtext: "Retrieving Seasons...",
+				mtype: "POST",
+				forceFit: true,
+				autowidth: false,
+				sortable: true,
+				width: "550",
+				cellLayout: 6, // gets rid of annoying horizontal scrollbar
+				colNames: ["ID", "Name", "Start Date", "Division", "Current Season"],
+				colModel: [
                     // index must be the column name for sorting with orderby
                     { name: "ID", index: "ID", editable: false, hidden: true, editoptions: { readonly: true } },
                     { name: "DisplayName", index: "DisplayName", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
                     { name: "StartDate", index: "StartDate", align: "left", editable: true, editrules: { required: true }, formoptions: { elmsuffix: "(*)" } },
                     { name: "DivisionID", index: "Division.Name", align: "left", editable: true, editrules: { required: true }, edittype: "select", editoptions: { dataUrl: "@Url.Content("~/Season/GetDivisions/")" }, formoptions: { elmsuffix: "(*)" } },
                     { name: "IsCurrent", index: "IsCurrent", align: "left", editable: true, edittype: "checkbox", editoptions: { value: "true:false" } }
-                ],
-                cellEdit: false,
-                pager: "#pager",
-                rowList: [15, 50, 100],
-                sortname: "@(ViewBag.SortBy)",
-                sortorder: "@(ViewBag.SortOrder)",
-                page: "@(ViewBag.Page)",
-                rowNum: "@(ViewBag.Rows)",
-                postData: { seasonID: "@Model.ID" },
-                viewrecords: true
-            }).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
+				],
+				cellEdit: false,
+				pager: "#pager",
+				rowList: [15, 50, 100],
+				sortname: "@(ViewBag.SortBy)",
+				sortorder: "@(ViewBag.SortOrder)",
+				page: "@(ViewBag.Page)",
+				rowNum: "@(ViewBag.Rows)",
+				postData: { seasonID: "@Model.ID" },
+				viewrecords: true
+			}).navGrid("#pager", { edit: true, add: true, del: true, search: false, refresh: false },
                     updateDialog("@Url.Action("EditSeason")"),
                     updateDialog("@Url.Action("AddSeason")"),
                     updateDialog("@Url.Action("DeleteSeason")"))
                 .filterToolbar({ stringResult: true, searchOnEnter: false, defaultSearch: "cn" })
                 .setGridParam({ datatype: "json" }); // Done this way for default filter values.
 
-            $("#list")[0].triggerToolbar();
-        });
-    </script>
+			$("#list")[0].triggerToolbar();
+		});
+	</script>
 }

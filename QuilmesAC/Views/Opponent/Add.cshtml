@@ -1,34 +1,34 @@
 ﻿@using QuilmesAC.Helpers
 @model QuilmesAC.ViewModels.OpponentViewModel
 @{
-    ViewBag.Title = "Opponent";
+	ViewBag.Title = "Opponent";
 }
 @section Head
 {
-    <link href="@Url.Content("/Views/Opponent/Add.less")" rel="stylesheet/less" type="text/css" />
+	<link href="@Url.Content("/Views/Opponent/Add.less")" rel="stylesheet/less" type="text/css" />
 }
 <h2>Add Opponent</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true).Raw()
-    {
-        <ul>
-            <li class="main-left">
-                <fieldset>
-                    <legend>Opponent</legend>
-                    <ul>
-                        <li>
-                            @Html.RequriedLabelFor(model => model.Name)
-                            @Html.TextBoxFor(model => model.Name)
-                            @Html.ValidationMessageFor(model => model.Name)
-                        </li>
-                        <li class="center">
-                            <input type="submit" value="Add Opponent" />
-                        </li>
-                    </ul>
-                </fieldset>
-            </li>
-        </ul>
-    }
+	@Html.ValidationSummary(true).Raw()
+	{
+		<ul>
+			<li class="main-left">
+				<fieldset>
+					<legend>Opponent</legend>
+					<ul>
+						<li>
+							@Html.RequriedLabelFor(model => model.Name)
+							@Html.TextBoxFor(model => model.Name)
+							@Html.ValidationMessageFor(model => model.Name)
+						</li>
+						<li class="center">
+							<input type="submit" value="Add Opponent" />
+						</li>
+					</ul>
+				</fieldset>
+			</li>
+		</ul>
+	}
 }

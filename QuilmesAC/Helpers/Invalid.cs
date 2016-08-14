@@ -1,12 +1,12 @@
 ﻿namespace QuilmesAC.Helpers
 {
-    using ViewModels;
+	using ViewModels;
 
-    public class Invalid
-    {
-        public object Matches(MatchViewModel submission)
-        {
-            return submission;
-        }
-    }
+	public class Invalid
+	{
+		public object Matches(MatchViewModel submission)
+		{
+			return submission;
+		}
+	}
 }
