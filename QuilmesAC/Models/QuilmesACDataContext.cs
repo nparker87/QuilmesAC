@@ -125,9 +125,11 @@
 		{
 			var goals = GetGoalsByPlayerID(player.ID);
 			var cards = GetCardsByPlayerID(player.ID);
+			var playerPosition = GetPlayerPositionsByPlayerID(player.ID);
 
 			Goals.DeleteAllOnSubmit(goals);
 			Cards.DeleteAllOnSubmit(cards);
+			PlayerPositions.DeleteAllOnSubmit(playerPosition);
 			Players.DeleteOnSubmit(player);
 		}
 
@@ -169,6 +171,11 @@
 		public PlayerPosition GetPlayerPositionByID(int id)
 		{
 			return PlayerPositions.FirstOrDefault(x => x.ID == id);
+		}
+
+		public List<PlayerPosition> GetPlayerPositionsByPlayerID(int playerID)
+		{
+			return PlayerPositions.Where(x => x.PlayerID == playerID).ToList();
 		}
 
 		public void Add(PlayerPositionViewModel submission)
