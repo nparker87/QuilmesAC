@@ -60,6 +60,9 @@
 					<li class="@(Model.CurrentTab == "Match" ? "selected" : "")">
 						@Html.ActionLink("Fixtures", "Index", "Match")
 					</li>
+					<li class="@(Model.CurrentTab == "Sponsors" ? "selected" : "")">
+						@Html.ActionLink("Sponsors", "Index", "Sponsor")
+					</li>
 					<li class="@(Model.CurrentTab == "About" ? "selected" : "")">
 						@Html.ActionLink("About", "Index", "About")
 					</li>

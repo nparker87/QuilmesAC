@@ -120,6 +120,7 @@
     <Compile Include="Controllers\FormationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\SponsorController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
@@ -319,6 +320,7 @@
     <Content Include="Views\User\Reset.cshtml" />
     <Content Include="Views\User\EmailSent.cshtml" />
     <Content Include="Views\User\ResetSuccess.cshtml" />
+    <Content Include="Views\Sponsor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
