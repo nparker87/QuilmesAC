@@ -122,7 +122,7 @@
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\SponsorController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
-    <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\FixtureController.cs" />
     <Compile Include="Controllers\OpponentController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
@@ -161,7 +161,7 @@
     <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="ViewModels\UserRoleViewModel.cs" />
     <Compile Include="ViewModels\StandingViewModel.cs" />
-    <Compile Include="ViewModels\MatchViewModel.cs" />
+    <Compile Include="ViewModels\FixtureViewModel.cs" />
     <Compile Include="ViewModels\OpponentViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\SeasonViewModel.cs" />
@@ -274,8 +274,8 @@
     <Content Include="Scripts\less-2.3.1.min.js" />
     <Content Include="ToDo.txt" />
     <Content Include="Views\Formation\Index.js" />
-    <Content Include="Views\Match\Match.js" />
-    <Content Include="Views\Match\Standing.js" />
+    <Content Include="Views\Fixture\Match.js" />
+    <Content Include="Views\Fixture\Standing.js" />
     <Content Include="Views\Player\Index.js" />
     <Content Include="Views\Position\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
@@ -297,8 +297,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Player\Index.cshtml" />
     <Content Include="Views\Player\Add.cshtml" />
-    <Content Include="Views\Match\Index.cshtml" />
-    <Content Include="Views\Match\Add.cshtml" />
+    <Content Include="Views\Fixture\Index.cshtml" />
+    <Content Include="Views\Fixture\Add.cshtml" />
     <Content Include="Views\Player\Edit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Index.less" />
@@ -308,10 +308,10 @@
     <Content Include="Views\Opponent\Add.less" />
     <Content Include="Views\Admin\Index.less" />
     <Content Include="Views\Player\Index.less" />
-    <Content Include="Views\Match\Index.less" />
+    <Content Include="Views\Fixture\Index.less" />
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\Privacy\Index.cshtml" />
-    <Content Include="Views\Match\Edit.cshtml" />
+    <Content Include="Views\Fixture\Edit.cshtml" />
     <Content Include="Views\Standing\Index.cshtml" />
     <Content Include="Views\Standing\Index.less" />
     <Content Include="Views\User\RegisterSuccess.cshtml" />

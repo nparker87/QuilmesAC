@@ -2,7 +2,7 @@
 @quilmesRedMatte: #8F1528;
 
 @quilmesBlue: #253B53;
-@quilmesBlueLight: #0664A4;
+@quilmesLightBlue: #0664A4;
 
 /* Main Styles */
 html {
@@ -126,11 +126,11 @@ nav {
             }
 
                 nav ul li a:hover {
-	            background-color: @quilmesBlueLight;
+                    background-color: @quilmesLightBlue;
                 }
 
             nav ul li.selected a {
-	        background-color: @quilmesBlueLight;
+                background-color: @quilmesLightBlue;
             }
 
 /* Main Content */
@@ -177,7 +177,7 @@ nav {
             }
 
     .main-content fieldset {
-	border: 1px solid @quilmesBlue;
+        border: 1px solid @quilmesBlue;
     }
 
         .main-content fieldset legend {
@@ -289,4 +289,32 @@ input[type="submit"] {
 
 .validation-summary-valid {
     display: none;
+}
+
+/*-- New table styles --*/
+.table {
+    display: table;
+}
+
+.row-even, .row-odd, .header-row, .quilmes-row {
+    display: table-row;
+}
+
+.row-odd {
+    background-color: #B3B3B3;
+}
+
+.quilmes-row {
+    background-color: @quilmesLightBlue;
+}
+
+.header-row {
+    color: #FFFFFF;
+    background-color: @quilmesBlue;
+}
+
+.cell {
+    border: 1px solid #999999;
+    display: table-cell;
+    padding: 3px 10px;
 }

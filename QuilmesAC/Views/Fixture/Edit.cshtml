@@ -1,0 +1,53 @@
+﻿@using QuilmesAC.Helpers
+@model QuilmesAC.ViewModels.FixtureViewModel
+@{
+    ViewBag.Title = "Match";
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true).Raw()
+    <ul>
+        <li class="main-left">
+            <fieldset>
+                <legend>Edit a Match</legend>
+                <ul>
+                    <li>
+                        @Html.LabelFor(model => model.MatchDay)
+                        @Html.TextBoxFor(model => model.MatchDay)
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.MatchDate)
+                        @(new HtmlString(Html.DatePickerFor(model => model.MatchDate)))
+                    </li>
+                    <li>
+                        @Html.RequriedLabelFor(model => model.OpponentID)
+                        @Html.DropDownListFor(model => model.OpponentID, Model.Opponents, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.OpponentID)
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.GoalsFor)
+                        @Html.TextBoxFor(model => model.GoalsFor)
+                    </li>
+                    <li>
+                        @Html.LabelFor(model => model.GoalsAgainst)
+                        @Html.TextBoxFor(model => model.GoalsAgainst)
+                    </li>
+                    <li>
+                        @Html.RequriedLabelFor(model => model.Result)
+                        @Html.DropDownListFor(model => model.Result, Model.Results, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.Result)
+                    </li>
+                    <li>
+                        @Html.RequriedLabelFor(model => model.SeasonID)
+                        @Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "-- Select --")
+                        @Html.ValidationMessageFor(model => model.SeasonID)
+                    </li>
+                    <li class="center">
+                        <input type="submit" value="Submit" />
+                    </li>
+                </ul>
+            </fieldset>
+        </li>
+        <li class="clear" />
+    </ul>
+}

@@ -4,7 +4,7 @@
 
 	public class Invalid
 	{
-		public object Matches(MatchViewModel submission)
+		public object Matches(FixtureViewModel submission)
 		{
 			return submission;
 		}
