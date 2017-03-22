@@ -2,6 +2,7 @@
 {
 	using Models;
 	using System;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.ComponentModel.DataAnnotations;
 	using System.Web.Mvc;
@@ -19,6 +20,8 @@
 			PopulateSelectLists(model);
 			StatusID = 1;
 			SeasonID = model.GetCurrentSeason();
+			Players = model.GetPlayersByStatusID(StatusID);
+			Goals = model.GetGoalsBySeasonAndPlayer(ID, SeasonID);
 		}
 
 		public PlayerViewModel(QuilmesDataContext model, Player player)
@@ -54,6 +57,16 @@
 		public int SeasonID { get; set; }
 
 		public SelectList Seasons { get; set; }
+
+		public List<Player> Players { get; set; }
+
+		public int Goals { get; set; }
+
+		public int Assists { get; set; }
+
+		public int YellowCards { get; set; }
+
+		public int RedCards { get; set; }
 
 		private void PopulateSelectLists(QuilmesDataContext model)
 		{
