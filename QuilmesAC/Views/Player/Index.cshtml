@@ -44,7 +44,10 @@
 			<div class="@(i % 2 == 0 ? "row-even" : "row-odd")">
 				<div class="cell">@String.Format("{0}, {1}", Model.Players[i].LastName, Model.Players[i].FirstName)</div>
 				<div class="cell">@Model.Players[i].Number</div>
-				<div class="cell">@Convert.ToInt32(Model.Goals[i])</div>
+				<div class="cell">@Model.Players[i].Goals.Count</div>
+				<div class="cell">@Model.Players[i].Assists.Count</div>
+				<div class="cell">@Model.Players[i].Cards.Count</div>
+				<div class="cell">@Model.Players[i].Cards.Count</div>
 			</div>
 		}
 	</div>
