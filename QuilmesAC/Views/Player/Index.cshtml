@@ -29,7 +29,20 @@
 </ul>
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
-	<div class="table">
+
+	<div id="leagueTables">
+		<div id="matchTable">
+			<table id="list"></table>
+			<div id="pager"></div>
+		</div>
+		<div id="standingTable">
+			<table id="standingList"></table>
+			<div id="standingPager"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	@*<div class="table">
 		<div class="header-row">
 			<div class="cell">Name</div>
 			<div class="cell">No.</div>
@@ -50,7 +63,7 @@
 				<div class="cell">@Model.Players[i].Cards.Count</div>
 			</div>
 		}
-	</div>
+	</div>*@
 }
 
 @section Scripts
