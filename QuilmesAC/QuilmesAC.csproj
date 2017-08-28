@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -196,6 +197,7 @@
     <Content Include="Content\Images\SocialMedia\twitter.png" />
     <Content Include="Content\Images\SocialMedia\youtube.png" />
     <Content Include="Content\Images\spring_2016.JPG" />
+    <Content Include="Content\Images\spring_2017.jpg" />
     <Content Include="Content\Images\Stachesquatch.jpg" />
     <Content Include="Content\Images\UnionMarket.png" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
