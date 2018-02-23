@@ -198,6 +198,7 @@
     <Content Include="Content\Images\SocialMedia\youtube.png" />
     <Content Include="Content\Images\spring_2016.JPG" />
     <Content Include="Content\Images\spring_2017.jpg" />
+    <Content Include="Content\Images\spring_2018.jpg" />
     <Content Include="Content\Images\Stachesquatch.jpg" />
     <Content Include="Content\Images\UnionMarket.png" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
@@ -261,6 +262,7 @@
     </Content>
     <Content Include="Content\Less\Site.less" />
     <None Include="Properties\PublishProfiles\--Live--.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Live.pubxml" />
     <None Include="Properties\PublishProfiles\QuilmesAC.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
