@@ -22,48 +22,37 @@
 		@Html.LabelFor(model => model.StatusID)
 		@Html.DropDownListFor(model => model.StatusID, Model.Statuses, "All")
 	</li>
-	<li>
+	<li class="hidden">
 		@Html.LabelFor(model => model.SeasonID)
 		@Html.DropDownListFor(model => model.SeasonID, Model.Seasons, "All")
 	</li>
 </ul>
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
-{
+{    
+    <div class="table">
+        <div class="header-row">
+            <div class="cell">Name</div>
+            <div class="cell">No.</div>
+            <div class="cell">Goals</div>
+            <div class="cell">Assists</div>
+            <div class="cell">YC</div>
+            <div class="cell">RC</div>
+        </div>
 
-	<div id="leagueTables">
-		<div id="matchTable">
-			<table id="list"></table>
-			<div id="pager"></div>
-		</div>
-		<div id="standingTable">
-			<table id="standingList"></table>
-			<div id="standingPager"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-
-	@*<div class="table">
-		<div class="header-row">
-			<div class="cell">Name</div>
-			<div class="cell">No.</div>
-			<div class="cell">Goals</div>
-			<div class="cell">Assists</div>
-			<div class="cell">YC</div>
-			<div class="cell">RC</div>
-		</div>
-
-		@for (int i = 0; i < Model.Players.Count; i++)
-		{
-			<div class="@(i % 2 == 0 ? "row-even" : "row-odd")">
-				<div class="cell">@String.Format("{0}, {1}", Model.Players[i].LastName, Model.Players[i].FirstName)</div>
-				<div class="cell">@Model.Players[i].Number</div>
-				<div class="cell">@Model.Players[i].Goals.Count</div>
-				<div class="cell">@Model.Players[i].Assists.Count</div>
-				<div class="cell">@Model.Players[i].Cards.Count</div>
-				<div class="cell">@Model.Players[i].Cards.Count</div>
-			</div>
-		}
-	</div>*@
+        @for (int i = 0; i < Model.Players.Count; i++)
+        {
+            <div class="@(i % 2 == 0 ? "row-even" : "row-odd")">
+                <div class="cell">
+                    @Model.Players[i].LastName, @Model.Players[i].FirstName @(Model.Players[i].LastName == "Porter" ? <em>(Captain)</em> : "")
+                </div>
+                <div class="cell">@Model.Players[i].Number</div>
+                <div class="cell">@Model.Players[i].Goals.Count</div>
+                <div class="cell">@Model.Players[i].Assists.Count</div>
+                <div class="cell">@Model.Players[i].Cards.Count</div>
+                <div class="cell">@Model.Players[i].Cards.Count</div>
+            </div>
+        }
+    </div>
 }
 
 @section Scripts

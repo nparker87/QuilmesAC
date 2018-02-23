@@ -22,6 +22,7 @@
 			SeasonID = model.GetCurrentSeason();
 			Players = model.GetPlayersByStatusID(StatusID);
 			Goals = model.GetGoalsBySeasonAndPlayer(ID, SeasonID);
+            CurrentRoster = model.GetCurrentRoster();
 		}
 
 		public PlayerViewModel(QuilmesDataContext model, Player player)
@@ -59,6 +60,8 @@
 		public SelectList Seasons { get; set; }
 
 		public List<Player> Players { get; set; }
+
+        public List<CurrentRoster> CurrentRoster { get; set; }
 
 		public int Goals { get; set; }
 

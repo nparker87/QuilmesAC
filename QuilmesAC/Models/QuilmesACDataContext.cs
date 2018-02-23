@@ -379,7 +379,14 @@
 			return Assists.FirstOrDefault(x => x.ID == id);
 		}
 
-		public void Add(AssistViewModel submission)
+        public int GetAssistsBySeasonAndPlayer(int playerID, int? seasonID)
+        {
+            if (seasonID == null)
+                return Assists.Where(x => x.PlayerID == playerID).Count();
+            return Assists.Where(x => x.PlayerID == playerID && x.Match.SeasonID == seasonID).Count();
+        }
+
+        public void Add(AssistViewModel submission)
 		{
 			var assist = new Assist
 			{
@@ -523,5 +530,29 @@
 		{
 			Formations.DeleteOnSubmit(formation);
 		}
-	}
+
+        public List<CurrentRoster> GetCurrentRoster()
+        {
+            var roster = new List<CurrentRoster>();
+            var currentSeason = GetCurrentSeason();
+
+            foreach(var player in Players.Where(x => x.StatusID == 1))
+            {
+                var rosterPlayer = new CurrentRoster
+                {
+                    PlayerID = player.ID,
+                    FullName = String.Format("{0}, {1}{2}", player.FirstName, player.LastName, (player.LastName == "Porter" ? "<em>(Captain)</em>" : "")),
+                    Number = player.Number,
+                    Goals = GetGoalsBySeasonAndPlayer(player.ID, currentSeason),
+                    Assists = GetAssistsBySeasonAndPlayer(player.ID, currentSeason),
+                    YellowCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Yellow" && x.Match.SeasonID == currentSeason).Count(),
+                    RedCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Red" && x.Match.SeasonID == currentSeason).Count()
+                };
+                roster.Add(rosterPlayer);
+            }
+
+            return roster;
+        }
+
+    }
 }
