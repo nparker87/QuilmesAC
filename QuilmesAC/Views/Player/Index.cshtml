@@ -1,14 +1,17 @@
 ﻿@model QuilmesAC.ViewModels.PlayerViewModel
 
 @{
-	ViewBag.Title = "Team";
+	ViewBag.Title = "Roster";
 }
 @section Head
 {
 	<link href="@Url.Content("/Views/Player/Index.less")" rel="stylesheet/less" type="text/css" />
 }
 
-<h2>Team</h2>
+<h2>Roster</h2>
+<h4 class="center">
+    @Model.CurrentSeason.DisplayName Stats
+</h4>
 <ul class="center">
 	@{
 		if (Model.User != null && Model.User.UserRoles.Any(x => x.Role.Name == "Admin"))
@@ -33,35 +36,30 @@
         <div class="header-row">
             <div class="cell">Name</div>
             <div class="cell">No.</div>
+            <div class="cell">Ap.</div>
             <div class="cell">Goals</div>
             <div class="cell">Assists</div>
             <div class="cell">YC</div>
             <div class="cell">RC</div>
         </div>
 
-        @for (int i = 0; i < Model.Players.Count; i++)
+        @for (int i = 0; i < Model.CurrentRoster.Count; i++)
         {
             <div class="@(i % 2 == 0 ? "row-even" : "row-odd")">
                 <div class="cell">
-                    @Model.Players[i].LastName, @Model.Players[i].FirstName @(Model.Players[i].LastName == "Porter" ? <em>(Captain)</em> : "")
+                    @Model.CurrentRoster[i].FullName
+                    @if (Model.CurrentRoster[i].FullName.Contains("Porter"))
+                    {
+                        <em>(Captain)</em>
+                    }
                 </div>
-                <div class="cell">@Model.Players[i].Number</div>
-                <div class="cell">@Model.Players[i].Goals.Count</div>
-                <div class="cell">@Model.Players[i].Assists.Count</div>
-                <div class="cell">@Model.Players[i].Cards.Count</div>
-                <div class="cell">@Model.Players[i].Cards.Count</div>
+                <div class="cell">@Model.CurrentRoster[i].Number</div>
+                <div class="cell">@Model.CurrentRoster[i].Appearances</div>
+                <div class="cell">@Model.CurrentRoster[i].Goals</div>
+                <div class="cell">@Model.CurrentRoster[i].Assists</div>
+                <div class="cell">@Model.CurrentRoster[i].YellowCards</div>
+                <div class="cell">@Model.CurrentRoster[i].RedCards</div>
             </div>
         }
     </div>
-}
-
-@section Scripts
-{
-	<script id="Index.js" src="~/Views/Player/Index.js"
-			data-url="@Url.Action("GridData")"
-			data-sort-by="@ViewBag.SortBy"
-			data-sort-order="@ViewBag.SortOrder"
-			data-page="@ViewBag.Page"
-			data-rows="@ViewBag.Rows"
-			data-action-edit="@Url.Action("Edit", "Player", new { id = "" })"></script>
 }

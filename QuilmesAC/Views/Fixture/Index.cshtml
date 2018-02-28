@@ -17,68 +17,57 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "mainForm" }))
 {
-	<div id="leagueTables">
-		<div id="matchTable">
-			<table id="list"></table>
-			<div id="pager"></div>
-		</div>
-		<div id="standingTable">
-			<table id="standingList"></table>
-			<div id="standingPager"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
+    <div id="fixtureTables" class="center">
+        <div id="matchTable">
+            <div class="header-row">
+                <div class="cell">Match Day</div>
+                <div class="cell">Match Date</div>
+                <div class="cell">Opponent</div>
+                <div class="cell">GF</div>
+                <div class="cell">GA</div>
+                <div class="cell">Result</div>
+            </div>
+            @foreach (var match in Model.Matches)
+            {
+                <div class="@(match.MatchDay % 2 == 0 ? "row-even" : "row-odd")">
+                    <div class="cell">@match.MatchDay</div>
+                    <div class="cell">@String.Format("{0:M/d/yyyy}", match.MatchDate)</div>
+                    <div class="cell table-team">@match.Opponent.Name</div>
+                    <div class="cell">@match.GoalsFor</div>
+                    <div class="cell">@match.GoalsAgainst</div>
+                    <div class="cell">@match.Result</div>
+                </div>
+            }
+        </div>
 
-	@*<div class="table">
-		<div class="header-row">
-			<div class="cell">Match Day</div>
-			<div class="cell">Match Date</div>
-			<div class="cell">Opponent</div>
-			<div class="cell">GF</div>
-			<div class="cell">GA</div>
-			<div class="cell">Result</div>
-		</div>
-		@foreach (var match in Model.Matches)
-		{
-			<div class="@(match.MatchDay % 2 == 0 ? "row-even" : "row-odd")">
-				<div class="cell">@match.MatchDay</div>
-				<div class="cell">@String.Format("{0:M/d/yyyy}", match.MatchDate)</div>
-				<div class="cell">@match.Opponent.Name</div>
-				<div class="cell">@match.GoalsFor</div>
-				<div class="cell">@match.GoalsAgainst</div>
-				<div class="cell">@match.Result</div>
-			</div>
-		}
-	</div>
-
-	<div class="table">
-		<div class="header-row">
-			<div class="cell">League Table</div>
-			<div class="cell">GP</div>
-			<div class="cell">W</div>
-			<div class="cell">D</div>
-			<div class="cell">L</div>
-			<div class="cell">GF</div>
-			<div class="cell">GA</div>
-			<div class="cell">Diff</div>
-			<div class="cell">Pts.</div>
-		</div>
-		@foreach (var standing in Model.Standings)
-		{
-			<div class="@(standing.Opponent.Name == "Quilmes AC" ? "quilmes-row" : (standing.Position % 2 == 0 ? "row-even" : "row-odd"))">
-				<div class="cell">@standing.Opponent.Name</div>
-				<div class="cell">@standing.GamesPlayed</div>
-				<div class="cell">@standing.Win</div>
-				<div class="cell">@standing.Draw</div>
-				<div class="cell">@standing.Loss</div>
-				<div class="cell">@standing.GoalsFor</div>
-				<div class="cell">@standing.GoalsAgainst</div>
-				<div class="cell">@standing.GoalDifference</div>
-				<div class="cell">@standing.Points</div>
-			</div>
-		}
-	</div>*@
-
+        <div id="standingTable">
+            <div class="header-row">
+                <div class="cell">League Table</div>
+                <div class="cell">GP</div>
+                <div class="cell">W</div>
+                <div class="cell">D</div>
+                <div class="cell">L</div>
+                <div class="cell">GF</div>
+                <div class="cell">GA</div>
+                <div class="cell">Diff</div>
+                <div class="cell">Pts.</div>
+            </div>
+            @foreach (var standing in Model.Standings)
+            {
+                <div class="@(standing.Opponent.Name == "Quilmes AC" ? "quilmes-row" : (standing.Position % 2 == 0 ? "row-even" : "row-odd"))">
+                    <div class="cell table-team">@standing.Position. @standing.Opponent.Name</div>
+                    <div class="cell">@standing.GamesPlayed</div>
+                    <div class="cell">@standing.Win</div>
+                    <div class="cell">@standing.Draw</div>
+                    <div class="cell">@standing.Loss</div>
+                    <div class="cell">@standing.GoalsFor</div>
+                    <div class="cell">@standing.GoalsAgainst</div>
+                    <div class="cell">@standing.GoalDifference</div>
+                    <div class="cell">@standing.Points</div>
+                </div>
+            }
+        </div>
+    </div>
 	<div class="allTimeRecord">
 		All Time Record
 		<table>
@@ -111,18 +100,9 @@
 
 @section Scripts
 {
-	<script id="Match.js" src="~/Views/Fixture/Match.js"
-			data-url="@Url.Action("GridData")"
-			data-sort-by="@ViewBag.SortBy"
-			data-sort-order="@ViewBag.SortOrder"
-			data-page="@ViewBag.Page"
-			data-rows="@ViewBag.Rows"
-			data-action-edit="@Url.Action("Edit", "Fixture", new { id = "" })"></script>
-
-	<script id="Standing.js" src="~/Views/Fixture/Standing.js"
-			data-url="@Url.Action("StandingGridData")"
-			data-sort-by="@ViewBag.StandingSortBy"
-			data-sort-order="@ViewBag.StandingSortOrder"
-			data-page="@ViewBag.StandingPage"
-			data-rows="@ViewBag.StandingRows"></script>
+    <script type="text/javascript">
+        $("#SeasonID").change(function () {
+            window.location.href = window.location.href.replace(/[\?#].*|$/, "?season=") + $(this).val();
+        });
+    </script>
 }

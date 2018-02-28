@@ -84,6 +84,9 @@ namespace QuilmesAC.Models
     partial void InsertFormation(Formation instance);
     partial void UpdateFormation(Formation instance);
     partial void DeleteFormation(Formation instance);
+    partial void InsertAppearance(Appearance instance);
+    partial void UpdateAppearance(Appearance instance);
+    partial void DeleteAppearance(Appearance instance);
     #endregion
 		
 		public QuilmesDataContext() : 
@@ -257,6 +260,14 @@ namespace QuilmesAC.Models
 			get
 			{
 				return this.GetTable<Formation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Appearance> Appearances
+		{
+			get
+			{
+				return this.GetTable<Appearance>();
 			}
 		}
 	}
@@ -1376,6 +1387,8 @@ namespace QuilmesAC.Models
 		
 		private EntitySet<Lineup> _Lineups;
 		
+		private EntitySet<Appearance> _Appearances;
+		
 		private EntityRef<Opponent> _Opponent;
 		
 		private EntityRef<Season> _Season;
@@ -1408,6 +1421,7 @@ namespace QuilmesAC.Models
 			this._Cards = new EntitySet<Card>(new Action<Card>(this.attach_Cards), new Action<Card>(this.detach_Cards));
 			this._Goals = new EntitySet<Goal>(new Action<Goal>(this.attach_Goals), new Action<Goal>(this.detach_Goals));
 			this._Lineups = new EntitySet<Lineup>(new Action<Lineup>(this.attach_Lineups), new Action<Lineup>(this.detach_Lineups));
+			this._Appearances = new EntitySet<Appearance>(new Action<Appearance>(this.attach_Appearances), new Action<Appearance>(this.detach_Appearances));
 			this._Opponent = default(EntityRef<Opponent>);
 			this._Season = default(EntityRef<Season>);
 			OnCreated();
@@ -1633,6 +1647,19 @@ namespace QuilmesAC.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Match_Appearance", Storage="_Appearances", ThisKey="ID", OtherKey="MatchID")]
+		public EntitySet<Appearance> Appearances
+		{
+			get
+			{
+				return this._Appearances;
+			}
+			set
+			{
+				this._Appearances.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Opponent_Match", Storage="_Opponent", ThisKey="OpponentID", OtherKey="ID", IsForeignKey=true)]
 		public Opponent Opponent
 		{
@@ -1764,6 +1791,18 @@ namespace QuilmesAC.Models
 		}
 		
 		private void detach_Lineups(Lineup entity)
+		{
+			this.SendPropertyChanging();
+			entity.Match = null;
+		}
+		
+		private void attach_Appearances(Appearance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Match = this;
+		}
+		
+		private void detach_Appearances(Appearance entity)
 		{
 			this.SendPropertyChanging();
 			entity.Match = null;
@@ -1938,6 +1977,8 @@ namespace QuilmesAC.Models
 		
 		private EntitySet<PlayerPosition> _PlayerPositions;
 		
+		private EntitySet<Appearance> _Appearances;
+		
 		private EntityRef<Status> _Status;
 		
     #region Extensibility Method Definitions
@@ -1964,6 +2005,7 @@ namespace QuilmesAC.Models
 			this._Cards = new EntitySet<Card>(new Action<Card>(this.attach_Cards), new Action<Card>(this.detach_Cards));
 			this._Goals = new EntitySet<Goal>(new Action<Goal>(this.attach_Goals), new Action<Goal>(this.detach_Goals));
 			this._PlayerPositions = new EntitySet<PlayerPosition>(new Action<PlayerPosition>(this.attach_PlayerPositions), new Action<PlayerPosition>(this.detach_PlayerPositions));
+			this._Appearances = new EntitySet<Appearance>(new Action<Appearance>(this.attach_Appearances), new Action<Appearance>(this.detach_Appearances));
 			this._Status = default(EntityRef<Status>);
 			OnCreated();
 		}
@@ -2144,6 +2186,19 @@ namespace QuilmesAC.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_Appearance", Storage="_Appearances", ThisKey="ID", OtherKey="PlayerID")]
+		public EntitySet<Appearance> Appearances
+		{
+			get
+			{
+				return this._Appearances;
+			}
+			set
+			{
+				this._Appearances.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Player", Storage="_Status", ThisKey="StatusID", OtherKey="ID", IsForeignKey=true)]
 		public Status Status
 		{
@@ -2241,6 +2296,18 @@ namespace QuilmesAC.Models
 		}
 		
 		private void detach_PlayerPositions(PlayerPosition entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = null;
+		}
+		
+		private void attach_Appearances(Appearance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = this;
+		}
+		
+		private void detach_Appearances(Appearance entity)
 		{
 			this.SendPropertyChanging();
 			entity.Player = null;
@@ -4005,6 +4072,198 @@ namespace QuilmesAC.Models
 		{
 			this.SendPropertyChanging();
 			entity.Formation = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appearance")]
+	public partial class Appearance : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _PlayerID;
+		
+		private int _MatchID;
+		
+		private EntityRef<Match> _Match;
+		
+		private EntityRef<Player> _Player;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnPlayerIDChanging(int value);
+    partial void OnPlayerIDChanged();
+    partial void OnMatchIDChanging(int value);
+    partial void OnMatchIDChanged();
+    #endregion
+		
+		public Appearance()
+		{
+			this._Match = default(EntityRef<Match>);
+			this._Player = default(EntityRef<Player>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerID", DbType="Int NOT NULL")]
+		public int PlayerID
+		{
+			get
+			{
+				return this._PlayerID;
+			}
+			set
+			{
+				if ((this._PlayerID != value))
+				{
+					if (this._Player.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayerIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlayerID = value;
+					this.SendPropertyChanged("PlayerID");
+					this.OnPlayerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatchID", DbType="Int NOT NULL")]
+		public int MatchID
+		{
+			get
+			{
+				return this._MatchID;
+			}
+			set
+			{
+				if ((this._MatchID != value))
+				{
+					if (this._Match.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMatchIDChanging(value);
+					this.SendPropertyChanging();
+					this._MatchID = value;
+					this.SendPropertyChanged("MatchID");
+					this.OnMatchIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Match_Appearance", Storage="_Match", ThisKey="MatchID", OtherKey="ID", IsForeignKey=true)]
+		public Match Match
+		{
+			get
+			{
+				return this._Match.Entity;
+			}
+			set
+			{
+				Match previousValue = this._Match.Entity;
+				if (((previousValue != value) 
+							|| (this._Match.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Match.Entity = null;
+						previousValue.Appearances.Remove(this);
+					}
+					this._Match.Entity = value;
+					if ((value != null))
+					{
+						value.Appearances.Add(this);
+						this._MatchID = value.ID;
+					}
+					else
+					{
+						this._MatchID = default(int);
+					}
+					this.SendPropertyChanged("Match");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_Appearance", Storage="_Player", ThisKey="PlayerID", OtherKey="ID", IsForeignKey=true)]
+		public Player Player
+		{
+			get
+			{
+				return this._Player.Entity;
+			}
+			set
+			{
+				Player previousValue = this._Player.Entity;
+				if (((previousValue != value) 
+							|| (this._Player.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Player.Entity = null;
+						previousValue.Appearances.Remove(this);
+					}
+					this._Player.Entity = value;
+					if ((value != null))
+					{
+						value.Appearances.Add(this);
+						this._PlayerID = value.ID;
+					}
+					else
+					{
+						this._PlayerID = default(int);
+					}
+					this.SendPropertyChanged("Player");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

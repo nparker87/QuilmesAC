@@ -144,6 +144,7 @@
     <Compile Include="Helpers\MiniProfilerHelper.cs" />
     <Compile Include="MiniProfiler\MiniProfilerHelper.cs" />
     <Compile Include="Models\AllTimeRecord.cs" />
+    <Compile Include="Models\CurrentRoster.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\QuilmesAC.designer.cs">
       <AutoGen>True</AutoGen>

@@ -67,6 +67,7 @@
       <Association Name="Match_Card" Member="Cards" ThisKey="ID" OtherKey="MatchID" Type="Card" />
       <Association Name="Match_Goal" Member="Goals" ThisKey="ID" OtherKey="MatchID" Type="Goal" />
       <Association Name="Match_Lineup" Member="Lineups" ThisKey="ID" OtherKey="MatchID" Type="Lineup" />
+      <Association Name="Match_Appearance" Member="Appearances" ThisKey="ID" OtherKey="MatchID" Type="Appearance" />
       <Association Name="Opponent_Match" Member="Opponent" ThisKey="OpponentID" OtherKey="ID" Type="Opponent" IsForeignKey="true" />
       <Association Name="Season_Match" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" />
     </Type>
@@ -91,6 +92,7 @@
       <Association Name="Player_Card" Member="Cards" ThisKey="ID" OtherKey="PlayerID" Type="Card" />
       <Association Name="Player_Goal" Member="Goals" ThisKey="ID" OtherKey="PlayerID" Type="Goal" />
       <Association Name="Player_PlayerPosition" Member="PlayerPositions" ThisKey="ID" OtherKey="PlayerID" Type="PlayerPosition" />
+      <Association Name="Player_Appearance" Member="Appearances" ThisKey="ID" OtherKey="PlayerID" Type="Appearance" />
       <Association Name="Status_Player" Member="Status" ThisKey="StatusID" OtherKey="ID" Type="Status" IsForeignKey="true" />
     </Type>
   </Table>
@@ -181,6 +183,15 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Formation_Lineup" Member="Lineups" ThisKey="ID" OtherKey="FormationID" Type="Lineup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Appearance" Member="Appearances">
+    <Type Name="Appearance">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MatchID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Match_Appearance" Member="Match" ThisKey="MatchID" OtherKey="ID" Type="Match" IsForeignKey="true" />
+      <Association Name="Player_Appearance" Member="Player" ThisKey="PlayerID" OtherKey="ID" Type="Player" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

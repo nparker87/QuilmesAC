@@ -19,9 +19,10 @@
 			CurrentTab = "Player";
 			PopulateSelectLists(model);
 			StatusID = 1;
-			SeasonID = model.GetCurrentSeason();
+			SeasonID = model.GetCurrentSeason().ID;
 			Players = model.GetPlayersByStatusID(StatusID);
 			Goals = model.GetGoalsBySeasonAndPlayer(ID, SeasonID);
+            CurrentSeason = model.GetCurrentSeason();
             CurrentRoster = model.GetCurrentRoster();
 		}
 
@@ -60,6 +61,8 @@
 		public SelectList Seasons { get; set; }
 
 		public List<Player> Players { get; set; }
+
+        public Season CurrentSeason { get; set; }
 
         public List<CurrentRoster> CurrentRoster { get; set; }
 

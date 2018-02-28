@@ -10,7 +10,7 @@
 
     public class FixtureController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int? season)
         {
             // Use last sorting choices if saved - otherwise use defaults.
             ViewBag.SortBy = (Session["MatchLastSortID"] ?? "MatchDay");
@@ -22,7 +22,7 @@
             ViewBag.StandingPage = (Session["StandingLastSortPage"] ?? 1);
             ViewBag.StandingRows = (Session["StandingLastSortRows"] ?? 50);
 
-            return View(new FixtureViewModel(QuilmesModel));
+            return View(new FixtureViewModel(QuilmesModel, (season == null || season == 0 ? QuilmesModel.GetCurrentSeason().ID : (int)season)));
         }
 
         /// <summary> Returns the JSON data to display a jqGrid of matches </summary>
@@ -187,7 +187,7 @@
         [AuthorizeHelper(Roles = "Admin")]
         public ActionResult Add()
         {
-            return View(new FixtureViewModel(QuilmesModel));
+            return View(new FixtureViewModel(QuilmesModel, 0));
         }
 
         [HttpPost]
@@ -198,7 +198,7 @@
                 QuilmesModel.Add(submission);
                 QuilmesModel.Save();
 
-                return View(new FixtureViewModel(QuilmesModel));
+                return View(new FixtureViewModel(QuilmesModel, 0));
             }
             else
             {

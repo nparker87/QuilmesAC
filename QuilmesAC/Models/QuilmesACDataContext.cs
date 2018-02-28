@@ -228,7 +228,7 @@
 			return Matches.FirstOrDefault(x => x.ID == id);
 		}
 
-		public List<Match> GetMatchesBySeasonID(int seasonID)
+		public List<Match> GetMatchesBySeasonID(int? seasonID)
 		{
 			return Matches.Where(x => x.SeasonID == seasonID).OrderBy(x => x.MatchDay).ToList();
 		}
@@ -302,9 +302,9 @@
 			return Seasons.FirstOrDefault(x => x.ID == id);
 		}
 
-		public int GetCurrentSeason()
+		public Season GetCurrentSeason()
 		{
-			return Seasons.FirstOrDefault(x => x.IsCurrent == true).ID;
+			return Seasons.FirstOrDefault(x => x.IsCurrent == true);
 		}
 
 		public void Add(SeasonViewModel submission)
@@ -449,7 +449,7 @@
 			return Standings.FirstOrDefault(x => x.ID == id);
 		}
 
-		public List<Standing> GetStandingsBySeasonID(int seasonID)
+		public List<Standing> GetStandingsBySeasonID(int? seasonID)
 		{
 			return Standings.Where(x => x.SeasonID == seasonID).OrderBy(x => x.Position).ToList();
 		}
@@ -536,17 +536,18 @@
             var roster = new List<CurrentRoster>();
             var currentSeason = GetCurrentSeason();
 
-            foreach(var player in Players.Where(x => x.StatusID == 1))
+            foreach(var player in Players.Where(x => x.StatusID == 1).OrderBy(x => x.LastName))
             {
                 var rosterPlayer = new CurrentRoster
                 {
                     PlayerID = player.ID,
-                    FullName = String.Format("{0}, {1}{2}", player.FirstName, player.LastName, (player.LastName == "Porter" ? "<em>(Captain)</em>" : "")),
+                    FullName = String.Format("{0}, {1}", player.LastName, player.FirstName),
                     Number = player.Number,
-                    Goals = GetGoalsBySeasonAndPlayer(player.ID, currentSeason),
-                    Assists = GetAssistsBySeasonAndPlayer(player.ID, currentSeason),
-                    YellowCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Yellow" && x.Match.SeasonID == currentSeason).Count(),
-                    RedCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Red" && x.Match.SeasonID == currentSeason).Count()
+                    Appearances = player.Appearances.Where(x => x.Match.SeasonID == currentSeason.ID).Count(),
+                    Goals = GetGoalsBySeasonAndPlayer(player.ID, currentSeason.ID),
+                    Assists = GetAssistsBySeasonAndPlayer(player.ID, currentSeason.ID),
+                    YellowCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Yellow" && x.Match.SeasonID == currentSeason.ID).Count(),
+                    RedCards = GetCardsByPlayerID(player.ID).Where(x => x.CardType.Name == "Red" && x.Match.SeasonID == currentSeason.ID).Count()
                 };
                 roster.Add(rosterPlayer);
             }

@@ -8,6 +8,8 @@
 
         public int? Number { get; set; }
 
+        public int Appearances { get; set; }
+
         public int Goals { get; set; }
 
         public int Assists { get; set; }

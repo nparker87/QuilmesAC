@@ -14,14 +14,14 @@
             CurrentTab = "Fixture";
         }
 
-        public FixtureViewModel(QuilmesDataContext model)
+        public FixtureViewModel(QuilmesDataContext model, int seasonID)
         {
             CurrentTab = "Fixture";
-            PopulateSelectLists(model);
             AllTimeRecord = model.GetAllTimeRecord();
-            SeasonID = model.GetCurrentSeason();
+            SeasonID = seasonID;
             Standings = model.GetStandingsBySeasonID(SeasonID);
             Matches = model.GetMatchesBySeasonID(SeasonID);
+            PopulateSelectLists(model);
         }
 
         public FixtureViewModel(FixtureViewModel match)
