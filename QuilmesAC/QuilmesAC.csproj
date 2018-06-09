@@ -199,7 +199,9 @@
     <Content Include="Content\Images\SocialMedia\youtube.png" />
     <Content Include="Content\Images\spring_2016.JPG" />
     <Content Include="Content\Images\spring_2017.jpg" />
-    <Content Include="Content\Images\spring_2018.jpg" />
+    <Content Include="Content\Images\spring_2018.jpeg" />
+    <Content Include="Content\Images\spring_2018_2.jpeg" />
+    <Content Include="Content\Images\spring_2018_preseason.jpg" />
     <Content Include="Content\Images\Stachesquatch.jpg" />
     <Content Include="Content\Images\UnionMarket.png" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
@@ -327,6 +329,7 @@
     <Content Include="Views\User\EmailSent.cshtml" />
     <Content Include="Views\User\ResetSuccess.cshtml" />
     <Content Include="Views\Sponsor\Index.cshtml" />
+    <Content Include="Views\About\Index.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
