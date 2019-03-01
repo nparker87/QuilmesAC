@@ -54,7 +54,7 @@
             </div>
             @foreach (var standing in Model.Standings)
             {
-                <div class="@(standing.Opponent.Name == "Quilmes AC" ? "quilmes-row" : (standing.Position % 2 == 0 ? "row-even" : "row-odd"))">
+                <div class="@(standing.Opponent.Name == "Quilmes RFC" ? "quilmes-row" : (standing.Position % 2 == 0 ? "row-even" : "row-odd"))">
                     <div class="cell table-team">@standing.Position. @standing.Opponent.Name</div>
                     <div class="cell">@standing.GamesPlayed</div>
                     <div class="cell">@standing.Win</div>
