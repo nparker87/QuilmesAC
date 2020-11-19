@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Countdown">
+  <DataContextMoniker Name="/CountdownDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8cb16f15-6627-4c16-854c-c5fdf31e2043" absoluteBounds="0.5, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/CountdownDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fbbd9101-b3f7-450b-bd60-89e75eb277d0" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
